@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: simple-fee-kiosk
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: simple-fee-kiosk-db
+          property: connectionString
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+
+databases:
+  - name: simple-fee-kiosk-db
+    plan: free
+    region: singapore
+    databaseName: fee_kiosk
