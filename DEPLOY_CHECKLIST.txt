@@ -1,0 +1,21 @@
+FINAL TEST BUILD CHECKLIST
+
+[ ] Existing GitHub repo में files update
+[ ] Existing Render service deploy
+[ ] Render Logs में Database schema ready
+[ ] Admin login test
+[ ] Settings में संस्था नाम + UPI ID
+[ ] Excel student import test
+[ ] Enrollment search test
+[ ] Roll number search test
+[ ] Mobile number search test
+[ ] Enrollment multi-tap test
+[ ] Fee assignment test
+[ ] Receipt visible/hidden test
+[ ] Fee amount reduce/update test
+[ ] UPI QR/App test
+[ ] UTR submit test
+[ ] Admin Verify test
+[ ] Receipt display + print test
+
+IMPORTANT: UPI ID alone cannot automatically confirm bank payment. Manual UTR verification is intentionally used in this test build.

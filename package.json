@@ -1,7 +1,15 @@
 {
-  "name":"simple-fee-kiosk-cloud-v1",
-  "version":"1.1.0",
-  "private":true,
-  "scripts":{"start":"node server.js"},
-  "dependencies":{"express":"^4.21.2","pg":"^8.13.1","qrcode":"^1.5.4","dotenv":"^16.4.7"}
+  "name": "simple-fee-kiosk-final",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "qrcode": "^1.5.4",
+    "dotenv": "^16.4.7",
+    "xlsx": "^0.18.5"
+  }
 }
