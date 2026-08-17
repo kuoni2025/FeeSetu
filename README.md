@@ -1,16 +1,21 @@
-# Modern Fee Payment Kiosk V8
+# FeeSetu Kiosk v10
 
-V8 refines the supplied V7 kiosk into a cleaner, premium self-service interface.
+Modern student fee payment kiosk for Gov PG College Shivpuri.
 
-### UI/UX
-- Compact search modes for Enrollment / Roll / Mobile
-- Cleaner first screen with no stepper clutter
-- Centered modern kiosk workspace
-- Larger, polished touch keypad
-- Subtle key press/highlight
-- Visible multi-tap indicator for Enrollment mode
-- Numeric-only keypad for Roll and Mobile
-- Existing payment, receipt, admin, student, fee assignment and Excel workflows preserved
+## V10 changes
+- Stable custom alphanumeric touch keypad with multi-tap letters for Enrollment Number.
+- Mobile layout prevents the native keyboard from opening.
+- Clear "विद्यार्थी शुल्क भुगतान कियोस्क" identity.
+- Light saffron/white visual theme with subtle background artwork.
+- Student photo support from Excel: **Photo URL** column or an embedded photo placed on the same Excel row.
+- Student photos shown in Admin and Kiosk confirmation.
+- Existing Student edit/delete, archive and safe inactive purge retained.
+- Fee assignment/save feedback retained.
+- Pending payment deletion keeps fee assignment unpaid.
+- Payment records and CSV reporting retained.
 
-### Important
-This is a visual/UX refinement over the supplied V7 project. Backend and payment behavior are preserved.
+## Excel photos
+Download the template from Admin → Students. Add an optional `Photo URL (optional)` column, or insert a student photo image into the same row in the workbook. The importer stores the photo for that student.
+
+## Deploy
+Push the repository to GitHub and let Render redeploy the existing service. Do not create a new database.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
-<title>Fee Payment Kiosk</title>
+<title>FeeSetu • Fee Payment Kiosk</title>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -448,6 +448,74 @@ main{min-height:calc(100vh - 76px);padding:18px 16px 28px}
   #searchScreen .secure{margin:13px -14px -18px;border-radius:0 0 20px 20px}
 }
 
+
+/* FeeSetu V9 — clean, spacious kiosk + light saffron theme */
+:root{
+  --primary:#d97706;
+  --primary-dark:#b45309;
+  --primary-light:#fff7ed;
+  --accent:#15803d;
+  --ink:#172033;
+  --ink-soft:#475569;
+  --muted:#64748b;
+  --line:#e7e5e4;
+  --card:#fff;
+  --shadow-lg:0 22px 55px rgba(120,53,15,.10);
+}
+html,body{background:linear-gradient(145deg,#fffdf9 0%,#fff7ed 48%,#fffaf5 100%);}
+.top{background:rgba(255,255,255,.97);}
+.brandLogo{background:linear-gradient(135deg,#ea580c,#d97706 55%,#f59e0b);box-shadow:0 6px 18px rgba(217,119,6,.22)}
+.helpBtn{color:#b45309;background:#fff7ed}
+.adminLink{color:#334155;background:#fff;border-color:#e7e5e4}
+#searchScreen{
+  max-width:900px;
+  min-height:calc(100dvh - 96px);
+  padding:22px 26px 18px;
+  border-radius:26px;
+  background:rgba(255,255,255,.985);
+  box-shadow:0 26px 65px rgba(120,53,15,.10);
+  display:flex;flex-direction:column;
+}
+#searchScreen .hero{display:none}
+#searchScreen .searchModes{margin-top:4px;margin-bottom:12px}
+.mode{height:46px;font-size:11px;font-weight:500;border-color:#e7e5e4;background:#fff8f1;color:#475569}
+.mode .icon{font-size:14px}
+.mode.active{border-color:#f59e0b;background:#fff7ed;color:#b45309;box-shadow:0 4px 14px rgba(217,119,6,.10)}
+.inputWrap{max-width:700px;width:100%;margin:0 auto 12px}
+.input{height:60px;border-color:#d6d3d1;border-radius:15px;font-size:22px;font-weight:600;padding:0 62px 0 18px;background:#fff;text-align:center}
+.input:focus{border-color:#f59e0b;box-shadow:0 0 0 4px rgba(245,158,11,.12)}
+.erase{right:8px;top:6px;width:48px;height:48px;border-radius:12px;background:#fff7ed;color:#b45309;font-size:22px;display:grid;place-items:center}
+.hint,#multiTapIndicator,#searchScreen .bottomNote,#searchScreen .secure{display:none!important}
+.keys{width:min(620px,100%);gap:12px;margin:0 auto}
+.key{height:78px;border-radius:17px;background:linear-gradient(180deg,#fff,#fffaf5);border:1px solid #e7e5e4;color:#1f2937;font-size:27px;font-weight:700;box-shadow:0 4px 12px rgba(120,53,15,.045)}
+.key:hover{border-color:#f3c47b;box-shadow:0 8px 18px rgba(217,119,6,.10)}
+.key.action{color:#7c2d12;background:#fff7ed}
+.key.search{background:linear-gradient(135deg,#ea580c,#d97706);box-shadow:0 9px 22px rgba(217,119,6,.25);font-size:18px}
+@media(max-width:760px){
+  main{min-height:calc(100dvh - 62px);padding:7px 8px 8px}
+  #searchScreen{min-height:calc(100dvh - 77px);padding:14px 10px 12px;border-radius:19px}
+  #searchScreen .searchModes{gap:7px;margin-bottom:10px}
+  .mode{height:43px;padding:0 5px;font-size:9.5px;border-radius:11px;gap:5px}
+  .mode .icon{font-size:12px}
+  .inputWrap{margin-bottom:10px}
+  .input{height:54px;font-size:19px;border-radius:13px;padding-right:58px}
+  .erase{width:44px;height:44px;top:5px;right:5px;border-radius:11px;font-size:20px}
+  .keys{gap:8px;width:100%;max-width:640px}
+  .key{height:clamp(64px,9.2dvh,78px);border-radius:14px;font-size:24px}
+  .key.search{font-size:16px}
+}
+@media(min-width:1200px){
+  #searchScreen{min-height:calc(100vh - 105px)}
+  .keys{width:min(650px,100%)}
+  .key{height:82px}
+}
+@media print{
+  .receipt{max-width:720px!important;border:0!important;box-shadow:none!important}
+  .printArea{padding:0!important}
+  .receiptHead h2{font-size:20px}
+  .receiptMeta div{background:#fff!important;border:1px solid #ddd!important}
+}
+
 </style>
 </head>
 <body>
@@ -457,8 +525,8 @@ main{min-height:calc(100vh - 76px);padding:18px 16px 28px}
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div>
-      <div class="brandName" id="org">Fee Payment Kiosk</div>
-      <div class="brandMsg" id="msg">Search & Pay Fees Easily</div>
+      <div class="brandName" id="org">Gov PG College Shivpuri</div>
+      <div class="brandMsg" id="msg">विद्यार्थी शुल्क भुगतान कियोस्क</div>
     </div>
   </div>
   <div class="topRight">
@@ -476,16 +544,12 @@ main{min-height:calc(100vh - 76px);padding:18px 16px 28px}
 <div class="screen">
 
 <section id="searchScreen" class="panel">
+  <div class="kioskPurpose"><span class="purposeIcon">₹</span><span>विद्यार्थी शुल्क भुगतान कियोस्क</span></div>
   <div class="steps">
     <div class="step active"><div class="step-dot">1</div><div class="step-label" data-i18n="step1">खोजें</div></div>
     <div class="step"><div class="step-dot">2</div><div class="step-label" data-i18n="step2">पुष्टि</div></div>
     <div class="step"><div class="step-dot">3</div><div class="step-label" data-i18n="step3">फीस</div></div>
     <div class="step"><div class="step-dot">4</div><div class="step-label" data-i18n="step4">भुगतान</div></div>
-  </div>
-  <div class="hero">
-    <div style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:#f1f5ff;color:#4338ca;font-size:11px;font-weight:800;margin-bottom:8px">✦ शुल्क भुगतान केंद्र</div>
-    <h1 data-i18n="searchTitle">अपना रिकॉर्ड खोजें</h1>
-    <p data-i18n="searchSub">फीस जमा करने के लिए अपना कोई एक विवरण दर्ज करें</p>
   </div>
   <div class="searchModes">
     <button class="mode active" data-type="enrollment" type="button"><span class="icon">🪪</span><span data-i18n="modeEnroll">नामांकन क्रमांक</span></button>
@@ -493,14 +557,11 @@ main{min-height:calc(100vh - 76px);padding:18px 16px 28px}
     <button class="mode" data-type="mobile" type="button"><span class="icon">📱</span><span data-i18n="modeMobile">मोबाइल नंबर</span></button>
   </div>
   <div class="inputWrap">
-    <input id="query" class="input" autocomplete="off" inputmode="none" placeholder=""/>
+    <input id="query" class="input" autocomplete="off" inputmode="none" readonly aria-label="Search value" placeholder=""/>
     <button class="erase" id="erase" type="button">⌫</button>
   </div>
-  <div id="multiTapIndicator" class="multiTapIndicator"></div><div id="hint" class="hint"></div>
   <div id="keys" class="keys"></div>
   <div id="error" class="error"></div>
-  <div class="bottomNote" data-i18n="bottomNote">सही जानकारी दर्ज करें और खोजें दबाएँ</div>
-  <div class="secure" data-i18n="secure">🔒 आपकी जानकारी सुरक्षित है • केवल शुल्क भुगतान के लिए</div>
 </section>
 
 <section id="resultsScreen" class="subPanel hidden">
@@ -647,7 +708,7 @@ const i18n = {
     sendEmail:"📧 भेजें", home:"मुख्य स्क्रीन", print:"🖨 रसीद प्रिंट",
     helpTitle:"❓ कैसे इस्तेमाल करें", gotIt:"समझ गया", helpNote:"समस्या होने पर प्रशासन से संपर्क करें।",
     placeholders: { enrollment:"नामांकन क्रमांक दर्ज करें", roll:"रोल नंबर दर्ज करें", mobile:"मोबाइल नंबर दर्ज करें" },
-    hints: { enrollment:"एक ही key को जल्दी दबाकर अक्षर बदलें: 2 → A → B → C", roll:"केवल अंक दर्ज करें", mobile:"10 अंकों का मोबाइल नंबर" },
+    hints: { enrollment:"", roll:"", mobile:"" },
     searchBtn:"खोजें", utrPh:"UTR / Transaction ID दर्ज करें",
     noRecord:"कृपया जानकारी दर्ज करें।", searching:"रिकॉर्ड खोजा जा रहा है...", mobileErr:"मोबाइल नंबर 10 अंकों का होना चाहिए।",
     noFee:"इस समय कोई बकाया फीस नहीं है।", father:"पिता", name:"विद्यार्थी का नाम", enroll:"नामांकन क्रमांक",
@@ -670,7 +731,7 @@ const i18n = {
     sendEmail:"📧 Send", home:"Home", print:"🖨 Print Receipt",
     helpTitle:"❓ How to use", gotIt:"Got it", helpNote:"Contact admin office if you need help.",
     placeholders: { enrollment:"Enter Enrollment Number", roll:"Enter Roll Number", mobile:"Enter Mobile Number" },
-    hints: { enrollment:"Tap same key quickly to cycle letters: 2 → A → B → C", roll:"Digits only", mobile:"10-digit mobile number" },
+    hints: { enrollment:"", roll:"", mobile:"" },
     searchBtn:"Search", utrPh:"Enter UTR / Transaction ID",
     noRecord:"Please enter details.", searching:"Searching records...", mobileErr:"Mobile must be 10 digits.",
     noFee:"No pending fees at this time.", father:"Father", name:"Student Name", enroll:"Enrollment No.",
@@ -687,7 +748,6 @@ function applyI18n(){
     if(i18n[lang][k]) el.textContent = i18n[lang][k];
   });
   $("query").placeholder = t("placeholders")[mode] || "";
-  $("hint").textContent = t("hints")[mode] || "";
   $("utr").placeholder = t("utrPh");
   const hl=$("helpList");
   hl.innerHTML = (t("helpSteps")||[]).map(s=>`<li>${s}</li>`).join("");
@@ -717,59 +777,51 @@ function setMode(m){
   $("query").placeholder = t("placeholders")[m] || "";
   $("hint").textContent = t("hints")[m] || "";
   $("query").value=""; lastKey=""; lastTap=0;
-  renderKeys(); $("multiTapIndicator").classList.remove("show"); $("query").focus(); resetIdle();
+  renderKeys(); resetIdle();
 }
 
+let tapTimer=null;
 function renderKeys(){
-  const searchLabel = t("searchBtn");
-  const arr = mode==="enrollment"
-    ? [["1",""],["2","ABC"],["3","DEF"],["4","GHI"],["5","JKL"],["6","MNO"],["7","PQRS"],["8","TUV"],["9","WXYZ"],["⌫",""],["0",""],[searchLabel,""]]
-    : [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""],["7",""],["8",""],["9",""],["⌫",""],["0",""],[searchLabel,""]];
-  $("keys").innerHTML = arr.map((x,i)=>`<button class="key ${x[0]==='⌫'?'action':''} ${x[0]===searchLabel?'search':''}" data-i="${i}" data-key="${x[0]}" type="button">${x[0]}${x[1]?`<small>${x[1]}</small>`:""}</button>`).join("");
-  $("keys").querySelectorAll("button").forEach(b=>b.onclick=()=>tapKey(arr[Number(b.dataset.i)][0]));
+  const searchLabel=t("searchBtn");
+  const labels={1:"",2:"ABC",3:"DEF",4:"GHI",5:"JKL",6:"MNO",7:"PQRS",8:"TUV",9:"WXYZ",0:""};
+  const keys=["1","2","3","4","5","6","7","8","9","⌫","0",searchLabel];
+  $("keys").innerHTML=keys.map((k,i)=>{
+    const sub=labels[k]||"";
+    return `<button class="key ${k==='⌫'?'action':''} ${k===searchLabel?'search':''}" data-i="${i}" data-key="${esc(k)}" type="button"><b>${esc(k)}</b>${sub?`<small>${sub}</small>`:''}</button>`;
+  }).join("");
+  $("keys").querySelectorAll("button").forEach(b=>b.onclick=()=>tapKey(b.dataset.key));
 }
-
-function flashKey(k){
-  document.querySelectorAll("#keys .key").forEach(b=>b.classList.toggle("multiTapActive", b.dataset.key===k));
-  clearTimeout(window.__keyGlow);
-  window.__keyGlow=setTimeout(()=>document.querySelectorAll("#keys .key").forEach(b=>b.classList.remove("multiTapActive")),850);
-}
-function updateMultiTapIndicator(k,seq,index){
-  const el=$("multiTapIndicator");
-  if(mode!=="enrollment" || !k || !seq || seq.length<=1){el.classList.remove("show");el.textContent="";return;}
-  el.textContent=`${k} → ${seq[index] || k}`;
-  el.classList.add("show");
-  clearTimeout(window.__multiTapHide);
-  window.__multiTapHide=setTimeout(()=>el.classList.remove("show"),950);
-}
-
 function tapKey(k){
-  const now=Date.now(), val=$("query").value, searchLabel=t("searchBtn");
+  const searchLabel=t("searchBtn");
   if(k==="⌫"){
-    $("query").value=val.slice(0,-1); lastKey=""; lastIndex=0;
-    $("multiTapIndicator").classList.remove("show");
-    document.querySelectorAll("#keys .key").forEach(b=>b.classList.remove("multiTapActive"));
-    return;
+    $("query").value=$("query").value.slice(0,-1); lastKey=""; lastIndex=0; clearTimeout(tapTimer); resetIdle(); return;
   }
-  if(k===searchLabel){ findStudent(); return; }
-  flashKey(k);
-  if(mode!=="enrollment"){ $("query").value=val+k; return; }
-  const map={"1":"1","2":"2ABC","3":"3DEF","4":"4GHI","5":"5JKL","6":"6MNO","7":"7PQRS","8":"8TUV","9":"9WXYZ","0":"0"};
-  const seq=map[k]||k;
-  if(lastKey===k && now-lastTap<900 && val.length){
-    lastIndex=(lastIndex+1)%seq.length;
-    $("query").value=val.slice(0,-1)+seq[lastIndex];
-  } else {
-    lastIndex=0; $("query").value=val+seq[0];
+  if(k===searchLabel){ clearTimeout(tapTimer); lastKey=""; lastIndex=0; findStudent(); return; }
+  if(!/^\d$/.test(k)) return;
+  const letters={2:"ABC",3:"DEF",4:"GHI",5:"JKL",6:"MNO",7:"PQRS",8:"TUV",9:"WXYZ"};
+  const alpha=mode==="enrollment" && letters[k];
+  const now=Date.now(), current=$("query").value;
+  if(alpha){
+    if(lastKey===k && now-lastTap<900 && current.length){
+      lastIndex=(lastIndex+1)% (letters[k].length+1);
+      const replacement=lastIndex===0?k:letters[k][lastIndex-1];
+      $("query").value=current.slice(0,-1)+replacement;
+    }else{
+      lastIndex=0;
+      $("query").value=current+k;
+    }
+    lastKey=k; lastTap=now;
+    clearTimeout(tapTimer); tapTimer=setTimeout(()=>{lastKey="";lastIndex=0},950);
+  }else{
+    $("query").value=current+k; lastKey=""; lastIndex=0;
   }
-  lastKey=k; lastTap=now; updateMultiTapIndicator(k,seq,lastIndex); resetIdle();
+  resetIdle();
 }
-
 async function loadSettings(){
   try{
     const s=await (await fetch("/api/settings")).json();
     $("org").textContent = s.organization_name || "Fee Payment Kiosk";
-    $("msg").textContent = s.welcome_message || (lang==="hi"?"अपना रिकॉर्ड खोजें और फीस जमा करें":"Search & Pay Fees Easily");
+    $("msg").textContent = (s.welcome_message && !/अपना रिकॉर्ड खोजें|Search & Pay Fees Easily|विद्यार्थी शुल्क भुगतान/.test(s.welcome_message)) ? s.welcome_message : (lang==="hi"?"विद्यार्थी शुल्क भुगतान कियोस्क":"Student Fee Payment Kiosk");
     if(s.logo_url){ $("brandLogo").innerHTML=`<img src="${esc(s.logo_url)}" alt="Logo">`; }
   }catch{}
   updateClock(); setInterval(updateClock,1000);
@@ -809,15 +861,16 @@ function renderChoices(){
 
 function selectStudent(s){
   student=s;
+  const initials=String(s.student_name||"विद्यार्थी").trim().slice(0,1);
+  const photo=s.photo_url ? `<img class="studentPhoto" src="${esc(s.photo_url)}" alt="Student photo" onerror="this.outerHTML='<div class=&quot;photoFallback&quot;>${esc(initials)}</div>'">` : `<div class="photoFallback">${esc(initials)}</div>`;
   $("studentInfo").innerHTML=`
-    <div><strong>${t("name")}</strong><span>${esc(s.student_name)}</span></div>
+    <div class="studentHero">${photo}<div><h3>${esc(s.student_name)}</h3><p>${t("enroll")}: ${esc(s.enrollment_number)}</p><p>${t("course")}: ${esc(s.course||s.class||"-")} • ${t("session")}: ${esc(s.session||"-")}</p></div></div>
+    <div class="studentGridInner">
     <div><strong>${t("father")}</strong><span>${esc(s.father_name||"-")}</span></div>
-    <div><strong>${t("enroll")}</strong><span>${esc(s.enrollment_number)}</span></div>
     <div><strong>${t("rollL")}</strong><span>${esc(s.roll_number||"-")}</span></div>
-    <div><strong>${t("course")}</strong><span>${esc(s.course||s.class||"-")}</span></div>
     <div><strong>${t("sem")}</strong><span>${esc(s.semester||"-")}</span></div>
     <div><strong>${t("mobileL")}</strong><span>${esc(s.mobile||"-")}</span></div>
-    <div><strong>${t("session")}</strong><span>${esc(s.session||"-")}</span></div>`;
+    </div>`;
   loadHistory(s.id);
   show("studentScreen");
 }
@@ -1005,7 +1058,10 @@ async function loadReceipt(){
     <div><b>${lang==="hi"?"दिनांक":"Date"}</b>${new Date(x.created_at).toLocaleString(lang==="hi"?"hi-IN":"en-IN")}</div>
     <div><b>${lang==="hi"?"विद्यार्थी":"Student"}</b>${esc(x.student_name)}</div>
     <div><b>${lang==="hi"?"नामांकन":"Enrollment"}</b>${esc(x.enrollment_number)}</div>
-    <div><b>Transaction ID</b>${esc(x.transaction_id||"-")}</div>
+    <div><b>${lang==="hi"?"रोल नंबर":"Roll No."}</b>${esc(x.roll_number||"-")}</div>
+    <div><b>${lang==="hi"?"कोर्स / कक्षा":"Course / Class"}</b>${esc(x.course||x.class||"-")}</div>
+    <div><b>${lang==="hi"?"सत्र":"Session"}</b>${esc(x.session||"-")}</div>
+    <div><b>${lang==="hi"?"Transaction ID":"Transaction ID"}</b>${esc(x.transaction_id||"-")}</div>
     <div><b>${lang==="hi"?"कुल भुगतान":"Total Paid"}</b>${money(x.amount)}</div>`;
   $("receiptLines").textContent=x.fee_lines||"Fee payment";
   if(student&&student.email) $("receiptEmail").value=student.email;

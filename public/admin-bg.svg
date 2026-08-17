@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+<rect width="1200" height="900" fill="#fffaf5"/>
+<g fill="none" stroke="#ea580c" opacity=".035" stroke-width="2"><path d="M0 180h1200M0 360h1200M0 540h1200M0 720h1200"/><circle cx="1080" cy="100" r="180"/><circle cx="1080" cy="100" r="130"/></g>
+<text x="960" y="190" font-family="Arial" font-size="180" font-weight="900" fill="#ea580c" opacity=".035">₹</text>
+</svg>

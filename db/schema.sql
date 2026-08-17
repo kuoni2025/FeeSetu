@@ -13,7 +13,7 @@ create table if not exists students(
  admission_number text, roll_number text,
  student_name text not null, father_name text, mother_name text,
  mobile text, email text, course text, class text, semester text,
- year text, batch text, session text, address text,
+ year text, batch text, session text, address text, photo_url text default '',
  status text default 'ACTIVE', created_at timestamptz default now()
 );
 
