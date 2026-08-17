@@ -1,18 +1,40 @@
 <!doctype html>
 <html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin • Fee Kiosk</title>
 <style>
-:root{--navy:#102b57;--blue:#2166e8;--bg:#f4f7fb;--line:#dfe6ef;--ink:#17233b;--muted:#6b778a;--green:#169c5d;--red:#c73939}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Devanagari",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.top{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900}.top b{color:var(--navy)}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.loginBox{width:min(420px,100%);background:#fff;padding:30px;border:1px solid var(--line);border-radius:20px;box-shadow:0 15px 45px #102b5714}.loginBox h1{margin-top:0;color:var(--navy)}label{display:block;font-size:13px;font-weight:800;color:#4b586b;margin:12px 0}input,select{width:100%;height:44px;border:1px solid #ccd7e4;border-radius:9px;padding:0 12px;background:#fff}.primary,.secondary,.danger{border:0;border-radius:9px;padding:11px 16px;font-weight:900}.primary{background:var(--blue);color:#fff}.secondary{background:#eaf0f7;color:var(--navy)}.danger{background:#fdeaea;color:var(--red)}.full{width:100%;margin-top:8px}.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 68px)}aside{background:var(--navy);padding:18px 12px}aside button{width:100%;text-align:left;border:0;background:transparent;color:#dfe8f6;padding:13px 12px;border-radius:8px;font-weight:800;margin-bottom:3px}aside button.active,aside button:hover{background:#1e467c;color:#fff}.content{padding:28px;max-width:1300px;width:100%;margin:auto}.tab{display:none}.tab.active{display:block}h1{margin:0 0 20px;color:var(--navy)}h2{color:var(--navy);margin-top:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;color:var(--muted)}.stat b{display:block;color:var(--navy);font-size:27px;margin-top:5px}.card,.tableBox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}.table{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.table th{background:#f7f9fc;color:#4c596c;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.assign{display:grid;grid-template-columns:1.5fr 180px 180px;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0}.assign:last-child{border-bottom:0}.inline{display:flex;gap:8px}.inline input{flex:1}.notice{color:var(--muted);font-size:13px;min-height:20px}.success{color:var(--green);font-weight:800}.error{color:var(--red);font-weight:800}.searchRow{display:grid;grid-template-columns:1fr auto;gap:8px}.modalish{background:#f7f9fc;border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px}.payAction{display:flex;gap:6px}.small{padding:7px 10px;font-size:12px}.logoPreview{width:54px;height:54px;object-fit:contain;border:1px solid var(--line);border-radius:9px;background:#fff}.rowFlex{display:flex;gap:10px;align-items:center}.checkbox{width:auto;height:auto}.muted{color:var(--muted)}
-@media(max-width:850px){.layout{grid-template-columns:1fr}aside{display:flex;overflow:auto;gap:5px;padding:8px}aside button{white-space:nowrap;width:auto;margin:0}.content{padding:18px}.stats,.grid{grid-template-columns:1fr}.assign{grid-template-columns:1fr}.top{padding:0 12px}}
+:root{--navy:#102b57;--blue:#2166e8;--bg:#f4f7fb;--line:#dfe6ef;--ink:#17233b;--muted:#6b778a;--green:#169c5d;--red:#c73939}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Devanagari",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.top{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900}.top b{color:var(--navy)}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.loginBox{width:min(420px,100%);background:#fff;padding:30px;border:1px solid var(--line);border-radius:20px;box-shadow:0 15px 45px #102b5714}.loginBox h1{margin-top:0;color:var(--navy)}label{display:block;font-size:13px;font-weight:800;color:#4b586b;margin:12px 0}input,select{width:100%;height:44px;border:1px solid #ccd7e4;border-radius:9px;padding:0 12px;background:#fff}.primary,.secondary,.danger{border:0;border-radius:9px;padding:11px 16px;font-weight:900}.primary{background:var(--blue);color:#fff}.secondary{background:#eaf0f7;color:var(--navy)}.danger{background:#fdeaea;color:var(--red)}.full{width:100%;margin-top:8px}.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 68px)}aside{background:var(--navy);padding:18px 12px}aside button{width:100%;text-align:left;border:0;background:transparent;color:#dfe8f6;padding:13px 12px;border-radius:8px;font-weight:800;margin-bottom:3px}aside button.active,aside button:hover{background:#1e467c;color:#fff}.content{padding:28px;max-width:1400px;width:100%;margin:auto}.tab{display:none}.tab.active{display:block}h1{margin:0 0 20px;color:var(--navy)}h2{color:var(--navy);margin-top:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;color:var(--muted)}.stat b{display:block;color:var(--navy);font-size:27px;margin-top:5px}.card,.tableBox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}.table{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.table th{background:#f7f9fc;color:#4c596c;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.assign{display:grid;grid-template-columns:1.5fr 180px 180px;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0}.assign:last-child{border-bottom:0}.inline{display:flex;gap:8px}.inline input{flex:1}.notice{color:var(--muted);font-size:13px;min-height:20px}.toast{position:fixed;right:22px;bottom:22px;z-index:9999;min-width:280px;max-width:420px;padding:14px 16px;border-radius:12px;background:#12325f;color:#fff;box-shadow:0 15px 40px #102b5740;font-weight:800}.toast.success{background:#147a4b;color:#fff}.toast.error{background:#a82f2f;color:#fff}.actionCell{display:flex;gap:6px;align-items:center}.editPanel{background:#f7faff;border:1px solid #cfdcf0;border-radius:14px;padding:16px;margin-top:12px}.editGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.editGrid label{margin:0}.editGrid .wide{grid-column:span 3}.studentActions{display:flex;gap:6px}.statusBadge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#edf2f7}.statusBadge.unpaid{background:#fff4d6;color:#8a5a00}.statusBadge.pending{background:#fff4d6;color:#8a5a00}.statusBadge.success{background:#dff7ea;color:#08723f}.statusBadge.rejected{background:#fdeaea;color:#a52e2e}.success{color:var(--green);font-weight:800}.error{color:var(--red);font-weight:800}.searchRow{display:grid;grid-template-columns:1fr auto;gap:8px}.modalish{background:#f7f9fc;border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px}.payAction{display:flex;gap:6px}.small{padding:7px 10px;font-size:12px}.logoPreview{width:54px;height:54px;object-fit:contain;border:1px solid var(--line);border-radius:9px;background:#fff}.rowFlex{display:flex;gap:10px;align-items:center}.checkbox{width:auto;height:auto}.muted{color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}aside{display:flex;overflow:auto;gap:5px;padding:8px}aside button{white-space:nowrap;width:auto;margin:0}.content{padding:18px}.stats,.grid,.editGrid{grid-template-columns:1fr}.editGrid .wide{grid-column:span 1}.assign{grid-template-columns:1fr}.top{padding:0 12px}}
 </style></head><body>
 <div id="login" class="login"><div class="loginBox"><div class="logo">FP</div><h1>Admin Login</h1><label>Username<input id="user" autocomplete="username"></label><label>Password<input id="pass" type="password" autocomplete="current-password"></label><button class="primary full" id="loginBtn">Login</button><p id="loginErr" class="error"></p><a href="/">← Kiosk</a></div></div>
-<div id="app" class="hidden"><header class="top"><div class="brand"><div class="logo">FP</div><b id="org">Fee Payment Center</b></div><div><a class="secondary" href="/">Kiosk</a> <button class="secondary" id="logout">Logout</button></div></header><div class="layout"><aside id="nav"><button data-tab="dash" class="active">Dashboard</button><button data-tab="students">Students</button><button data-tab="heads">Fee Heads</button><button data-tab="assign">Fee Assignment</button><button data-tab="manage">Manage Student Fees</button><button data-tab="payments">Payments</button><button data-tab="settings">Settings</button></aside><main class="content">
+<div id="toast" class="toast hidden"></div><div id="app" class="hidden"><header class="top"><div class="brand"><div class="logo">FP</div><b id="org">Fee Payment Center</b></div><div><a class="secondary" href="/">Kiosk</a> <button class="secondary" id="logout">Logout</button></div></header><div class="layout"><aside id="nav"><button data-tab="dash" class="active">Dashboard</button><button data-tab="students">Students</button><button data-tab="heads">Fee Heads</button><button data-tab="assign">Fee Assignment</button><button data-tab="manage">Manage Student Fees</button><button data-tab="payments">Payments</button><button data-tab="settings">Settings</button></aside><main class="content">
 <section id="dash" class="tab active"><h1>Dashboard</h1><div class="stats"><div class="stat">कुल विद्यार्थी<b id="ns">0</b></div><div class="stat">सफल भुगतान<b id="np">₹0</b></div><div class="stat">Pending Verification<b id="nv">0</b></div></div><div class="card" style="margin-top:16px"><h2>त्वरित काम</h2><p class="muted">पहले Students में Excel upload करें, फिर Fee Assignment से फीस निर्धारित करें। इसके बाद विद्यार्थी Kiosk से UPI भुगतान कर सकते हैं।</p></div></section>
-<section id="students" class="tab"><h1>Students</h1><div class="card"><div class="rowFlex"><button class="secondary" id="template">📥 Excel Template</button><input id="file" type="file" accept=".xlsx"></div><p class="notice">अब केवल Excel (.xlsx) upload करें। Existing Enrollment Number मिलने पर record update होगा।</p><p id="importMsg" class="notice"></p></div><div class="table"><table><thead><tr><th>Enrollment</th><th>Name</th><th>Father</th><th>Mobile</th><th>Course</th><th>Semester</th><th>Session</th></tr></thead><tbody id="studentRows"></tbody></table></div></section>
+<section id="students" class="tab"><h1>Students</h1><div class="card"><div class="rowFlex"><button class="secondary" id="template">📥 Excel Template</button><input id="file" type="file" accept=".xlsx"></div><p class="notice">अब केवल Excel (.xlsx) upload करें। Existing Enrollment Number मिलने पर record update होगा।</p><p id="importMsg" class="notice"></p></div><div class="table"><table><thead><tr><th>Enrollment</th><th>Name</th><th>Father</th><th>Mobile</th><th>Course</th><th>Semester</th><th>Session</th><th>कार्यवाही</th></tr></thead><tbody id="studentRows"></tbody></table></div></section>
 <section id="heads" class="tab"><h1>Fee Heads</h1><div class="card"><div class="inline"><input id="newHead" placeholder="नया Fee Head"><button class="primary" id="addHead">Add</button></div></div><div class="table"><table><thead><tr><th>Fee Head</th><th>Status</th><th></th></tr></thead><tbody id="headRows"></tbody></table></div></section>
-<section id="assign" class="tab"><h1>Fee Assignment</h1><div class="card"><div class="grid"><select id="course"><option value="">सभी Course</option></select><select id="semester"><option value="">सभी Semester</option></select><select id="session"><option value="">सभी Session</option></select></div><div id="assignHeads" style="margin-top:15px"></div><button class="primary" id="assignBtn">चयनित विद्यार्थियों को फीस Assign / Update करें</button><p id="assignMsg" class="notice"></p></div><div class="table"><table><thead><tr><th><input class="checkbox" type="checkbox" id="selectAll"></th><th>Enrollment</th><th>Name</th><th>Course</th><th>Semester</th><th>Session</th></tr></thead><tbody id="assignStudents"></tbody></table></div></section>
+<section id="assign" class="tab"><h1>Fee Assignment</h1><div class="card"><div class="grid"><select id="course"><option value="">सभी Course</option></select><select id="semester"><option value="">सभी Semester</option></select><select id="session"><option value="">सभी Session</option></select></div><div id="assignHeads" style="margin-top:15px"></div><button class="primary" id="assignBtn">चयनित विद्यार्थियों को फीस Assign / Update करें</button><p id="assignMsg" class="notice"></p><div id="assignResult" class="modalish hidden"></div></div><div class="table"><table><thead><tr><th><input class="checkbox" type="checkbox" id="selectAll"></th><th>Enrollment</th><th>Name</th><th>Course</th><th>Semester</th><th>Session</th></tr></thead><tbody id="assignStudents"></tbody></table></div></section>
 <section id="manage" class="tab"><h1>Manage Student Fees</h1><div class="card"><div class="searchRow"><input id="manageSearch" placeholder="Enrollment / Roll / Name"><button class="primary" id="manageFind">खोजें</button></div><div id="manageResult"></div></div></section>
 <section id="payments" class="tab"><h1>Payments</h1><div class="table"><table><thead><tr><th>Reference</th><th>Student</th><th>Amount</th><th>UTR</th><th>Status</th><th>Action</th></tr></thead><tbody id="paymentRows"></tbody></table></div></section>
-<section id="settings" class="tab"><h1>Settings</h1><div class="card"><label>संस्था / कॉलेज का नाम<input id="orgName"></label><label>Kiosk संदेश<input id="welcome"></label><label>UPI ID<input id="upi"></label><label>Receipt Prefix<input id="prefix"></label><label>Logo URL (optional)<input id="logoUrl" placeholder="https://..."></label><button class="primary" id="saveSettings">Save Settings</button><p class="notice">UPI ID उदाहरण: name@bank. वास्तविक payment verification के लिए bank/payment gateway integration बाद में जोड़ा जा सकता है। अभी Admin UTR देखकर payment verify करेगा।</p></div></section>
+<section id="settings" class="tab"><h1>Settings</h1>
+<div class="card">
+<label>संस्था / कॉलेज का नाम<input id="orgName"></label>
+<label>Kiosk संदेश<input id="welcome"></label>
+<label>UPI ID (QR fallback)<input id="upi" placeholder="name@bank"></label>
+<label>Receipt Prefix<input id="prefix"></label>
+<label>Logo URL (optional)<input id="logoUrl" placeholder="https://..."></label>
+</div>
+<div class="card" style="margin-top:16px">
+<h2 style="margin:0 0 12px;font-size:18px;color:var(--navy)">💳 Online Payment Gateway (Razorpay)</h2>
+<label class="rowFlex"><input class="checkbox" type="checkbox" id="gwEnabled"> Gateway सक्षम करें (Razorpay)</label>
+<label>Razorpay Key ID<input id="rzKeyId" placeholder="rzp_live_xxxxx or rzp_test_xxxxx"></label>
+<label>Razorpay Key Secret<input id="rzKeySecret" type="password" placeholder="खाली छोड़ें = मौजूदा secret रखें"></label>
+<label>Webhook Secret (optional)<input id="rzWebhookSecret" type="password" placeholder="खाली छोड़ें = मौजूदा रखें"></label>
+<p class="notice" id="gwStatus"></p>
+<p class="notice">1. <a href="https://dashboard.razorpay.com/" target="_blank" rel="noopener">Razorpay Dashboard</a> से Key ID और Secret लें।<br>
+2. Webhook URL सेट करें: <code id="webhookUrl">/api/webhooks/razorpay</code><br>
+3. Events: <b>payment.captured</b>, <b>order.paid</b><br>
+4. Test mode keys से पहले जाँचें, फिर Live keys लगाएँ।<br>
+UPI QR भी साथ में काम करता रहेगा (fallback)।</p>
+</div>
+<button class="primary" id="saveSettings" style="margin-top:12px">Save Settings</button>
+</section>
 </main></div></div>
 <script>
 const $=id=>document.getElementById(id);let token="",students=[],heads=[];const API="/api";
@@ -23,23 +45,160 @@ $('loginBtn').onclick=login;$('pass').onkeydown=e=>{if(e.key==='Enter')login()};
 $('logout').onclick=async()=>{try{await api('/admin/logout',{method:'POST'})}catch{}sessionStorage.removeItem('feeAdminToken');location.href='/admin.html'};
 const saved=sessionStorage.getItem('feeAdminToken');if(saved){token=saved;api('/students').then(()=>{$('login').classList.add('hidden');$('app').classList.remove('hidden');loadAll()}).catch(()=>sessionStorage.removeItem('feeAdminToken'))}
 $('nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));$(b.dataset.tab).classList.add('active');$('nav').querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
-async function loadAll(){const [s,h,p,set]=await Promise.all([api('/students'),api('/fee-heads'),api('/payments'),fetch('/api/settings').then(r=>r.json())]);students=s;heads=h;$('org').textContent=set.organization_name||'Fee Payment Center';$('orgName').value=set.organization_name||'';$('welcome').value=set.welcome_message||'';$('upi').value=set.upi_id||'';$('prefix').value=set.receipt_prefix||'FEE';$('logoUrl').value=set.logo_url||'';renderStudents();renderHeads();renderPayments(p);renderFilters();renderAssignHeads();$('ns').textContent=s.length;$('np').textContent=money(p.filter(x=>x.status==='SUCCESS').reduce((a,x)=>a+Number(x.amount),0));$('nv').textContent=p.filter(x=>x.status==='PENDING_VERIFICATION').length}
-function renderStudents(){ $('studentRows').innerHTML=students.map(s=>`<tr><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.father_name||'-')}</td><td>${esc(s.mobile||'-')}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td></tr>`).join('')||'<tr><td colspan="7">कोई विद्यार्थी नहीं</td></tr>' }
-function renderHeads(){ $('headRows').innerHTML=heads.map(h=>`<tr><td>${esc(h.name)}</td><td>${h.active?'Active':'Inactive'}</td><td><button class="secondary small" onclick="toggleHead(${h.id})">Toggle</button></td></tr>`).join('') }
-window.toggleHead=async id=>{await api('/fee-heads/'+id+'/toggle',{method:'POST'});await loadAll()};
+async function loadAll(){
+  const [s,h,p,set]=await Promise.all([
+    api('/students'),api('/fee-heads'),api('/payments'),
+    api('/admin/settings').catch(()=>fetch('/api/settings').then(r=>r.json()))
+  ]);
+  students=s;heads=h;
+  $('org').textContent=set.organization_name||'Fee Payment Center';
+  $('orgName').value=set.organization_name||'';
+  $('welcome').value=set.welcome_message||'';
+  $('upi').value=set.upi_id||'';
+  $('prefix').value=set.receipt_prefix||'FEE';
+  $('logoUrl').value=set.logo_url||'';
+  if($('gwEnabled')){
+    $('gwEnabled').checked=!!set.gateway_enabled;
+    $('rzKeyId').value=set.razorpay_key_id||'';
+    $('rzKeySecret').value='';
+    $('rzWebhookSecret').value='';
+    $('gwStatus').textContent = set.gateway_enabled
+      ? ('✓ Gateway ON' + (set.has_secret ? ' • Secret सेट है' : ' • Secret नहीं है') + (set.has_webhook_secret ? ' • Webhook secret सेट' : ''))
+      : 'Gateway बंद है — सिर्फ UPI QR उपलब्ध';
+  }
+  const wu=$('webhookUrl'); if(wu) wu.textContent = location.origin + '/api/webhooks/razorpay';
+  renderStudents();renderHeads();renderPayments(p);renderFilters();renderAssignHeads();
+  $('ns').textContent=s.length;
+  $('np').textContent=money(p.filter(x=>x.status==='SUCCESS').reduce((a,x)=>a+Number(x.amount),0));
+  $('nv').textContent=p.filter(x=>x.status==='PENDING_VERIFICATION').length;
+}
+
+function toast(msg,type="success"){const t=$('toast');t.textContent=msg;t.className='toast '+type;t.classList.remove('hidden');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.add('hidden'),3200)}
+function renderStudents(){
+  $('studentRows').innerHTML=students.map(s=>`<tr>
+    <td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.father_name||'-')}</td>
+    <td>${esc(s.mobile||'-')}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td>
+    <td><div class="studentActions"><button class="secondary small" onclick="editStudent(${s.id})">संपादित</button><button class="danger small" onclick="deleteStudent(${s.id})">हटाएँ</button></div></td>
+  </tr>`).join('')||'<tr><td colspan="8">कोई विद्यार्थी नहीं</td></tr>';
+}
+window.editStudent=(id)=>{
+ const s=students.find(x=>x.id===id); if(!s)return;
+ $('studentEditBox')?.remove();
+ const box=document.createElement('div');box.id='studentEditBox';box.className='editPanel';
+ box.innerHTML=`<h3 style="margin:0 0 12px;color:var(--navy)">विद्यार्थी की जानकारी बदलें</h3>
+ <div class="editGrid">
+ ${[
+ ['e_en','Enrollment Number',s.enrollment_number],['e_ad','Admission Number',s.admission_number],['e_roll','Roll Number',s.roll_number],
+ ['e_name','Student Name',s.student_name],['e_father','Father Name',s.father_name],['e_mother','Mother Name',s.mother_name],
+ ['e_mobile','Mobile',s.mobile],['e_email','Email',s.email],['e_course','Course',s.course],
+ ['e_class','Class',s.class],['e_sem','Semester',s.semester],['e_year','Year',s.year],
+ ['e_batch','Batch',s.batch],['e_session','Session',s.session],['e_address','Address',s.address]
+ ].map((a,i)=>`<label class="${i===14?'wide':''}">${a[1]}<input id="${a[0]}" value="${esc(a[2]||'')}"></label>`).join('')}
+ </div><div class="actions"><button class="secondary" onclick="this.closest('#studentEditBox').remove()">रद्द करें</button><button class="primary" onclick="saveStudent(${id})">परिवर्तन सेव करें</button></div>`;
+ document.querySelector('#students .card').after(box);
+};
+window.saveStudent=async id=>{
+ const g=id=>$(id).value.trim();
+ try{
+  await api('/students/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+   enrollment_number:g('e_en'),admission_number:g('e_ad'),roll_number:g('e_roll'),student_name:g('e_name'),father_name:g('e_father'),mother_name:g('e_mother'),
+   mobile:g('e_mobile'),email:g('e_email'),course:g('e_course'),class:g('e_class'),semester:g('e_sem'),year:g('e_year'),batch:g('e_batch'),session:g('e_session'),address:g('e_address')
+  })});
+  toast('विद्यार्थी की जानकारी सफलतापूर्वक बदल दी गई।');$('studentEditBox').remove();await loadAll();
+ }catch(e){toast(e.message,'error')}
+};
+window.deleteStudent=async id=>{
+ const s=students.find(x=>x.id===id);if(!s)return;
+ if(!confirm(`"${s.student_name}" को Students सूची से हटाना है?\\nरिकॉर्ड सुरक्षित रखने के लिए इसे Inactive किया जाएगा।`))return;
+ try{await api('/students/'+id,{method:'DELETE'});toast('विद्यार्थी सूची से हटा दिया गया।');await loadAll()}catch(e){toast(e.message,'error')}
+};
+function renderHeads(){ $('headRows').innerHTML=heads.map(h=>`<tr><td>${esc(h.name)}</td><td><span class="statusBadge ${h.active?'success':'rejected'}">${h.active?'Active':'Inactive'}</span></td><td><button class="secondary small" onclick="toggleHead(${h.id})">Toggle</button></td></tr>`).join('') }
+window.toggleHead=async id=>{try{await api('/fee-heads/'+id+'/toggle',{method:'POST'});toast('Fee Head status बदल गया।');await loadAll()}catch(e){toast(e.message,'error')}};
 function renderFilters(){const fill=(id,arr,first)=>$(id).innerHTML=`<option value="">${first}</option>`+arr.filter(Boolean).sort().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');fill('course',[...new Set(students.map(s=>s.course||s.class))],'सभी Course');fill('semester',[...new Set(students.map(s=>s.semester))],'सभी Semester');fill('session',[...new Set(students.map(s=>s.session))],'सभी Session')}
 function renderAssignHeads(){ $('assignHeads').innerHTML=heads.filter(h=>h.active).map(h=>`<div class="assign"><b>${esc(h.name)}</b><input type="number" min="0" step="0.01" data-head="${h.id}" placeholder="राशि"><label class="rowFlex"><input class="checkbox" type="checkbox" data-show="${h.id}" checked> Receipt में दिखाएं</label></div>`).join('') }
 function filteredStudents(){const c=$('course').value,s=$('semester').value,se=$('session').value;return students.filter(x=>(!c||(x.course||x.class)===c)&&(!s||String(x.semester)===String(s))&&(!se||x.session===se))}
-function renderAssignStudents(){const arr=filteredStudents();$('assignStudents').innerHTML=arr.map(s=>`<tr><td><input class="checkbox studentCheck" type="checkbox" value="${s.id}"></td><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td></tr>`).join('')||'<tr><td colspan="6">कोई विद्यार्थी नहीं</td></tr>';}
-['course','semester','session'].forEach(id=>$(id).onchange=renderAssignStudents);$('selectAll').onchange=e=>document.querySelectorAll('.studentCheck').forEach(x=>x.checked=e.target.checked);renderAssignStudents();
-$('assignBtn').onclick=async()=>{const ids=[...document.querySelectorAll('.studentCheck:checked')].map(x=>+x.value);const items=[...document.querySelectorAll('[data-head]')].map(x=>({fee_head_id:+x.dataset.head,amount:+x.value,receipt_visible:document.querySelector(`[data-show="${x.dataset.head}"]`).checked})).filter(x=>Number.isFinite(x.amount)&&x.amount>=0&&x.amount>0);if(!ids.length||!items.length){$('assignMsg').textContent='विद्यार्थी और फीस राशि चुनें।';return}try{const r=await api('/fee-assignments/bulk',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student_ids:ids,items})});$('assignMsg').textContent=`${r.assigned} विद्यार्थियों के लिए फीस assign/update की गई।`}catch(e){$('assignMsg').textContent=e.message}};
-$('addHead').onclick=async()=>{const name=$('newHead').value.trim();if(!name)return;await api('/fee-heads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});$('newHead').value='';await loadAll()};
-$('template').onclick=async()=>{const r=await fetch(API+'/students/template.xlsx',{headers:H()});if(!r.ok)return alert('Template download failed');const b=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='student-template.xlsx';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
-$('file').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(!f.name.toLowerCase().endsWith('.xlsx')){alert('कृपया .xlsx Excel file चुनें।');e.target.value='';return}try{const r=await api('/students/import-xlsx',{method:'POST',headers:{...H(), 'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'},body:await f.arrayBuffer()});$('importMsg').textContent=`कुल ${r.total} | नए ${r.inserted} | अपडेट ${r.updated} | Duplicate ${r.duplicates} | Invalid ${r.invalid}`;if(r.errors?.length)$('importMsg').textContent+=` | ${r.errors.slice(0,5).map(x=>'Row '+x.row+': '+x.reason).join('; ')}`;await loadAll()}catch(e){$('importMsg').textContent=e.message}};
-async function renderPayments(p){$('paymentRows').innerHTML=p.map(x=>`<tr><td>${esc(x.payment_reference)}</td><td>${esc(x.student_name)}<br><small>${esc(x.enrollment_number)}</small></td><td>${money(x.amount)}</td><td>${esc(x.transaction_id||'-')}</td><td>${esc(x.status)}</td><td>${x.status==='PENDING_VERIFICATION'?`<div class="payAction"><button class="primary small" onclick="verifyPay(${x.id})">Verify</button><button class="danger small" onclick="rejectPay(${x.id})">Reject</button></div>`:x.status==='SUCCESS'?'✓ Verified':'-'}</td></tr>`).join('')||'<tr><td colspan="6">कोई payment नहीं</td></tr>'}
-window.verifyPay=async id=>{if(!confirm('क्या payment की UTR/राशि बैंक/UPI में सत्यापित है?'))return;await api('/payments/'+id+'/verify',{method:'POST'});await loadAll();alert('Payment verified और receipt बनाई गई।')};window.rejectPay=async id=>{if(!confirm('Payment reject करें?'))return;await api('/payments/'+id+'/reject',{method:'POST'});await loadAll()};
-$('manageFind').onclick=manageFind;$('manageSearch').onkeydown=e=>{if(e.key==='Enter')manageFind()};async function manageFind(){const v=$('manageSearch').value.trim();if(!v){$('manageResult').innerHTML='';return}const local=students.filter(s=>s.enrollment_number.toLowerCase()===v.toLowerCase()||String(s.roll_number||'')===v||s.student_name.toLowerCase().includes(v.toLowerCase())).slice(0,10);$('manageResult').innerHTML=local.map(s=>`<div class="modalish"><div class="rowFlex"><b>${esc(s.student_name)}</b><span class="muted">${esc(s.enrollment_number)}</span></div><div id="fees-${s.id}"></div></div>`).join('')||'<p class="error">विद्यार्थी नहीं मिला</p>';for(const s of local)loadStudentAssignments(s.id)}
-async function loadStudentAssignments(id){const box=$('fees-'+id),a=await api('/assignments?student_id='+id);box.innerHTML=a.length?a.map(x=>`<div class="assign"><span>${esc(x.fee_head_name)} <small class="muted">${x.status}</small></span><input type="number" min="0" step="0.01" value="${Number(x.amount)}" data-edit="${x.id}"><label class="rowFlex"><input class="checkbox" type="checkbox" data-edit-show="${x.id}" ${x.receipt_visible?'checked':''}> Receipt में दिखाएं</label><button class="primary small" onclick="saveAssignment(${x.id})">Save</button></div>`).join(''): '<p class="muted">इस विद्यार्थी की कोई fee assignment नहीं है।'}
-window.saveAssignment=async id=>{const amount=document.querySelector(`[data-edit="${id}"]`).value;const visible=document.querySelector(`[data-edit-show="${id}"]`).checked;await api('/assignments/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:Number(amount),receipt_visible:visible})});alert('Fee updated');manageFind()};
-$('saveSettings').onclick=async()=>{await api('/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({organization_name:$('orgName').value,welcome_message:$('welcome').value,upi_id:$('upi').value,receipt_prefix:$('prefix').value,logo_url:$('logoUrl').value})});alert('Settings saved');await loadAll()};
+function renderAssignStudents(){const arr=filteredStudents();$('assignStudents').innerHTML=arr.map(s=>`<tr><td><input class="checkbox studentCheck" type="checkbox" value="${s.id}"></td><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td></tr>`).join('')||'<tr><td colspan="6">कोई विद्यार्थी नहीं</td></tr>'}
+['course','semester','session'].forEach(id=>$(id).onchange=renderAssignStudents);
+$('selectAll').onchange=e=>document.querySelectorAll('.studentCheck').forEach(x=>x.checked=e.target.checked);
+renderAssignStudents();
+
+$('assignBtn').onclick=async()=>{
+ const ids=[...document.querySelectorAll('.studentCheck:checked')].map(x=>+x.value);
+ const items=[...document.querySelectorAll('[data-head]')].map(x=>({fee_head_id:+x.dataset.head,amount:+x.value,receipt_visible:document.querySelector(`[data-show="${x.dataset.head}"]`).checked})).filter(x=>Number.isFinite(x.amount)&&x.amount>0);
+ $('assignResult').classList.add('hidden');
+ if(!ids.length||!items.length){$('assignMsg').textContent='पहले विद्यार्थी और कम-से-कम एक फीस राशि चुनें।';toast('विद्यार्थी और फीस राशि चुनें।','error');return}
+ try{
+   $('assignBtn').disabled=true;$('assignBtn').textContent='सेव हो रहा है...';
+   const r=await api('/fee-assignments/bulk',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student_ids:ids,items})});
+   $('assignMsg').textContent='✓ प्रक्रिया पूरी हुई';
+   $('assignResult').classList.remove('hidden');
+   $('assignResult').innerHTML=`<b style="color:var(--green)">✓ Fee Assignment सफल</b><br><span class="muted">${r.students} विद्यार्थी × ${r.heads} Fee Head</span><br><b>${r.total}</b> assignment सेव/अपडेट हुए।`;
+   toast(`${r.total} fee assignments सफलतापूर्वक सेव हुए।`);
+ }catch(e){$('assignMsg').textContent=e.message;toast(e.message,'error')}
+ finally{$('assignBtn').disabled=false;$('assignBtn').textContent='चयनित विद्यार्थियों को फीस Assign / Update करें'}
+};
+
+$('addHead').onclick=async()=>{const name=$('newHead').value.trim();if(!name)return;try{await api('/fee-heads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});$('newHead').value='';toast('Fee Head जोड़ दिया गया।');await loadAll()}catch(e){toast(e.message,'error')}};
+
+$('template').onclick=async()=>{const r=await fetch(API+'/students/template.xlsx',{headers:H()});if(!r.ok)return toast('Template download failed','error');const b=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='student-template.xlsx';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('file').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(!f.name.toLowerCase().endsWith('.xlsx')){toast('कृपया .xlsx Excel file चुनें।','error');e.target.value='';return}try{const r=await api('/students/import-xlsx',{method:'POST',headers:{...H(),'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'},body:await f.arrayBuffer()});$('importMsg').textContent=`✓ कुल ${r.total} | नए ${r.inserted} | अपडेट ${r.updated} | Duplicate ${r.duplicates} | Invalid ${r.invalid}`;if(r.errors?.length)$('importMsg').textContent+=` | ${r.errors.slice(0,5).map(x=>'Row '+x.row+': '+x.reason).join('; ')}`;toast(`Excel import पूरा: ${r.inserted} नए, ${r.updated} अपडेट`);await loadAll()}catch(e){$('importMsg').textContent=e.message;toast(e.message,'error')}};
+
+async function renderPayments(p){
+ $('paymentRows').innerHTML=p.map(x=>`<tr>
+ <td>${esc(x.payment_reference)}</td><td>${esc(x.student_name)}<br><small>${esc(x.enrollment_number)}</small></td>
+ <td>${money(x.amount)}</td><td>${esc(x.transaction_id||'-')}</td>
+ <td><span class="statusBadge ${x.status==='SUCCESS'?'success':x.status==='REJECTED'?'rejected':'pending'}">${esc(x.status)}</span></td>
+ <td>${x.status==='PENDING_VERIFICATION'?`<div class="payAction"><button class="primary small" onclick="verifyPay(${x.id})">Verify</button><button class="danger small" onclick="rejectPay(${x.id})">Reject</button><button class="secondary small" onclick="deletePay(${x.id})">हटाएँ</button></div>`:
+ x.status==='PENDING'?`<button class="danger small" onclick="deletePay(${x.id})">Pending हटाएँ</button>`:
+ x.status==='SUCCESS'?'✓ Verified':`<button class="danger small" onclick="deletePay(${x.id})">हटाएँ</button>`}</td></tr>`).join('')||'<tr><td colspan="6">कोई payment नहीं</td></tr>'
+}
+window.verifyPay=async id=>{if(!confirm('क्या payment की UTR/राशि बैंक/UPI में सत्यापित है?'))return;try{const r=await api('/payments/'+id+'/verify',{method:'POST'});toast(`Payment verified। रसीद ${r.receipt_number||''} तैयार है।`);await loadAll()}catch(e){toast(e.message,'error')}};
+window.rejectPay=async id=>{if(!confirm('Payment reject करें? इसके बाद इसे हटाया जा सकता है।'))return;try{await api('/payments/'+id+'/reject',{method:'POST'});toast('Payment reject हो गया। Fee अभी unpaid है।');await loadAll()}catch(e){toast(e.message,'error')}};
+window.deletePay=async id=>{if(!confirm('इस pending/rejected payment को हटाना है? Fee assignment वापस unpaid रहेगा।'))return;try{await api('/payments/'+id,{method:'DELETE'});toast('Payment हट गया। विद्यार्थी फिर unpaid fee के रूप में उपलब्ध है।');await loadAll()}catch(e){toast(e.message,'error')}};
+
+$('manageFind').onclick=manageFind;
+$('manageSearch').onkeydown=e=>{if(e.key==='Enter')manageFind()};
+async function manageFind(){
+ const v=$('manageSearch').value.trim();if(!v){$('manageResult').innerHTML='';return}
+ const local=students.filter(s=>s.enrollment_number.toLowerCase()===v.toLowerCase()||String(s.roll_number||'')===v||s.student_name.toLowerCase().includes(v.toLowerCase())).slice(0,10);
+ $('manageResult').innerHTML=local.map(s=>`<div class="modalish"><div class="rowFlex"><b>${esc(s.student_name)}</b><span class="muted">${esc(s.enrollment_number)}</span></div><div id="fees-${s.id}"></div></div>`).join('')||'<p class="error">विद्यार्थी नहीं मिला</p>';
+ for(const s of local)loadStudentAssignments(s.id)
+}
+async function loadStudentAssignments(id){
+ const box=$('fees-'+id),a=await api('/assignments?student_id='+id);
+ box.innerHTML=a.length?a.map(x=>`<div class="assign">
+ <span><b>${esc(x.fee_head_name)}</b> <span class="statusBadge ${x.status==='UNPAID'?'unpaid':'success'}">${x.status}</span></span>
+ <input type="number" min="0" step="0.01" value="${Number(x.amount)}" data-edit="${x.id}">
+ <label class="rowFlex"><input class="checkbox" type="checkbox" data-edit-show="${x.id}" ${x.receipt_visible?'checked':''}> Receipt में दिखाएं</label>
+ <div class="actionCell">${x.status==='UNPAID'?`<button class="primary small" onclick="saveAssignment(${x.id})">सेव करें</button><button class="danger small" onclick="deleteAssignment(${x.id})">हटाएँ</button>`:'<span class="muted">Paid — लॉक</span>'}</div>
+ </div>`).join(''): '<p class="muted">इस विद्यार्थी की कोई fee assignment नहीं है।'}
+window.saveAssignment=async id=>{
+ try{
+  const amount=document.querySelector(`[data-edit="${id}"]`).value,visible=document.querySelector(`[data-edit-show="${id}"]`).checked;
+  const btn=document.querySelector(`button[onclick="saveAssignment(${id})"]`);if(btn){btn.disabled=true;btn.textContent='सेव हो रहा है...'}
+  await api('/assignments/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:Number(amount),receipt_visible:visible})});
+  toast('Fee assignment सफलतापूर्वक सेव हो गया।');manageFind()
+ }catch(e){toast(e.message,'error')}
+};
+window.deleteAssignment=async id=>{if(!confirm('इस unpaid fee assignment को हटाना है?'))return;try{await api('/assignments/'+id,{method:'DELETE'});toast('Fee assignment हटा दिया गया।');manageFind()}catch(e){toast(e.message,'error')}};
+
+$('saveSettings').onclick=async()=>{
+ try{
+  $('saveSettings').disabled=true;$('saveSettings').textContent='सेव हो रहा है...';
+  await api('/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    organization_name:$('orgName').value,
+    welcome_message:$('welcome').value,
+    upi_id:$('upi').value,
+    receipt_prefix:$('prefix').value,
+    logo_url:$('logoUrl').value,
+    gateway_enabled: $('gwEnabled') ? $('gwEnabled').checked : false,
+    gateway_provider: 'razorpay',
+    razorpay_key_id: $('rzKeyId') ? $('rzKeyId').value.trim() : '',
+    razorpay_key_secret: $('rzKeySecret') ? $('rzKeySecret').value.trim() : '',
+    razorpay_webhook_secret: $('rzWebhookSecret') ? $('rzWebhookSecret').value.trim() : ''
+  })});
+  toast('Settings सेव हो गईं।');
+  await loadAll();
+ }catch(e){toast(e.message,'error')}finally{$('saveSettings').disabled=false;$('saveSettings').textContent='Save Settings'}
+};
 </script></body></html>
