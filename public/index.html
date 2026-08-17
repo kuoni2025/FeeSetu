@@ -516,6 +516,62 @@ html,body{background:linear-gradient(145deg,#fffdf9 0%,#fff7ed 48%,#fffaf5 100%)
   .receiptMeta div{background:#fff!important;border:1px solid #ddd!important}
 }
 
+
+/* FeeSetu V11 Professional UI */
+:root{--primary:#d97706;--primary-dark:#b45309;--primary-light:#fff7ed;--navy:#183153;--ink:#172033;--muted:#64748b;--line:#e7e5e4}
+html,body{background:#fffaf5 url('/kiosk-bg.svg') center/cover fixed no-repeat}body{overflow-x:hidden}
+.top{height:78px;padding:0 24px;background:rgba(255,255,255,.94);box-shadow:0 4px 22px rgba(120,53,15,.07)}
+.brandLogo{width:50px;height:50px;border-radius:15px;background:linear-gradient(145deg,#ea580c,#d97706);box-shadow:0 8px 20px rgba(217,119,6,.20)}
+.brandName{font-size:17px;font-weight:800}.brandMsg{font-size:10px;color:#9a3412}.clock{display:block;min-width:78px;text-align:right}.clock b{font-size:14px;color:#172033}.clock span{font-size:10px}
+main{min-height:calc(100dvh - 78px);padding:12px 14px 18px}.screen{width:min(900px,100%)}
+#searchScreen{min-height:calc(100dvh - 104px);padding:16px 22px 18px;border-radius:26px;background:rgba(255,255,255,.965);box-shadow:0 24px 70px rgba(120,53,15,.10);border:1px solid #eee4da}
+#searchScreen .kioskPurpose{display:flex;justify-content:center;align-items:center;gap:9px;color:#7c2d12;font-size:14px;font-weight:700;margin:0 0 12px}.purposeMark{display:grid;place-items:center;min-width:34px;height:24px;border-radius:8px;background:#fff1df;border:1px solid #fed7aa;color:#c2410c;font-size:10px;font-weight:900}
+#searchScreen .searchModes{margin:0 auto 10px;max-width:690px;gap:8px}.mode{height:44px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;color:#475569;font-weight:600;font-size:11px;flex-direction:row;gap:7px}.mode.active{border-color:#f59e0b;background:#fff7ed;color:#b45309;box-shadow:0 5px 15px rgba(217,119,6,.10)}
+.inputWrap{max-width:690px;margin:0 auto 10px}.input{height:56px;border-radius:14px;font-size:22px;font-weight:650;border:1px solid #d6d3d1;padding:0 58px 0 18px}.input:focus{border-color:#f59e0b;box-shadow:0 0 0 4px rgba(245,158,11,.10)}.erase{width:44px;height:44px;right:6px;top:6px;border-radius:11px;background:#fff7ed;color:#b45309;font-size:20px}
+.hint,#multiTapIndicator,.bottomNote,.secure{display:none!important}.keys{width:min(700px,100%);display:block;margin:0 auto}.keyRow{display:grid;gap:7px;margin-bottom:7px;justify-content:center}.numRow,.alphaRow{grid-template-columns:repeat(10,1fr)}.alphaRow:nth-of-type(4){grid-template-columns:repeat(9,1fr);max-width:82%;margin-left:auto;margin-right:auto}
+.key{height:54px;min-width:0;border-radius:13px;background:linear-gradient(180deg,#fff,#fffaf5);border:1px solid #e7e5e4;color:#1f2937;font-size:20px;font-weight:750;box-shadow:0 3px 9px rgba(120,53,15,.045);display:grid;place-items:center}.key:hover{border-color:#f3c47b;box-shadow:0 6px 15px rgba(217,119,6,.10)}.key:active{background:#fff1df}.keyActions{display:grid;grid-template-columns:1fr 1fr 2fr;gap:7px;max-width:700px;margin:0 auto}.keyActions .key{height:56px}.key.action{background:#fff7ed;color:#7c2d12}.key.search{background:linear-gradient(135deg,#ea580c,#d97706);color:#fff;border:none;box-shadow:0 8px 20px rgba(217,119,6,.23);font-size:17px}
+#error{margin-top:5px;font-size:12px;min-height:20px}.subPanel{border-radius:26px;border:1px solid #eee4da;box-shadow:0 24px 70px rgba(120,53,15,.10)}
+.studentHero{display:flex;gap:16px;align-items:center;padding:18px;border-radius:18px;background:linear-gradient(135deg,#fff7ed,#fff);border:1px solid #fed7aa;margin-bottom:10px}.studentPhoto,.photoFallback{width:78px;height:78px;border-radius:18px;object-fit:cover}.photoFallback{display:grid;place-items:center;background:linear-gradient(135deg,#ea580c,#f59e0b);color:#fff;font-size:30px;font-weight:900}.studentHero h3{font-size:22px;margin:0 0 5px}.studentHero p{margin:2px 0;color:#64748b;font-size:12px;font-weight:600}.studentGridInner{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid #e7e5e4;border-radius:16px;overflow:hidden}.studentGridInner div{padding:12px 14px;background:#fff}.studentGridInner div:nth-child(odd){background:#fffcf8}.studentGridInner strong{display:block;font-size:10px;color:#9a3412;margin-bottom:2px}.studentGridInner span{font-size:14px;font-weight:700;color:#172033}
+.receipt{max-width:760px}.receiptHead{padding:18px 12px;border-bottom:2px solid #d97706}.receiptHead h2{font-size:24px}.receiptHead p{color:#9a3412;font-weight:700}.receiptMeta{grid-template-columns:repeat(2,1fr)}.receiptMeta div{background:#fffaf5;border-color:#fed7aa}.receiptLines{font-size:14px;padding:14px 4px;border-bottom:1px dashed #d6d3d1}.receiptTotal{display:flex;justify-content:space-between;padding:15px 4px;font-size:18px;font-weight:900}
+.status{padding:9px 12px;border-radius:10px}.status.success{background:#ecfdf5}.status.error{background:#fef2f2}
+@media(max-width:760px){.top{height:64px;padding:0 9px}.brand{gap:7px}.brandLogo{width:40px;height:40px;border-radius:12px}.brandName{font-size:12px;line-height:1.1}.brandMsg{display:none}.topRight{gap:5px}.langToggle{display:flex}.langToggle button{padding:4px 6px;font-size:9px}.helpBtn,.adminLink{padding:7px 7px;font-size:10px}.clock{min-width:58px}.clock b{font-size:11px}.clock span{font-size:8px}
+main{min-height:calc(100dvh - 64px);padding:7px 7px 9px}#searchScreen{min-height:calc(100dvh - 80px);padding:12px 9px 12px;border-radius:18px}#searchScreen .kioskPurpose{font-size:12px;margin-bottom:9px}.purposeMark{min-width:30px;height:21px}
+#searchScreen .searchModes{gap:5px!important}.mode{height:40px;font-size:9px;padding:0 4px;gap:4px}.mode .icon{font-size:12px}.inputWrap{margin-bottom:8px}.input{height:50px;font-size:18px}.erase{width:40px;height:40px;top:5px;right:5px}
+.keyRow{gap:5px;margin-bottom:5px}.numRow,.alphaRow{grid-template-columns:repeat(10,1fr)}.alphaRow:nth-of-type(4){grid-template-columns:repeat(9,1fr);max-width:94%}.key{height:clamp(42px,6.2dvh,52px);border-radius:10px;font-size:17px}.keyActions{gap:5px}.keyActions .key{height:48px;font-size:15px}.studentHero{padding:12px}.studentPhoto,.photoFallback{width:64px;height:64px}.studentHero h3{font-size:18px}.studentGridInner{grid-template-columns:1fr 1fr}.studentGridInner div{padding:9px 10px}.receiptMeta{grid-template-columns:1fr}}
+@media(max-height:700px) and (min-width:761px){.key{height:47px}.keyActions .key{height:50px}.mode{height:40px}.input{height:50px}}
+@media print{.receipt{max-width:760px!important}.receiptHead{border-bottom:2px solid #111}.receiptMeta div{background:#fff!important}}
+
+/* FeeSetu V11.1 kiosk keyboard correction */
+#searchScreen .kioskPurpose{font-size:15px!important;font-weight:700!important;color:#7c2d12!important;display:flex!important;justify-content:center!important;align-items:center!important;gap:8px!important;margin:0 auto 12px!important}
+#searchScreen .purposeMark{min-width:0!important;height:auto!important;padding:4px 8px!important;border-radius:8px!important;background:#fff7ed!important;border:1px solid #fed7aa!important;color:#c2410c!important;font-size:11px!important}
+#searchScreen .steps{display:none!important}
+#searchScreen .searchModes{max-width:620px!important;margin-bottom:12px!important}
+#searchScreen .mode{height:48px!important;font-size:12px!important}
+#searchScreen .inputWrap{max-width:620px!important;margin-bottom:12px!important}
+#searchScreen .input{height:60px!important;font-size:24px!important}
+#searchScreen .keys{width:min(620px,100%)!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:10px!important;margin:0 auto!important}
+#searchScreen .keyRow,#searchScreen .keyActions{display:contents!important}
+#searchScreen .key{height:76px!important;min-height:0!important;border-radius:17px!important;font-size:28px!important;font-weight:800!important}
+#searchScreen .key small{display:block!important;font-size:11px!important;letter-spacing:1px!important;color:#64748b!important;font-weight:700!important;margin-top:2px!important}
+#searchScreen .key.action{font-size:18px!important;background:#fff7ed!important;color:#7c2d12!important}
+#searchScreen .key.search{font-size:18px!important;background:linear-gradient(135deg,#ea580c,#c2410c)!important;color:#fff!important}
+#searchScreen #error{min-height:18px!important;margin-top:7px!important}
+.clock{min-width:70px!important;text-align:right!important}
+.clock b{font-size:15px!important;line-height:1.1!important}
+.clock span{font-size:10px!important}
+@media(max-width:760px){
+#searchScreen .kioskPurpose{font-size:12px!important;margin-bottom:8px!important}
+#searchScreen .searchModes{gap:6px!important}
+#searchScreen .mode{height:42px!important;font-size:10px!important}
+#searchScreen .input{height:52px!important;font-size:19px!important}
+#searchScreen .keys{gap:7px!important;max-width:520px!important}
+#searchScreen .key{height:clamp(58px,8.2dvh,70px)!important;border-radius:14px!important;font-size:23px!important}
+#searchScreen .key small{font-size:9px!important}
+#searchScreen .key.action,#searchScreen .key.search{font-size:15px!important}
+.clock{display:block!important;min-width:52px!important}
+.clock b{font-size:11px!important}.clock span{font-size:8px!important}
+}
+
 </style>
 </head>
 <body>
@@ -544,7 +600,7 @@ html,body{background:linear-gradient(145deg,#fffdf9 0%,#fff7ed 48%,#fffaf5 100%)
 <div class="screen">
 
 <section id="searchScreen" class="panel">
-  <div class="kioskPurpose"><span class="purposeIcon">₹</span><span>विद्यार्थी शुल्क भुगतान कियोस्क</span></div>
+  <div class="kioskPurpose"><span class="purposeMark">शुल्क</span><span>विद्यार्थी शुल्क भुगतान कियोस्क</span></div>
   <div class="steps">
     <div class="step active"><div class="step-dot">1</div><div class="step-label" data-i18n="step1">खोजें</div></div>
     <div class="step"><div class="step-dot">2</div><div class="step-label" data-i18n="step2">पुष्टि</div></div>
@@ -557,7 +613,7 @@ html,body{background:linear-gradient(145deg,#fffdf9 0%,#fff7ed 48%,#fffaf5 100%)
     <button class="mode" data-type="mobile" type="button"><span class="icon">📱</span><span data-i18n="modeMobile">मोबाइल नंबर</span></button>
   </div>
   <div class="inputWrap">
-    <input id="query" class="input" autocomplete="off" inputmode="none" readonly aria-label="Search value" placeholder=""/>
+    <input id="query" class="input" autocomplete="off" inputmode="none" readonly aria-label="Search value" placeholder="" data-search-mode="enrollment"/>
     <button class="erase" id="erase" type="button">⌫</button>
   </div>
   <div id="keys" class="keys"></div>
@@ -660,7 +716,7 @@ html,body{background:linear-gradient(145deg,#fffdf9 0%,#fff7ed 48%,#fffaf5 100%)
   <div class="printArea" id="receiptPrint">
     <div class="receiptHead"><h2 id="rOrg">Fee Receipt</h2><p data-i18n="receiptTitle">शुल्क भुगतान रसीद</p></div>
     <div id="receiptMeta" class="receiptMeta"></div>
-    <div id="receiptLines" class="receiptLines"></div>
+    <div id="receiptLines" class="receiptLines"></div><div id="receiptTotal" class="receiptTotal"><span>कुल भुगतान</span><span>₹0.00</span></div>
   </div>
   <div class="noPrint" style="margin-top:14px;text-align:center">
     <p style="font-size:13px;color:var(--muted);margin-bottom:8px" data-i18n="emailHint">रसीद ईमेल पर भेजने के लिए ईमेल दर्ज करें (वैकल्पिक)</p>
@@ -772,9 +828,11 @@ function resetAll(){
 }
 
 function setMode(m){
+  if(!["enrollment","roll","mobile"].includes(m)) m="enrollment";
   mode=m;
   document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.type===m));
   $("query").placeholder = t("placeholders")[m] || "";
+  $("query").dataset.searchMode = m;
   $("hint").textContent = t("hints")[m] || "";
   $("query").value=""; lastKey=""; lastTap=0;
   renderKeys(); resetIdle();
@@ -783,39 +841,57 @@ function setMode(m){
 let tapTimer=null;
 function renderKeys(){
   const searchLabel=t("searchBtn");
-  const labels={1:"",2:"ABC",3:"DEF",4:"GHI",5:"JKL",6:"MNO",7:"PQRS",8:"TUV",9:"WXYZ",0:""};
-  const keys=["1","2","3","4","5","6","7","8","9","⌫","0",searchLabel];
-  $("keys").innerHTML=keys.map((k,i)=>{
-    const sub=labels[k]||"";
-    return `<button class="key ${k==='⌫'?'action':''} ${k===searchLabel?'search':''}" data-i="${i}" data-key="${esc(k)}" type="button"><b>${esc(k)}</b>${sub?`<small>${sub}</small>`:''}</button>`;
+  const groups=[
+    ["1","ABC"],["2","DEF"],["3","GHI"],
+    ["4","JKL"],["5","MNO"],["6","PQR"],
+    ["7","STU"],["8","VWX"],["9","YZ"],
+    ["CLEAR",""],["0",""],["SEARCH",searchLabel]
+  ];
+  $("keys").innerHTML = groups.map(([k,sub])=>{
+    if(k==="CLEAR") return `<button class="key action" data-key="CLEAR" type="button"><b>साफ</b></button>`;
+    if(k==="SEARCH") return `<button class="key search" data-key="SEARCH" type="button"><b>${searchLabel}</b></button>`;
+    return `<button class="key" data-key="${k}" type="button"><b>${k}</b>${sub?`<small>${sub}</small>`:""}</button>`;
   }).join("");
   $("keys").querySelectorAll("button").forEach(b=>b.onclick=()=>tapKey(b.dataset.key));
 }
+const multiTapMap={
+  "1":["1"], "2":["2","A","B","C"], "3":["3","D","E","F"],
+  "4":["4","G","H","I"], "5":["5","J","K","L"], "6":["6","M","N","O"],
+  "7":["7","P","Q","R","S"], "8":["8","T","U","V"], "9":["9","W","X","Y","Z"],
+  "0":["0"]
+};
 function tapKey(k){
-  const searchLabel=t("searchBtn");
+  if(k==="CLEAR"){
+    $("query").value=""; lastKey=""; lastIndex=0; $("error").textContent=""; resetIdle(); return;
+  }
   if(k==="⌫"){
-    $("query").value=$("query").value.slice(0,-1); lastKey=""; lastIndex=0; clearTimeout(tapTimer); resetIdle(); return;
+    $("query").value=$("query").value.slice(0,-1); lastKey=""; lastIndex=0; resetIdle(); return;
   }
-  if(k===searchLabel){ clearTimeout(tapTimer); lastKey=""; lastIndex=0; findStudent(); return; }
-  if(!/^\d$/.test(k)) return;
-  const letters={2:"ABC",3:"DEF",4:"GHI",5:"JKL",6:"MNO",7:"PQRS",8:"TUV",9:"WXYZ"};
-  const alpha=mode==="enrollment" && letters[k];
-  const now=Date.now(), current=$("query").value;
-  if(alpha){
-    if(lastKey===k && now-lastTap<900 && current.length){
-      lastIndex=(lastIndex+1)% (letters[k].length+1);
-      const replacement=lastIndex===0?k:letters[k][lastIndex-1];
-      $("query").value=current.slice(0,-1)+replacement;
-    }else{
-      lastIndex=0;
-      $("query").value=current+k;
+  if(k==="SEARCH"){ findStudent(); return; }
+
+  if(mode!=="roll"){
+    if(/^\d$/.test(k)){
+      const max=mode==="mobile"?10:40;
+      if($("query").value.length<max) $("query").value += k;
     }
-    lastKey=k; lastTap=now;
-    clearTimeout(tapTimer); tapTimer=setTimeout(()=>{lastKey="";lastIndex=0},950);
-  }else{
-    $("query").value=current+k; lastKey=""; lastIndex=0;
+    resetIdle(); return;
   }
-  resetIdle();
+
+  if(!multiTapMap[k]) return;
+  const now=Date.now();
+  const withinSameTap=(lastKey===k && (now-lastTap)<850 && $("query").value.length>0);
+  if(withinSameTap){
+    const currentLast=$("query").value.slice(-1);
+    const arr=multiTapMap[k];
+    const currentIndex=arr.indexOf(currentLast);
+    const nextIndex=(currentIndex>=0 ? currentIndex+1 : 0)%arr.length;
+    $("query").value=$("query").value.slice(0,-1)+arr[nextIndex];
+    lastIndex=nextIndex;
+  }else{
+    if($("query").value.length<20) $("query").value += multiTapMap[k][0];
+    lastIndex=0;
+  }
+  lastKey=k; lastTap=now; resetIdle();
 }
 async function loadSettings(){
   try{
@@ -834,13 +910,14 @@ function updateClock(){
 
 async function findStudent(){
   let v=$("query").value.trim();
-  if(mode==="roll") v=v.replace(/\D/g,"");
+  if(mode==="roll") v=v.trim();
   $("error").textContent="";
   if(!v){ $("error").textContent=t("noRecord"); return; }
   $("error").textContent=t("searching");
   if(mode==="mobile" && !/^\d{10}$/.test(v)){ $("error").textContent=t("mobileErr"); return; }
   try{
-    const r=await fetch(`/api/students/search?type=${mode}&identifier=${encodeURIComponent(v)}`);
+    const searchType = ["enrollment","roll","mobile"].includes(mode) ? mode : "enrollment";
+    const r=await fetch(`/api/students/search?type=${searchType}&identifier=${encodeURIComponent(v)}`);
     const j=await r.json();
     if(!r.ok) throw new Error(j.error||"Not found");
     students=j.students;
@@ -1063,7 +1140,7 @@ async function loadReceipt(){
     <div><b>${lang==="hi"?"सत्र":"Session"}</b>${esc(x.session||"-")}</div>
     <div><b>${lang==="hi"?"Transaction ID":"Transaction ID"}</b>${esc(x.transaction_id||"-")}</div>
     <div><b>${lang==="hi"?"कुल भुगतान":"Total Paid"}</b>${money(x.amount)}</div>`;
-  $("receiptLines").textContent=x.fee_lines||"Fee payment";
+  $("receiptLines").textContent=x.fee_lines||"Fee payment"; $("receiptTotal").innerHTML=`<span>${lang==="hi"?"कुल भुगतान":"Total Paid"}</span><span>${money(x.amount)}</span>`;
   if(student&&student.email) $("receiptEmail").value=student.email;
   show("receiptScreen");
 }
@@ -1081,19 +1158,31 @@ function home(){ resetAll(); }
 $("langToggle").querySelectorAll("button").forEach(b=>{
   b.onclick=()=>{
     lang=b.dataset.lang;
-    localStorage.setItem("kioskLang", lang);
+    localStorage.setItem("kioskLangV11", lang);
     $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.lang===lang));
     applyI18n();
   };
 });
-const savedLang=localStorage.getItem("kioskLang");
+const savedLang=localStorage.getItem("kioskLangV11") || "hi";
 if(savedLang==="en"||savedLang==="hi"){ lang=savedLang; $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.lang===lang)); }
 
 $("helpBtn").onclick=()=>$("helpModal").classList.remove("hidden");
 $("closeHelp").onclick=()=>$("helpModal").classList.add("hidden");
 $("helpModal").onclick=e=>{ if(e.target===$("helpModal")) $("helpModal").classList.add("hidden"); };
 
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>setMode(b.dataset.type));
+// Explicit search-mode bindings: never infer mode from button order/text.
+const modeBindings = {
+  enrollment: document.querySelector('.mode[data-type="enrollment"]'),
+  roll: document.querySelector('.mode[data-type="roll"]'),
+  mobile: document.querySelector('.mode[data-type="mobile"]')
+};
+Object.entries(modeBindings).forEach(([type, btn])=>{
+  if(btn) btn.addEventListener('click', (ev)=>{
+    ev.preventDefault();
+    ev.stopPropagation();
+    setMode(type);
+  });
+});
 $("erase").onclick=()=>{ $("query").value=""; lastKey=""; lastIndex=0; resetIdle(); };
 $("query").onkeydown=e=>{ if(e.key==="Enter") findStudent(); };
 $("continueFee").onclick=loadFee;
