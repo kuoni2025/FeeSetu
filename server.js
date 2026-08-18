@@ -134,6 +134,24 @@ app.post("/api/admin/logout",admin,(req,res)=>{
 });
 
 // Search by Enrollment, Admission, Roll or Mobile. Returns a short list so a mobile number can be shared safely.
+// Strict kiosk search endpoints: each route can query only its own student field.
+async function strictStudentSearch(req,res,field,normalizer){
+  try{
+    const identifier=String(req.query.identifier||"").trim();
+    if(!identifier) return res.status(400).json({error:"Search value is required"});
+    let sql, params;
+    if(field==='enrollment_number') sql=`lower(trim(enrollment_number))=lower(trim($1))`;
+    else if(field==='roll_number') sql=`trim(roll_number)=trim($1)`;
+    else sql=`regexp_replace(mobile,'\\D','','g')=regexp_replace($1,'\\D','','g')`;
+    const r=await q(`select id,enrollment_number,admission_number,roll_number,student_name,father_name,mother_name,mobile,email,course,class,semester,year,batch,session,address,photo_url from students where status='ACTIVE' and ${sql} order by student_name limit 10`,[identifier]);
+    if(!r.rows.length) return res.status(404).json({error:"इस जानकारी से कोई विद्यार्थी नहीं मिला।"});
+    res.json({students:r.rows});
+  }catch(e){res.status(500).json({error:"Database error"});}
+}
+app.get('/api/students/search/enrollment',(req,res)=>strictStudentSearch(req,res,'enrollment_number'));
+app.get('/api/students/search/roll',(req,res)=>strictStudentSearch(req,res,'roll_number'));
+app.get('/api/students/search/mobile',(req,res)=>strictStudentSearch(req,res,'mobile'));
+
 app.get("/api/students/search",async(req,res)=>{
   try{
     const identifier = String(req.query.identifier||"").trim();
