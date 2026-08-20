@@ -1,16 +1,15 @@
 {
-  "name": "feesetu-kiosk",
-  "version": "10.0.0",
+  "name": "feesetu-professional-kiosk",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.21.2",
-    "pg": "^8.13.1",
-    "qrcode": "^1.5.4",
     "dotenv": "^16.4.7",
-    "xlsx": "^0.18.5",
-    "exceljs": "^4.4.0"
+    "express": "^4.21.2",
+    "exceljs": "^4.4.0",
+    "pg": "^8.13.1",
+    "qrcode": "^1.5.4"
   }
 }

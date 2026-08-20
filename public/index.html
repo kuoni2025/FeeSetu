@@ -2,503 +2,356 @@
 <html lang="hi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
-<title>FeeSetu • विद्यार्थी शुल्क भुगतान कियोस्क</title>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>FeeSetu App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
- --saffron:#d95f02;--saffron2:#f08a24;--saffronSoft:#fff3e7;--navy:#172b4d;--navy2:#27456f;
- --ink:#18212f;--muted:#6b7280;--line:#e8e1d8;--paper:#fffdfa;--cream:#f8f1e8;--white:#fff;
- --green:#087f5b;--greenSoft:#e8f8f1;--danger:#b42318;--shadow:0 20px 70px rgba(35,32,28,.10);
+  --navy:#0b1b3a;--navy2:#17305e;--gold:#efab35;--saffron:#dd7907;
+  --cream:#fbf7f0;--paper:#ffffff;--ink:#18243d;--muted:#7a7f89;
+  --line:#ded9d2;--soft:#f4efe7;--green:#0f8755;--red:#bd3b31;
 }
-*{box-sizing:border-box;margin:0;padding:0}html,body{min-height:100%;font-family:"Plus Jakarta Sans","Noto Sans Devanagari",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 5%,#fff7ee 0,transparent 28%),radial-gradient(circle at 92% 8%,#f7eee4 0,transparent 25%),#f6f3ef;-webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent}button,input{font:inherit;outline:none}button{cursor:pointer}a{color:inherit}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:linear-gradient(135deg,rgba(217,95,2,.035) 25%,transparent 25%),linear-gradient(315deg,rgba(23,43,77,.025) 25%,transparent 25%);background-size:46px 46px;z-index:-1}
-.top{height:82px;background:rgba(255,253,250,.92);backdrop-filter:blur(18px);border-bottom:1px solid #eadfd3;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,42px);position:sticky;top:0;z-index:50}.brand{display:flex;align-items:center;gap:13px}.brandLogo{width:50px;height:50px;border-radius:16px;background:linear-gradient(145deg,var(--saffron),#c84e00);display:grid;place-items:center;color:#fff;box-shadow:0 9px 24px rgba(217,95,2,.22);overflow:hidden}.brandLogo img{width:100%;height:100%;object-fit:contain;background:#fff}.brandLogo svg{width:28px}.brandName{font-size:18px;font-weight:850;color:var(--navy);letter-spacing:-.4px}.brandMsg{font-size:11px;color:#8a5a34;margin-top:2px;font-weight:600}.topRight{display:flex;align-items:center;gap:8px}.langToggle{display:flex;padding:3px;border:1px solid #e8ded2;border-radius:12px;background:#f8f4ef}.langToggle button{border:0;background:transparent;padding:7px 10px;border-radius:9px;color:#7b8794;font-size:11px;font-weight:800}.langToggle button.active{background:#fff;color:var(--saffron);box-shadow:0 2px 8px rgba(0,0,0,.07)}.helpBtn,.adminLink{height:36px;border-radius:11px;border:1px solid #e8ded2;background:#fff;color:var(--navy);font-size:11px;font-weight:800;padding:0 12px;text-decoration:none;display:flex;align-items:center;gap:5px}.helpBtn{color:#a24d0b;background:#fff8f0}.clock{text-align:right;min-width:74px;color:#8a8178;font-size:9px;line-height:1.2}.clock b{display:block;color:var(--navy);font-size:15px;letter-spacing:.4px}.clock span{display:block;margin-top:2px}
-main{min-height:calc(100dvh - 82px);padding:24px 16px 38px;display:flex;justify-content:center}.screen{width:min(930px,100%)}.panel,.subPanel{background:rgba(255,253,250,.96);border:1px solid #e8dfd5;border-radius:30px;box-shadow:var(--shadow);padding:28px;animation:enter .28s ease}.hidden{display:none!important}@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+body{
+  font-family:"Plus Jakarta Sans","Noto Sans Devanagari",system-ui,sans-serif;
+  background:linear-gradient(145deg,#fffdf9,#f5eee4);
+  color:var(--ink);
+  -webkit-tap-highlight-color:transparent;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* Welcome */
+#welcome{
+  position:fixed;inset:0;z-index:10000;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(239,171,53,.12),transparent 22%),
+    radial-gradient(circle at 50% 45%,rgba(64,92,160,.24),transparent 46%),
+    linear-gradient(145deg,#061024,#0d1f45 50%,#061126);
+  color:#fff;
+}
+.w-ring{position:absolute;border:1px solid rgba(239,171,53,.28);border-radius:50%;width:125vmax;height:125vmax}
+.w-ring.r2{width:95vmax;height:95vmax;border-color:rgba(255,255,255,.08);border-style:dashed}
+.w-ring.r3{width:66vmax;height:66vmax;border-color:rgba(239,171,53,.16)}
+.w-core{
+  width:min(470px,72vw);aspect-ratio:1;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at 50% 33%,#365493,#193364 58%,#0b1b3a 80%);
+  border:2px solid var(--gold);
+  box-shadow:0 0 90px rgba(239,171,53,.18),inset 0 0 40px rgba(255,255,255,.05)
+}
+.w-small{font-size:clamp(22px,3vw,32px);font-weight:700}
+.w-brand{font-size:clamp(50px,7vw,76px);font-weight:900;color:#ffc45e;letter-spacing:-2px;line-height:1;margin-top:8px}
+.w-sub{font-size:12px;color:#dce6f7;margin-top:8px;font-weight:700}
+.w-touch{font-size:11px;color:#e8eef8;margin-top:20px;opacity:.82}
+
+/* Header */
+.top{
+  height:68px;background:rgba(255,255,255,.96);border-bottom:1px solid #e7ded3;
+  display:flex;align-items:center;justify-content:space-between;padding:0 clamp(10px,2vw,22px);
+  box-shadow:0 4px 16px rgba(10,25,55,.05)
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.logo{
+  width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#e48b0b,#ba5b00);
+  color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px;flex:0 0 auto
+}
+.brandText{min-width:0}.brandText h1{margin:0;font-size:clamp(14px,1.35vw,18px);white-space:nowrap}.brandText p{margin:1px 0 0;font-size:9px;color:#81796e;white-space:nowrap}
+.headerRight{display:flex;align-items:center;gap:6px;flex:0 0 auto}.mini{border:1px solid #e5e0da;background:#fff;border-radius:10px;padding:7px 9px;font-size:10px;font-weight:900;color:var(--ink)}.mini.active{background:#fff3dc;border-color:#efbf73;color:#984c00}.clock{text-align:right;margin-left:3px}.clock b{display:block;font-size:13px}.clock span{display:block;font-size:8px;color:#81796e}
+
+/* Main */
+main{height:calc(100dvh - 68px);padding:10px;display:flex;align-items:stretch;justify-content:center}
+.shell{
+  width:min(1180px,100%);height:100%;background:rgba(255,255,255,.64);
+  border:1px solid #e5ddd3;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(10,25,55,.08)
+}
+.content{height:100%;display:flex;flex-direction:column;position:relative}
+.art{position:absolute;inset:0;pointer-events:none;opacity:.4;background:url("theme-art.svg") center/cover no-repeat}
+.work{position:relative;z-index:1;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px}
+.footer{height:27px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#fff7e9,#fffdfb);border-top:1px solid #eee4d8;font-size:9px;color:#7e756a}
+
 /* Search */
-#searchScreen{padding:30px 34px 34px;min-height:calc(100dvh - 138px);display:flex;flex-direction:column;justify-content:center}.kioskPurpose{text-align:center;margin-bottom:22px}.kioskPurpose span:first-child{display:block;color:var(--navy);font-size:24px;font-weight:850;letter-spacing:-.5px}.kioskPurpose span:last-child{display:block;margin-top:5px;color:#927d6b;font-size:12px;font-weight:600}.steps{display:flex;align-items:flex-start;justify-content:center;gap:0;margin:0 auto 22px;width:min(620px,100%)}.step{position:relative;flex:1;text-align:center;color:#a39a91;font-size:10px;font-weight:800}.step:not(:first-child):before{content:"";position:absolute;height:2px;left:-50%;right:50%;top:13px;background:#e8dfd5}.step.active{color:var(--saffron)}.step.done{color:var(--green)}.step.active:before{background:#f1c69e}.step.done:before{background:#9bd9c2}.step-dot{width:27px;height:27px;border-radius:50%;background:#f3eee8;border:1px solid #e5dcd1;display:grid;place-items:center;margin:0 auto 5px;position:relative;z-index:1}.active .step-dot{background:var(--saffronSoft);border-color:#f1ad68;color:var(--saffron)}.done .step-dot{background:var(--greenSoft);border-color:#9bd9c2;color:var(--green)}
-.searchModes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:min(720px,100%);margin:0 auto 15px}.mode{height:62px;border:1px solid #e5ddd4;background:#fff;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:9px;color:#536174;font-size:12px;font-weight:800;box-shadow:0 5px 14px rgba(45,38,30,.035)}.mode .icon{font-size:18px}.mode.active{border-color:#eea45d;background:linear-gradient(180deg,#fff9f2,#fff3e6);color:#a64f0a;box-shadow:0 9px 25px rgba(217,95,2,.12)}.inputWrap{width:min(720px,100%);margin:0 auto 15px;position:relative}.input{width:100%;height:68px;border:1px solid #ddd3c8;border-radius:18px;background:#fff;color:var(--navy);padding:0 60px 0 22px;text-align:center;font-size:25px;font-weight:750;letter-spacing:.3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}.input::placeholder{color:#aaa198}.erase{position:absolute;right:8px;top:8px;width:52px;height:52px;border-radius:14px;border:1px solid #ecdccc;background:#fff6ed;color:#a64f0a;font-size:21px;font-weight:800}.keys{width:min(720px,100%);margin:0 auto;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:10px!important}.keyRow,.keyActions{display:contents!important}.key{height:68px;min-width:0;border:1px solid #e4dbd1;border-radius:17px;background:linear-gradient(180deg,#fff,#fffaf5);color:#1d2a3a;display:grid;place-items:center;box-shadow:0 5px 12px rgba(45,38,30,.045);font-size:24px;font-weight:850}.key small{font-size:9px;color:#8a96a4;font-weight:800;letter-spacing:1px;margin-top:-20px}.key:hover{border-color:#eab274;box-shadow:0 9px 20px rgba(217,95,2,.10)}.key:active{transform:scale(.98);background:#fff1df}.key.action{background:#fbf4ec;color:#8d4b18;font-size:15px}.key.search{background:linear-gradient(145deg,#e56b0b,#c94f00);color:#fff;border-color:transparent;font-size:17px;box-shadow:0 11px 24px rgba(201,79,0,.23)}.error{min-height:21px;text-align:center;margin-top:9px;color:var(--danger);font-size:12px;font-weight:700}.error:empty{visibility:hidden}.modeNote{width:min(720px,100%);margin:0 auto 12px;text-align:center;font-size:10px;color:#9b9086;font-weight:650}
-/* Inner screens */
-.subPanel{padding:26px}.titleRow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.titleRow h2{font-size:21px;color:var(--navy);font-weight:850;letter-spacing:-.4px}.backBtn,.lightBtn{border:1px solid #e5dbd1;background:#fff8f0;color:#8c4c1b;border-radius:12px;padding:10px 14px;font-size:11px;font-weight:800}.primaryBtn{border:0;background:linear-gradient(145deg,#e56b0b,#c94f00);color:#fff;border-radius:13px;padding:12px 18px;font-size:12px;font-weight:850;box-shadow:0 10px 22px rgba(201,79,0,.18)}.primaryBtn:disabled{opacity:.45;box-shadow:none}.choiceList{display:grid;gap:10px}.choice{width:100%;text-align:left;border:1px solid #e7ded5;background:#fff;border-radius:17px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;color:var(--ink);box-shadow:0 5px 14px rgba(35,32,28,.04)}.choice b{font-size:15px}.choice small{font-size:10px;color:#7d8792}.choice .arrow{font-size:20px;color:var(--saffron)}.studentGrid{display:block}.studentHero{display:flex;align-items:center;gap:17px;padding:18px;border-radius:20px;background:linear-gradient(135deg,#fff7ef,#fff);border:1px solid #efdfd0}.studentPhoto,.photoFallback{width:82px;height:82px;border-radius:20px;object-fit:cover;flex:0 0 auto}.photoFallback{display:grid;place-items:center;background:#f3e3d4;color:#9b4c11;font-size:30px;font-weight:850}.studentHero h3{font-size:22px;color:var(--navy);margin-bottom:5px}.studentHero p{font-size:11px;color:#6d7783;margin-top:3px}.studentGridInner{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:11px}.studentGridInner>div{border:1px solid #ece3da;border-radius:14px;padding:12px;background:#fff}.studentGridInner strong{display:block;font-size:9px;color:#9b9187;margin-bottom:5px}.studentGridInner span{font-size:12px;font-weight:800;color:#283548}.historyBox{margin-top:13px;border-top:1px solid #eee5dc;padding-top:13px}.historyBox h3{font-size:12px;color:var(--navy);margin-bottom:7px}.historyItem{display:flex;justify-content:space-between;padding:8px 10px;background:#fbf8f4;border-radius:10px;font-size:11px;margin-top:5px}.st{padding:3px 7px;border-radius:99px;font-size:8px;font-weight:850}.st.ok{background:#e7f7ef;color:#08734e}.st.pend{background:#fff3d8;color:#98630b}.actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.feeList{display:grid;gap:8px}.feeItem{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:10px;padding:13px 14px;border:1px solid #e6ded6;border-radius:14px;background:#fff}.feeItem.selected{border-color:#f0b878;background:#fff9f2}.feeItem .name{font-size:12px;font-weight:750}.feeItem .amt{font-size:13px;font-weight:850;color:var(--navy)}.selectAllRow{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;font-size:11px}.total{display:flex;justify-content:space-between;align-items:center;margin-top:13px;padding:15px 16px;border-radius:15px;background:var(--navy);color:#fff;font-size:12px;font-weight:800}.total span:last-child{font-size:22px;color:#ffd9ad}.paymentBox{text-align:center}.paymentBox .titleRow{text-align:left}.paymentStudent{font-size:12px;color:#697583}.amountBig{font-size:40px;font-weight:900;color:var(--navy);margin:9px 0}.ref{display:inline-block;padding:6px 10px;border-radius:99px;background:#f3eee8;color:#8b8178;font-size:9px;font-weight:800}.qrWrap{margin:18px auto 12px;width:min(300px,100%);padding:17px;border:1px solid #e6ddd4;border-radius:22px;background:#fff;box-shadow:0 10px 28px rgba(35,32,28,.07)}.qr{width:100%;aspect-ratio:1;object-fit:contain;border-radius:10px}.qrHint{font-size:10px;color:#777d84;margin-top:8px;font-weight:650}.upiDetails{display:flex;flex-direction:column;align-items:center;gap:9px}.upiDetails>div{display:flex;align-items:center;gap:8px;font-size:10px;color:#7a838e}.upiDetails b{color:var(--navy)}.copyBtn{border:1px solid #e5dbd1;background:#fff8f0;border-radius:8px;padding:5px 8px;font-size:9px;font-weight:800;color:#8c4c1b}.upiLink{font-size:11px;font-weight:800;color:#3559a6;text-decoration:none}.utrBox{display:flex;gap:8px;width:min(500px,100%);margin:12px auto 0}.utrBox input,.emailRow input{flex:1;border:1px solid #ddd4ca;border-radius:12px;padding:12px;background:#fff;font-size:12px}.status{min-height:19px;font-size:11px;font-weight:750;margin-top:8px}.status.success{color:var(--green)}.status.error{color:var(--danger)}.successBanner{padding:13px;border-radius:14px;background:#e9f8f1;color:#08734e;border:1px solid #bde8d5;font-size:12px;font-weight:850;text-align:center;margin-bottom:16px}.printArea{border:1px solid #e3d9ce;border-radius:20px;background:#fff;padding:22px}.receiptHead{text-align:center;border-bottom:2px dashed #e6ddd4;padding-bottom:14px;margin-bottom:14px}.receiptHead h2{font-size:21px;color:var(--navy)}.receiptHead p{font-size:11px;color:#8c8177;margin-top:3px;font-weight:650}.receiptMeta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.receiptMeta>div{padding:10px;border-radius:10px;background:#faf7f3;font-size:10px}.receiptMeta b{display:block;color:#958a80;font-size:8px;margin-bottom:3px}.receiptLines{margin-top:13px;padding:12px;border:1px dashed #e1d7cc;border-radius:11px;font-size:11px;white-space:pre-wrap}.receiptTotal{display:flex;justify-content:space-between;padding:14px 2px;font-size:14px;font-weight:850;color:var(--navy)}.emailRow{display:flex;gap:8px;max-width:560px;margin:auto}.emptyState{text-align:center;padding:30px;color:#74808b;font-size:12px}.emptyState .icon{font-size:28px;margin-bottom:8px}
-#helpModal{background:rgba(17,28,43,.58)!important}.helpCard{background:#fffdf9;border-radius:22px;max-width:430px;width:100%;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.22)}
-@media(max-width:760px){.top{height:72px;padding:0 10px}.brandLogo{width:40px;height:40px;border-radius:13px}.brandName{font-size:13px}.brandMsg{font-size:8px}.topRight{gap:4px}.langToggle button{padding:6px 7px;font-size:9px}.helpBtn,.adminLink{padding:0 7px;height:32px;font-size:9px}.clock{min-width:48px}.clock b{font-size:11px}.clock span{font-size:7px}main{min-height:calc(100dvh - 72px);padding:9px 7px 14px}#searchScreen{min-height:calc(100dvh - 92px);padding:18px 10px 17px;border-radius:22px}.kioskPurpose span:first-child{font-size:17px}.kioskPurpose span:last-child{font-size:9px}.steps{margin-bottom:15px}.step{font-size:8px}.step-dot{width:23px;height:23px;font-size:9px}.step:not(:first-child):before{top:11px}.searchModes{gap:6px;margin-bottom:9px}.mode{height:49px;border-radius:13px;font-size:9px;gap:4px}.mode .icon{font-size:14px}.inputWrap{margin-bottom:9px}.input{height:55px;border-radius:14px;font-size:19px;padding-left:12px;padding-right:52px}.erase{width:42px;height:42px;top:6px;right:6px;font-size:17px}.keys{gap:6px!important}.key{height:clamp(56px,8.2dvh,68px);border-radius:14px;font-size:22px}.key small{font-size:8px;margin-top:-17px}.key.action,.key.search{font-size:13px}.modeNote{font-size:8px;margin-bottom:8px}.subPanel{padding:17px;border-radius:22px}.titleRow h2{font-size:17px}.studentHero{padding:13px;gap:11px}.studentPhoto,.photoFallback{width:64px;height:64px;border-radius:16px}.studentHero h3{font-size:18px}.studentHero p{font-size:9px}.studentGridInner{grid-template-columns:repeat(2,1fr)}.actions{flex-direction:column}.actions>*{width:100%}.receiptMeta{grid-template-columns:1fr}.emailRow,.utrBox{flex-direction:column}.amountBig{font-size:34px}}
-@media(min-width:1200px){#searchScreen{padding-top:42px;padding-bottom:42px}.key{height:76px}.mode{height:66px}}
-@media print{body{background:#fff}.top,main .subPanel:not(#receiptScreen),.noPrint{display:none!important}#receiptScreen{display:block!important;box-shadow:none;border:0;padding:0}.printArea{border:0;box-shadow:none}}
-</style></head>
+.search{width:min(760px,96%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.modeRow{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode{
+  height:49px;border:1.5px solid var(--line);border-radius:14px;background:rgba(255,255,255,.88);
+  font-size:clamp(9px,1vw,12px);font-weight:900;color:#49515d;box-shadow:0 5px 14px rgba(10,25,55,.035)
+}.mode.active{background:#fff1d8;border-color:#eeaa3d;color:#984c00;box-shadow:0 0 0 3px rgba(239,171,53,.09)}
+.input{
+  width:100%;height:62px;border:2px solid #ded8cf;border-radius:16px;background:#fff;
+  display:flex;align-items:center;box-shadow:0 7px 16px rgba(10,25,55,.04)
+}
+.input input{width:100%;border:0;outline:0;background:transparent;text-align:center;color:var(--ink);font-size:clamp(19px,2.2vw,27px);font-weight:900;padding:0 20px}
+.input input::placeholder{color:#aaa49d}
+.hint{height:12px;font-size:9px;color:#817a72}
+
+/* Smartphone-like keypad: 3x4 main grid */
+.keypad{
+  width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+}
+.key{
+  height:clamp(56px,8.0vh,76px);border:1px solid #ddd6ce;border-radius:16px;
+  background:linear-gradient(180deg,#fff,#faf6f0);box-shadow:0 6px 12px rgba(10,25,55,.045);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--ink);font-weight:900;font-size:clamp(20px,2.3vw,30px);
+  user-select:none;
+}
+.key small{font-size:8px;letter-spacing:1px;color:#8e8d91;margin-top:2px}
+.key.active{background:#fff0d6;border-color:#efad43;color:#954800;box-shadow:0 0 0 3px rgba(239,171,53,.10)}
+.key.zero small{font-size:8px}
+.tools{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}.tool{
+  height:46px;border:1px solid #ded8cf;border-radius:13px;background:#f7f0e7;color:#684a22;font-size:11px;font-weight:900
+}
+.searchBtn{height:50px;width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,#e28b0b,#bf5f00);color:#fff;font-size:14px;font-weight:900;box-shadow:0 10px 22px rgba(217,119,6,.20)}
+.status{min-height:16px;font-size:10px;font-weight:800;text-align:center;color:var(--muted)}.status.error{color:var(--red)}.status.ok{color:var(--green)}
+
+/* Other screens */
+.panel{width:min(960px,96%);max-height:100%;overflow:auto;background:#fff;border:1px solid #e5ded5;border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(10,25,55,.08)}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.head h2{margin:0;font-size:21px}.back{border:1px solid #e2ddd6;background:#fff;border-radius:10px;padding:8px 11px;font-weight:900}
+.profile{display:grid;grid-template-columns:110px 1fr;gap:15px}.photo{width:110px;height:110px;border-radius:18px;background:#fff0d7;display:grid;place-items:center;overflow:hidden;font-size:38px}.photo img{width:100%;height:100%;object-fit:cover}.infoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.info{background:#faf8f5;border-radius:10px;padding:9px}.info small{display:block;font-size:8px;color:#8d8478;font-weight:900}.info b{font-size:12px}.primary{height:48px;border:0;border-radius:12px;background:linear-gradient(135deg,#e28b0b,#bc5d00);color:#fff;font-weight:900;padding:0 18px}
+.feeList{display:grid;gap:8px;margin:10px 0}.fee{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #e8e1d8;border-radius:12px}.fee input{width:19px;height:19px;accent-color:var(--saffron)}.fee .name{flex:1;font-weight:800}.fee .amt{font-weight:900}.total{display:flex;justify-content:space-between;border-top:2px solid var(--navy);padding:14px 2px;font-size:18px;font-weight:900}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}.qr{width:min(330px,100%);aspect-ratio:1;border:1px solid #e4dfd8;border-radius:17px;padding:10px;background:#fff}.amount{font-size:36px;font-weight:900;color:var(--navy)}.upi{border:1px solid #e4dfd8;border-radius:12px;padding:11px}.upiRow{display:flex;justify-content:space-between;align-items:center;gap:8px}.copy{border:0;background:#fff0d7;border-radius:8px;padding:6px 8px;font-size:10px;font-weight:900;color:#995000}.upiApp{display:flex;align-items:center;justify-content:center;height:44px;margin-top:9px;background:var(--navy);color:#fff;text-decoration:none;border-radius:10px;font-size:11px;font-weight:900}.utr{display:flex;gap:8px;margin-top:9px}.utr input{flex:1;border:1px solid #d8d2ca;border-radius:9px;padding:9px}.utr button{border:0;border-radius:9px;background:#143261;color:#fff;padding:0 13px;font-weight:900}
+.receiptHead{text-align:center;border-bottom:2px dashed #bfc5ce;padding-bottom:12px}.receiptHead h2{margin:0;font-size:25px}.receiptHead p{margin:3px 0;color:#6b7280;font-size:10px}.receiptMeta{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}.receiptTable{width:100%;border-collapse:collapse}.receiptTable th,.receiptTable td{padding:8px;border-bottom:1px solid #eceef1;text-align:left;font-size:11px}.receiptTable th{font-size:9px;color:#6d7480}.receiptTotal{display:flex;justify-content:flex-end;gap:30px;padding:13px 0;font-size:19px;font-weight:900}.receiptActions{display:flex;justify-content:center;gap:8px}.receiptActions button{border:0;border-radius:10px;padding:10px 14px;font-weight:900}.print{background:var(--navy);color:#fff}.home{background:#f1ece5}
+
+/* Responsive */
+@media(max-width:900px){
+  .top{height:60px}.brandText h1{font-size:14px}.brandText p{display:none}.clock span{display:none}.mini{padding:6px 7px;font-size:9px}
+  main{height:calc(100dvh - 60px);padding:5px}.shell{border-radius:18px}.work{padding:8px}.search{width:100%;gap:6px}.modeRow{gap:5px}.mode{height:44px;font-size:9px}.input{height:54px}.input input{font-size:19px}.hint{font-size:8px}.keypad{gap:6px}.key{height:56px;border-radius:13px;font-size:20px}.tool{height:40px;font-size:9px}.searchBtn{height:44px;font-size:11px}.footer{height:23px;font-size:8px}
+}
+@media(max-width:600px){
+  .top{height:56px}.logo{width:38px;height:38px;border-radius:11px}.brandText h1{font-size:13px}.headerRight .mini:nth-child(2){display:none}.headerRight .mini{padding:6px}.clock{display:none}
+  main{height:calc(100dvh - 56px);padding:3px}.shell{border-radius:14px}.work{padding:6px 6px 4px}
+  .modeRow{gap:4px}.mode{height:40px;font-size:8px;padding:0 3px}
+  .input{height:49px}.input input{font-size:17px;padding:0 10px}.hint{height:9px;font-size:7px}
+  .keypad{gap:5px}
+  .key{height:calc((100dvh - 56px - 40px - 49px - 25px - 40px - 44px - 23px - 25px)/4);min-height:46px;max-height:58px;border-radius:10px;font-size:19px}
+  .key small{font-size:7px}.tool{height:38px;font-size:9px}.searchBtn{height:42px}.status{font-size:8px}
+}
+@media(max-height:650px) and (min-width:601px){
+  .top{height:55px}main{height:calc(100dvh - 55px);padding:4px}.work{padding:5px}.sectionTitle{display:none}
+  .mode{height:38px}.input{height:46px}.hint{display:none}.key{height:51px}.tool{height:36px}.searchBtn{height:40px}.footer{height:20px}
+}
+@media print{
+  body{overflow:visible;background:#fff}.top,.footer,#welcome,.noPrint{display:none!important}main{height:auto;padding:0}.panel{width:100%;max-height:none;box-shadow:none;border:0}
+}
+</style>
+</head>
 <body>
-<header class="top">
-  <div class="brand"><div class="brandLogo" id="brandLogo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 10v10M2 12l10 5 10-5M2 17l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="brandName" id="org">Gov PG College Shivpuri</div><div class="brandMsg" id="msg">विद्यार्थी शुल्क भुगतान कियोस्क</div></div></div>
-  <div class="topRight"><div class="langToggle" id="langToggle"><button type="button" data-lang="hi" class="active">हिंदी</button><button type="button" data-lang="en">EN</button></div><button class="helpBtn" id="helpBtn" type="button">❓ <span data-i18n="help">सहायता</span></button><a class="adminLink" href="/admin.html">🔒 Admin</a><div class="clock"><b id="time">--:--</b><span id="date">--</span></div></div>
-</header>
-<main><div class="screen">
-<section id="searchScreen" class="panel">
-  <div class="kioskPurpose"><span>विद्यार्थी शुल्क भुगतान कियोस्क</span><span>अपना विवरण चुनें और शुल्क भुगतान की प्रक्रिया शुरू करें</span></div>
-  <div class="steps"><div class="step active"><div class="step-dot">1</div><div data-i18n="step1">खोजें</div></div><div class="step"><div class="step-dot">2</div><div data-i18n="step2">पुष्टि</div></div><div class="step"><div class="step-dot">3</div><div data-i18n="step3">फीस</div></div><div class="step"><div class="step-dot">4</div><div data-i18n="step4">भुगतान</div></div></div>
-  <div class="searchModes">
-    <button class="mode active" data-type="enrollment" type="button"><span class="icon">🪪</span><span data-i18n="modeEnroll">नामांकन क्रमांक</span></button>
-    <button class="mode" data-type="roll" type="button"><span class="icon">🎓</span><span data-i18n="modeRoll">रोल नंबर</span></button>
-    <button class="mode" data-type="mobile" type="button"><span class="icon">📱</span><span data-i18n="modeMobile">मोबाइल नंबर</span></button>
+<div id="welcome">
+  <div class="w-ring"></div><div class="w-ring r2"></div><div class="w-ring r3"></div>
+  <div class="w-core">
+    <div class="w-small">स्वागत है</div>
+    <div class="w-brand">FeeSetu App</div>
+    <div class="w-sub">विद्यार्थी शुल्क भुगतान केंद्र</div>
+    <div class="w-touch">स्क्रीन पर कहीं भी स्पर्श करें</div>
   </div>
-  <div id="modeNote" class="modeNote">केवल नामांकन क्रमांक से विद्यार्थी खोजा जाएगा</div>
-  <div class="inputWrap"><input id="query" class="input" autocomplete="off" inputmode="none" readonly placeholder="नामांकन क्रमांक दर्ज करें"/><button class="erase" id="erase" type="button">⌫</button></div>
-  <div id="keys" class="keys"></div><div id="error" class="error"></div><div id="hint" hidden></div>
-</section>
-<section id="resultsScreen" class="subPanel hidden"><div class="steps"><div class="step done"><div class="step-dot">✓</div><div data-i18n="step1">खोजें</div></div><div class="step active"><div class="step-dot">2</div><div data-i18n="step2">पुष्टि</div></div><div class="step"><div class="step-dot">3</div><div data-i18n="step3">फीस</div></div><div class="step"><div class="step-dot">4</div><div data-i18n="step4">भुगतान</div></div></div><div class="titleRow"><h2 data-i18n="selectStudent">विद्यार्थी चुनें</h2><button class="backBtn" data-home type="button" data-i18n="back">← वापस</button></div><div id="choices" class="choiceList"></div></section>
-<section id="studentScreen" class="subPanel hidden"><div class="steps"><div class="step done"><div class="step-dot">✓</div><div data-i18n="step1">खोजें</div></div><div class="step active"><div class="step-dot">2</div><div data-i18n="step2">पुष्टि</div></div><div class="step"><div class="step-dot">3</div><div data-i18n="step3">फीस</div></div><div class="step"><div class="step-dot">4</div><div data-i18n="step4">भुगतान</div></div></div><div class="titleRow"><h2 data-i18n="confirmStudent">विद्यार्थी की पुष्टि</h2><button class="backBtn" data-home type="button" data-i18n="back">← वापस</button></div><div id="studentInfo" class="studentGrid"></div><div id="historyBox" class="historyBox hidden"></div><div class="actions"><button class="lightBtn" data-home type="button" data-i18n="change">बदलें</button><button class="primaryBtn" id="continueFee" type="button" data-i18n="continue">आगे बढ़ें →</button></div></section>
-<section id="feeScreen" class="subPanel hidden"><div class="steps"><div class="step done"><div class="step-dot">✓</div><div data-i18n="step1">खोजें</div></div><div class="step done"><div class="step-dot">✓</div><div data-i18n="step2">पुष्टि</div></div><div class="step active"><div class="step-dot">3</div><div data-i18n="step3">फीस</div></div><div class="step"><div class="step-dot">4</div><div data-i18n="step4">भुगतान</div></div></div><div class="titleRow"><h2 data-i18n="pendingFees">बकाया फीस</h2><button class="backBtn" id="backStudent" type="button" data-i18n="back">← वापस</button></div><div class="selectAllRow" id="selectAllRow"><label><input type="checkbox" id="selectAllFees" checked> <span data-i18n="selectAll">सभी चुनें</span></label><span data-i18n="partialHint">आंशिक भुगतान के लिए अनचेक करें</span></div><div id="feeBox"></div><div class="total"><span data-i18n="totalDue">कुल देय राशि</span><span id="feeTotal">₹0</span></div><div class="actions"><button class="lightBtn" id="backStudent2" type="button" data-i18n="change">बदलें</button><button class="primaryBtn" id="startPayment" type="button" data-i18n="payUpi">UPI से भुगतान करें →</button></div></section>
-<section id="paymentScreen" class="subPanel paymentBox hidden"><div class="steps noPrint"><div class="step done"><div class="step-dot">✓</div><div data-i18n="step1">खोजें</div></div><div class="step done"><div class="step-dot">✓</div><div data-i18n="step2">पुष्टि</div></div><div class="step done"><div class="step-dot">✓</div><div data-i18n="step3">फीस</div></div><div class="step active"><div class="step-dot">4</div><div data-i18n="step4">भुगतान</div></div></div><div class="titleRow noPrint"><h2 data-i18n="upiPay">भुगतान</h2><button class="backBtn" id="backFee" type="button" data-i18n="back">← वापस</button></div><div id="paymentStudent" class="paymentStudent"></div><div id="paymentAmount" class="amountBig">₹0</div><div id="paymentRef" class="ref">PAY-</div><div id="gatewayBox" class="hidden" style="margin:16px 0"><button type="button" id="payOnlineBtn" class="primaryBtn" style="width:100%;max-width:360px">💳 <span data-i18n="payOnline">ऑनलाइन भुगतान करें</span></button><p style="margin-top:9px;font-size:10px;color:#7c8792" data-i18n="payOnlineHint">कार्ड / UPI / नेट बैंकिंग / वॉलेट</p><div style="margin:14px 0;display:flex;align-items:center;gap:10px;justify-content:center"><div style="flex:1;height:1px;background:var(--line)"></div><span style="font-size:10px;color:#888" data-i18n="or">या</span><div style="flex:1;height:1px;background:var(--line)"></div></div></div><div id="upiBox"><div class="qrWrap"><img id="qr" class="qr" alt="UPI QR"><div class="qrHint" data-i18n="qrHint">📱 Google Pay / PhonePe / Paytm से QR स्कैन करें</div></div><div class="upiDetails"><div><span>UPI ID</span><b id="upiIdText">-</b><button class="copyBtn" id="copyUpi" type="button" data-i18n="copy">कॉपी</button></div><button id="downloadQr" class="lightBtn" type="button" data-i18n="saveQr">💾 QR सेव</button><a id="upiLink" class="upiLink" href="#">📱 <span data-i18n="openUpi">UPI App खोलें</span></a></div><p style="color:#7b858f;font-size:10px;margin:10px 0 0" data-i18n="payNote">भुगतान के बाद नीचे UTR / Transaction ID दर्ज करें</p><div class="utrBox"><input id="utr" placeholder="UTR / Transaction ID दर्ज करें" autocomplete="off"><button class="primaryBtn" id="submitUtr" type="button" data-i18n="submitUtr">दर्ज करें</button></div></div><p id="paymentStatus" class="status"></p><button class="lightBtn noPrint" id="checkPayment" type="button" style="margin-top:6px" data-i18n="checkStatus">🔄 स्थिति जांचें</button></section>
-<section id="receiptScreen" class="subPanel receipt hidden"><div class="successBanner noPrint" data-i18n="paySuccess">✅ भुगतान सफल! रसीद तैयार है</div><div class="printArea" id="receiptPrint"><div class="receiptHead"><h2 id="rOrg">Fee Receipt</h2><p data-i18n="receiptTitle">शुल्क भुगतान रसीद</p></div><div id="receiptMeta" class="receiptMeta"></div><div id="receiptLines" class="receiptLines"></div><div id="receiptTotal" class="receiptTotal"><span>कुल भुगतान</span><span>₹0.00</span></div></div><div class="noPrint" style="margin-top:14px;text-align:center"><p style="font-size:11px;color:#7d8790;margin-bottom:8px" data-i18n="emailHint">रसीद ईमेल पर भेजने के लिए ईमेल दर्ज करें (वैकल्पिक)</p><div class="emailRow"><input id="receiptEmail" type="email" placeholder="student@email.com"><button class="lightBtn" id="sendEmailBtn" type="button" data-i18n="sendEmail">📧 भेजें</button></div><p id="emailStatus" class="status"></p></div><div class="actions noPrint"><button class="lightBtn" data-home type="button" data-i18n="home">मुख्य स्क्रीन</button><button class="primaryBtn" id="printReceipt" type="button" data-i18n="print">🖨 रसीद प्रिंट</button></div></section>
-</div></main>
-<div id="helpModal" class="hidden"><div class="helpCard"><h2 style="font-size:18px;color:var(--navy);margin-bottom:10px" data-i18n="helpTitle">❓ कैसे इस्तेमाल करें</h2><ol id="helpList" style="padding-left:18px;line-height:1.75;color:#56616e;font-size:12px;font-weight:600"></ol><p style="margin:10px 0;font-size:10px;color:#8a8179" data-i18n="helpNote">समस्या होने पर प्रशासन से संपर्क करें।</p><button class="primaryBtn" id="closeHelp" type="button" data-i18n="gotIt">समझ गया</button></div></div>
+</div>
+
+<div id="app">
+<header class="top">
+  <div class="brand">
+    <div class="logo">FS</div>
+    <div class="brandText"><h1 id="orgName">FeeSetu</h1><p>विद्यार्थी शुल्क भुगतान कियोस्क</p></div>
+  </div>
+  <div class="headerRight">
+    <button class="mini active">हिंदी</button>
+    <button class="mini">EN</button>
+    <button class="mini" id="help">? सहायता</button>
+    <a class="mini" href="/admin.html">🔒 Admin</a>
+    <div class="clock"><b id="time">--:--</b><span id="date">--</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <div class="art"></div>
+    <div class="content">
+      <div class="work">
+        <section id="searchScreen" class="search">
+          <div class="modeRow">
+            <button class="mode active" data-mode="enrollment">🪪 नामांकन क्रमांक</button>
+            <button class="mode" data-mode="roll">🎓 रोल नंबर</button>
+            <button class="mode" data-mode="mobile">📱 मोबाइल नंबर</button>
+          </div>
+          <div class="input"><input id="query" readonly placeholder="नामांकन क्रमांक दर्ज करें"></div>
+          <div id="hint" class="hint"></div>
+          <div id="keypad" class="keypad"></div>
+          <div class="tools"><button class="tool" id="clear">साफ करें</button><button class="tool" id="back">⌫ एक हटाएँ</button></div>
+          <button class="searchBtn" id="search">खोजें</button>
+          <div id="status" class="status"></div>
+        </section>
+
+        <section id="choiceScreen" class="panel hidden">
+          <div class="head"><h2>विद्यार्थी चुनें</h2><button class="back" data-back>← वापस</button></div>
+          <div id="choices"></div>
+        </section>
+
+        <section id="studentScreen" class="panel hidden">
+          <div class="head"><h2>विद्यार्थी की पुष्टि</h2><button class="back" data-back>← वापस</button></div>
+          <div class="profile">
+            <div id="photo" class="photo">👤</div>
+            <div><div id="studentName" style="font-size:22px;font-weight:900;margin-bottom:8px"></div><div id="info" class="infoGrid"></div></div>
+          </div>
+          <div id="history" style="margin-top:11px"></div>
+          <div style="display:flex;justify-content:flex-end;margin-top:14px"><button id="viewFees" class="primary">बकाया फीस देखें →</button></div>
+        </section>
+
+        <section id="feeScreen" class="panel hidden">
+          <div class="head"><h2>बकाया फीस</h2><button id="feeBack" class="back">← वापस</button></div>
+          <div id="fees" class="feeList"></div><div class="total"><span>कुल देय राशि</span><span id="total">₹0.00</span></div>
+          <button id="pay" class="primary" style="width:100%">UPI से भुगतान करें</button>
+        </section>
+
+        <section id="paymentScreen" class="panel hidden">
+          <div class="head"><h2>भुगतान</h2><button id="paymentBack" class="back">← वापस</button></div>
+          <div class="pay">
+            <div style="text-align:center"><img id="qr" class="qr"><div style="font-size:10px;color:#6b7280;font-weight:800;margin-top:6px">QR को UPI App से स्कैन करें</div></div>
+            <div><div style="font-size:10px;color:#6b7280;font-weight:900">भुगतान राशि</div><div id="amount" class="amount">₹0.00</div>
+              <div class="upi"><div style="font-size:9px;color:#6b7280;font-weight:900">UPI ID</div><div class="upiRow"><b id="upi">-</b><button id="copy" class="copy">कॉपी</button></div><a id="upiApp" class="upiApp" href="#">📱 UPI App खोलें</a></div>
+              <div class="utr"><input id="utr" placeholder="UTR / Transaction ID"><button id="utrBtn">दर्ज करें</button></div><div id="payStatus" class="status"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="receiptScreen" class="panel hidden">
+          <div class="receiptHead"><h2 id="receiptOrg">FeeSetu</h2><p>शुल्क भुगतान रसीद</p><p id="receiptState" style="color:var(--green);font-weight:900"></p></div>
+          <div id="receiptMeta" class="receiptMeta"></div>
+          <table class="receiptTable"><thead><tr><th>शुल्क मद</th><th>राशि</th></tr></thead><tbody id="receiptRows"></tbody></table>
+          <div class="receiptTotal"><span>कुल भुगतान</span><span id="receiptTotal">₹0.00</span></div>
+          <div class="receiptActions noPrint"><button class="print" id="print">🖨 रसीद प्रिंट करें</button><button class="home" id="home">मुख्य स्क्रीन</button></div>
+        </section>
+      </div>
+      <div class="footer">🔒 आपकी जानकारी सुरक्षित है • केवल शुल्क भुगतान के लिए</div>
+    </div>
+  </div>
+</main>
+
 <script>
-
 const $=id=>document.getElementById(id);
-let mode="enrollment", student=null, students=[], fee=null, paymentRef="", idleTimer=null, lastKey="", lastTap=0, lastIndex=0, lang="hi";
+let mode="enrollment",student=null,paymentRef="",lastKey="",lastTap=0,lastIndex=0,idleTimer=null,pollTimer=null;
+const letters={"1":["1"],"2":["2","A","B","C"],"3":["3","D","E","F"],"4":["4","G","H","I"],"5":["5","J","K","L"],"6":["6","M","N","O"],"7":["7","P","Q","R","S"],"8":["8","T","U","V"],"9":["9","W","X","Y","Z"],"0":["0","/","-"]};
 
-const i18n = {
-  hi: {
-    help:"सहायता", step1:"खोजें", step2:"पुष्टि", step3:"फीस", step4:"भुगतान",
-    searchTitle:"अपना रिकॉर्ड खोजें", searchSub:"फीस जमा करने के लिए अपना कोई एक विवरण दर्ज करें",
-    modeEnroll:"नामांकन क्रमांक", modeRoll:"रोल नंबर", modeMobile:"मोबाइल नंबर",
-    bottomNote:"सही जानकारी दर्ज करें और खोजें दबाएँ", secure:"🔒 आपकी जानकारी सुरक्षित है • केवल शुल्क भुगतान के लिए",
-    selectStudent:"विद्यार्थी चुनें", back:"← वापस", confirmStudent:"विद्यार्थी की पुष्टि", change:"बदलें", continue:"आगे बढ़ें →",
-    pendingFees:"बकाया फीस", selectAll:"सभी चुनें", partialHint:"आंशिक भुगतान के लिए अनचेक करें",
-    totalDue:"कुल देय राशि", payUpi:"UPI से भुगतान करें →", upiPay:"UPI भुगतान",
-    qrHint:"📱 Google Pay / PhonePe / Paytm से QR स्कैन करें", copy:"कॉपी", saveQr:"💾 QR सेव",
-    openUpi:"UPI App खोलें", payNote:"भुगतान के बाद नीचे UTR / Transaction ID दर्ज करें",
-    submitUtr:"दर्ज करें", checkStatus:"🔄 स्थिति जांचें", paySuccess:"✅ भुगतान सफल! रसीद तैयार है",
-    receiptTitle:"शुल्क भुगतान रसीद", emailHint:"रसीद ईमेल पर भेजने के लिए ईमेल दर्ज करें (वैकल्पिक)",
-    sendEmail:"📧 भेजें", home:"मुख्य स्क्रीन", print:"🖨 रसीद प्रिंट",
-    helpTitle:"❓ कैसे इस्तेमाल करें", gotIt:"समझ गया", helpNote:"समस्या होने पर प्रशासन से संपर्क करें।",
-    placeholders: { enrollment:"नामांकन क्रमांक दर्ज करें", roll:"रोल नंबर दर्ज करें", mobile:"मोबाइल नंबर दर्ज करें" },
-    hints: { enrollment:"", roll:"", mobile:"" },
-    searchBtn:"खोजें", utrPh:"UTR / Transaction ID दर्ज करें",
-    noRecord:"कृपया जानकारी दर्ज करें।", searching:"रिकॉर्ड खोजा जा रहा है...", mobileErr:"मोबाइल नंबर 10 अंकों का होना चाहिए।",
-    noFee:"इस समय कोई बकाया फीस नहीं है।", father:"पिता", name:"विद्यार्थी का नाम", enroll:"नामांकन क्रमांक",
-    rollL:"रोल नंबर", course:"कोर्स / कक्षा", sem:"सेमेस्टर", mobileL:"मोबाइल", session:"सत्र",
-    helpSteps:["नामांकन / रोल / मोबाइल चुनें","कीपैड से दर्ज करें और खोजें दबाएँ","अपना नाम चुनकर पुष्टि करें","फीस चुनें (आंशिक भी हो सकता है) और भुगतान करें","QR स्कैन करें या UPI App खोलें","UTR दर्ज करें","रसीद प्रिंट / ईमेल करें"],
-    history:"पिछले भुगतान", noHistory:"कोई पिछला भुगतान नहीं", emailOk:"ईमेल नोट कर लिया गया। सत्यापन के बाद भेजी जा सकती है।", emailNeed:"कृपया वैध ईमेल दर्ज करें।",payOnline:"ऑनलाइन भुगतान करें",payOnlineHint:"कार्ड / UPI / नेट बैंकिंग / वॉलेट",or:"या",payUpi:"भुगतान करें →",upiPay:"भुगतान",gwSuccess:"भुगतान सफल! रसीद लोड हो रही है...",gwFailed:"भुगतान पूरा नहीं हुआ। पुनः प्रयास करें या UPI उपयोग करें।"
-  },
-  en: {
-    help:"Help", step1:"Search", step2:"Confirm", step3:"Fees", step4:"Pay",
-    searchTitle:"Find Your Record", searchSub:"Enter any one detail to pay fees",
-    modeEnroll:"Enrollment No.", modeRoll:"Roll Number", modeMobile:"Mobile Number",
-    bottomNote:"Enter correct details and press Search", secure:"🔒 Your data is secure • For fee payment only",
-    selectStudent:"Select Student", back:"← Back", confirmStudent:"Confirm Student", change:"Change", continue:"Continue →",
-    pendingFees:"Pending Fees", selectAll:"Select All", partialHint:"Uncheck for partial payment",
-    totalDue:"Total Due", payUpi:"Pay with UPI →", upiPay:"UPI Payment",
-    qrHint:"📱 Scan QR with Google Pay / PhonePe / Paytm", copy:"Copy", saveQr:"💾 Save QR",
-    openUpi:"Open UPI App", payNote:"After payment, enter UTR / Transaction ID below",
-    submitUtr:"Submit", checkStatus:"🔄 Check Status", paySuccess:"✅ Payment Successful! Receipt ready",
-    receiptTitle:"Fee Payment Receipt", emailHint:"Enter email to receive receipt (optional)",
-    sendEmail:"📧 Send", home:"Home", print:"🖨 Print Receipt",
-    helpTitle:"❓ How to use", gotIt:"Got it", helpNote:"Contact admin office if you need help.",
-    placeholders: { enrollment:"Enter Enrollment Number", roll:"Enter Roll Number", mobile:"Enter Mobile Number" },
-    hints: { enrollment:"", roll:"", mobile:"" },
-    searchBtn:"Search", utrPh:"Enter UTR / Transaction ID",
-    noRecord:"Please enter details.", searching:"Searching records...", mobileErr:"Mobile must be 10 digits.",
-    noFee:"No pending fees at this time.", father:"Father", name:"Student Name", enroll:"Enrollment No.",
-    rollL:"Roll Number", course:"Course / Class", sem:"Semester", mobileL:"Mobile", session:"Session",
-    helpSteps:["Choose Enrollment / Roll / Mobile","Enter using keypad and press Search","Select and confirm your name","Select fees (partial allowed) and pay","Scan QR or open UPI App","Enter UTR","Print / email receipt"],
-    history:"Previous Payments", noHistory:"No previous payments", emailOk:"Email noted. Can be sent after verification.", emailNeed:"Please enter a valid email.",payOnline:"Pay Online",payOnlineHint:"Card / UPI / Net Banking / Wallet",or:"OR",payUpi:"Pay →",upiPay:"Payment",gwSuccess:"Payment successful! Loading receipt...",gwFailed:"Payment not completed. Try again or use UPI."
-  }
-};
-
-function t(key){ return (i18n[lang]&&i18n[lang][key]) || i18n.hi[key] || key; }
-function applyI18n(){
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const k=el.getAttribute("data-i18n");
-    if(i18n[lang][k]) el.textContent = i18n[lang][k];
-  });
-  $("query").placeholder = t("placeholders")[mode] || "";
-  $("utr").placeholder = t("utrPh");
-  const hl=$("helpList");
-  hl.innerHTML = (t("helpSteps")||[]).map(s=>`<li>${s}</li>`).join("");
-  renderKeys();
-  document.documentElement.lang = lang;
-}
-
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{minimumFractionDigits:2})}
-
-function show(id){
-  ["searchScreen","resultsScreen","studentScreen","feeScreen","paymentScreen","receiptScreen"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
-  resetIdle();
-}
-function resetIdle(){ clearTimeout(idleTimer); idleTimer=setTimeout(()=>resetAll(),90000); }
-function resetAll(){
-  student=null; students=[]; fee=null; paymentRef="";
-  $("query").value=""; $("error").textContent=""; $("utr").value="";
-  $("paymentStatus").textContent=""; $("paymentStatus").className="status";
-  $("emailStatus").textContent=""; $("receiptEmail").value="";
-  show("searchScreen");
-}
-
+function idle(){clearTimeout(idleTimer);idleTimer=setTimeout(()=>goHome(true),120000)}
+function show(id){["searchScreen","choiceScreen","studentScreen","feeScreen","paymentScreen","receiptScreen"].forEach(x=>$(x).classList.toggle("hidden",x!==id));idle()}
+function goHome(clear=true){if(clear){student=null;paymentRef="";$("query").value="";lastKey="";lastTap=0;lastIndex=0}$("status").textContent="";show("searchScreen")}
 function setMode(m){
-  mode=m;
-  document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.type===m));
-  $("query").placeholder = t("placeholders")[m] || "";
-  $("hint").textContent = t("hints")[m] || "";
-  $("query").value=""; lastKey=""; lastTap=0;
-  renderKeys(); resetIdle();
+  mode=m;$("query").value="";lastKey="";lastTap=0;lastIndex=0;
+  document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.mode===m));
+  $("query").placeholder=m==="enrollment"?"नामांकन क्रमांक दर्ज करें":m==="roll"?"रोल नंबर दर्ज करें":"मोबाइल नंबर दर्ज करें";
+  $("hint").textContent=""; // no instruction text on screen
+  renderKeys();idle();
 }
-
-let tapTimer=null;
 function renderKeys(){
-  // Fixed search-mode mapping:
-  // enrollment = alphanumeric multi-tap, roll = alphanumeric multi-tap, mobile = digits only.
-  const alphaMode = mode === "enrollment" || mode === "roll";
-  const groups = alphaMode
-    ? [["1",""],["2","ABC"],["3","DEF"],["4","GHI"],["5","JKL"],["6","MNO"],["7","PQRS"],["8","TUV"],["9","WXYZ"],["/",""],["0",""],["-",""],["CLEAR",""],["⌫",""],["SEARCH",t("searchBtn")]]
-    : [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""],["7",""],["8",""],["9",""],["CLEAR",""],["0",""],["SEARCH",t("searchBtn")]];
-  $("keys").innerHTML = groups.map(([k,sub])=>{
-    if(k==="CLEAR") return `<button class="key action" data-key="CLEAR" type="button"><b>साफ करें</b></button>`;
-    if(k==="⌫") return `<button class="key action" data-key="⌫" type="button"><b>⌫</b></button>`;
-    if(k==="SEARCH") return `<button class="key search" data-key="SEARCH" type="button"><b>${esc(sub)}</b></button>`;
-    return `<button class="key" data-key="${k}" type="button"><b>${k}</b>${sub?`<small>${sub}</small>`:""}</button>`;
+  const isMobile=mode==="mobile";
+  const arr=isMobile
+    ? [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""],["7",""],["8",""],["9",""],["0",""],["",""],["",""]]
+    : [["1",""],["2","ABC"],["3","DEF"],["4","GHI"],["5","JKL"],["6","MNO"],["7","PQRS"],["8","TUV"],["9","WXYZ"],["0","/ -"],["",""],["",""]];
+  $("keypad").innerHTML=arr.map(([k,s])=>{
+    if(!k)return "<div></div>";
+    return `<button class="key ${k==="0"&&!isMobile?"zero":""}" data-key="${k}">${k}<small>${s}</small></button>`
   }).join("");
-  $("keys").querySelectorAll("button").forEach(b=>b.onclick=()=>tapKey(b.dataset.key));
+  $("keypad").querySelectorAll(".key").forEach(b=>b.onclick=()=>press(b.dataset.key));
 }
-
-const multiTapMap={
-  "1":["1"], "2":["2","A","B","C"], "3":["3","D","E","F"],
-  "4":["4","G","H","I"], "5":["5","J","K","L"], "6":["6","M","N","O"],
-  "7":["7","P","Q","R","S"], "8":["8","T","U","V"], "9":["9","W","X","Y","Z"], "0":["0"]
-};
-
-function tapKey(k){
-  if(k==="CLEAR"){
-    $("query").value=""; lastKey=""; lastTap=0; lastIndex=0; $("error").textContent=""; resetIdle(); return;
-  }
-  if(k==="⌫"){
-    $("query").value=$("query").value.slice(0,-1); lastKey=""; lastTap=0; lastIndex=0; resetIdle(); return;
-  }
-  if(k==="SEARCH"){ findStudent(); return; }
-
-  // Enrollment and Roll are alphanumeric; Mobile is numeric-only.
+function press(k){
+  const now=Date.now(),v=$("query").value;
   if(mode==="mobile"){
-    if(/^\d$/.test(k) && $("query").value.length < 10) $("query").value += k;
-    lastKey=""; lastTap=0; lastIndex=0; resetIdle(); return;
+    $("query").value=v+k;lastKey="";lastTap=0;lastIndex=0;idle();return;
   }
-
-  if(mode==="enrollment" || mode==="roll"){
-    if(k==="/" || k==="-"){
-      if($("query").value.length<40) $("query").value += k;
-      lastKey=""; lastTap=0; resetIdle(); return;
-    }
-    if(!multiTapMap[k]) return;
-    const now=Date.now();
-    const arr=multiTapMap[k];
-    const currentLast=$("query").value.slice(-1);
-    const same=(lastKey===k && (now-lastTap)<850 && $("query").value.length>0);
-    if(same){
-      const idx=arr.indexOf(currentLast);
-      const next=(idx>=0 ? idx+1 : 0)%arr.length;
-      $("query").value=$("query").value.slice(0,-1)+arr[next];
-    }else{
-      if($("query").value.length<30) $("query").value += arr[0];
-    }
-    lastKey=k; lastTap=now; resetIdle();
+  const seq=letters[k]||[k];
+  document.querySelectorAll(".key").forEach(x=>x.classList.remove("active"));
+  if(lastKey===k && now-lastTap<900 && v.length){
+    lastIndex=(lastIndex+1)%seq.length;
+    $("query").value=v.slice(0,-1)+seq[lastIndex];
+  }else{
+    lastIndex=0;
+    $("query").value=v+seq[0];
   }
+  lastKey=k;lastTap=now;
+  document.querySelector(`[data-key="${CSS.escape(k)}"]`)?.classList.add("active");
+  clearTimeout(window.__key);
+  window.__key=setTimeout(()=>document.querySelectorAll(".key").forEach(x=>x.classList.remove("active")),850);
+  idle();
 }
-
-async function loadSettings(){
+document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+$("clear").onclick=()=>{ $("query").value="";lastKey="";lastTap=0;lastIndex=0;idle(); };
+$("back").onclick=()=>{ $("query").value=$("query").value.slice(0,-1);lastKey="";lastTap=0;lastIndex=0;idle(); };
+$("search").onclick=search;
+async function search(){
+  const v=$("query").value.trim();
+  if(!v){$("status").textContent="कृपया जानकारी दर्ज करें।";$("status").className="status error";return}
+  if(mode==="mobile" && !/^\d{10}$/.test(v)){ $("status").textContent="मोबाइल नंबर 10 अंकों का होना चाहिए।";$("status").className="status error";return}
+  $("status").textContent=""; 
   try{
-    const s=await (await fetch("/api/settings")).json();
-    $("org").textContent = s.organization_name || "Fee Payment Kiosk";
-    $("msg").textContent = (s.welcome_message && !/अपना रिकॉर्ड खोजें|Search & Pay Fees Easily|विद्यार्थी शुल्क भुगतान/.test(s.welcome_message)) ? s.welcome_message : (lang==="hi"?"विद्यार्थी शुल्क भुगतान कियोस्क":"Student Fee Payment Kiosk");
-    if(s.logo_url){ $("brandLogo").innerHTML=`<img src="${esc(s.logo_url)}" alt="Logo">`; }
-  }catch{}
-  updateClock(); setInterval(updateClock,1000);
-}
-function updateClock(){
-  const d=new Date();
-  $("time").textContent=d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
-  $("date").textContent=d.toLocaleDateString(lang==="hi"?"hi-IN":"en-IN",{day:"2-digit",month:"short",year:"numeric"});
-}
-
-async function findStudent(){
-  const v=$('query').value.trim();
-  $('error').textContent='';
-  if(!v){ $('error').textContent=t('noRecord'); return; }
-  if(mode==='mobile' && !/^\d{10}$/.test(v)){ $('error').textContent=t('mobileErr'); return; }
-  $('error').textContent=t('searching');
-  const endpoint = mode==='enrollment' ? '/api/students/search/enrollment'
-                 : mode==='roll' ? '/api/students/search/roll'
-                 : '/api/students/search/mobile';
-  try{
-    const r=await fetch(`${endpoint}?identifier=${encodeURIComponent(v)}`);
+    const r=await fetch(`/api/students/search?type=${encodeURIComponent(mode)}&identifier=${encodeURIComponent(v)}`);
     const j=await r.json();
-    if(!r.ok) throw new Error(j.error||'Not found');
-    students=j.students||[];
-    $('error').textContent='';
-    if(students.length===1) selectStudent(students[0]);
-    else { renderChoices(); show('resultsScreen'); }
-  }catch(e){ $('error').textContent=e.message||'Not found'; }
+    if(!r.ok)throw Error(j.error||"Search failed");
+    if(!j.students?.length)throw Error("रिकॉर्ड नहीं मिला।");
+    if(j.students.length===1) selectStudent(j.students[0]);
+    else renderChoices(j.students),show("choiceScreen");
+  }catch(e){$("status").textContent=e.message;$("status").className="status error"}
 }
-
-function renderChoices(){
-  $("choices").innerHTML=students.map((s,i)=>`
-    <button class="choice" data-i="${i}" type="button">
-      <span><b>${esc(s.student_name)}</b><br>
-      <small>${t("father")}: ${esc(s.father_name||"-")} • Roll: ${esc(s.roll_number||"-")} • ${esc(s.course||s.class||"")}</small></span>
-      <span class="arrow">→</span>
-    </button>`).join("");
-  $("choices").querySelectorAll(".choice").forEach(b=>b.onclick=()=>selectStudent(students[Number(b.dataset.i)]));
+function renderChoices(arr){
+  $("choices").innerHTML=arr.map((s,i)=>`<button class="choice" data-i="${i}"><span><b>${esc(s.student_name)}</b><br><small>${esc(s.enrollment_number)} • Roll ${esc(s.roll_number||"-")} • ${esc(s.course||s.class||"")}</small></span><span style="color:#d97706;font-size:20px">→</span></button>`).join("");
+  $("choices").querySelectorAll(".choice").forEach((b,i)=>b.onclick=()=>selectStudent(arr[i]));
 }
-
-function selectStudent(s){
-  student=s;
-  const initials=String(s.student_name||"विद्यार्थी").trim().slice(0,1);
-  const photo=s.photo_url ? `<img class="studentPhoto" src="${esc(s.photo_url)}" alt="Student photo" onerror="this.outerHTML='<div class=&quot;photoFallback&quot;>${esc(initials)}</div>'">` : `<div class="photoFallback">${esc(initials)}</div>`;
-  $("studentInfo").innerHTML=`
-    <div class="studentHero">${photo}<div><h3>${esc(s.student_name)}</h3><p>${t("enroll")}: ${esc(s.enrollment_number)}</p><p>${t("course")}: ${esc(s.course||s.class||"-")} • ${t("session")}: ${esc(s.session||"-")}</p></div></div>
-    <div class="studentGridInner">
-    <div><strong>${t("father")}</strong><span>${esc(s.father_name||"-")}</span></div>
-    <div><strong>${t("rollL")}</strong><span>${esc(s.roll_number||"-")}</span></div>
-    <div><strong>${t("sem")}</strong><span>${esc(s.semester||"-")}</span></div>
-    <div><strong>${t("mobileL")}</strong><span>${esc(s.mobile||"-")}</span></div>
-    </div>`;
-  loadHistory(s.id);
+async function selectStudent(s){
+  student=s;$("studentName").textContent=s.student_name||"-";
+  $("photo").innerHTML=s.photo_url?`<img src="${esc(s.photo_url)}">`:"👤";
+  const d=[["Enrollment",s.enrollment_number],["Roll Number",s.roll_number||"-"],["Father",s.father_name||"-"],["Course",s.course||s.class||"-"],["Semester",s.semester||"-"],["Session",s.session||"-"],["Mobile",s.mobile||"-"],["Admission",s.admission_number||"-"]];
+  $("info").innerHTML=d.map(x=>`<div class="info"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join("");
+  try{
+    const h=await (await fetch(`/api/students/${s.id}/history`)).json();
+    $("history").innerHTML=h.payments?.length?h.payments.slice(0,3).map(p=>`<div style="display:flex;justify-content:space-between;padding:7px 9px;background:#faf8f5;border-radius:8px;margin-top:4px;font-size:10px"><span>${money(p.amount)} • ${new Date(p.created_at).toLocaleDateString("hi-IN")}</span><b style="color:${p.status==="SUCCESS"?"#0f8755":"#9a650f"}">${p.status}</b></div>`).join(""):"";
+  }catch{$("history").textContent=""}
   show("studentScreen");
 }
-
-async function loadHistory(id){
-  const box=$("historyBox");
-  try{
-    const r=await fetch(`/api/students/${id}/history`);
-    const j=await r.json();
-    if(!j.payments||!j.payments.length){ box.classList.add("hidden"); return; }
-    box.classList.remove("hidden");
-    box.innerHTML=`<h3>${t("history")}</h3>`+j.payments.slice(0,5).map(p=>`
-      <div class="historyItem">
-        <span>${money(p.amount)} <small style="color:var(--muted)">${new Date(p.created_at).toLocaleDateString(lang==="hi"?"hi-IN":"en-IN")}</small></span>
-        <span class="st ${p.status==="SUCCESS"?"ok":"pend"}">${p.status}</span>
-      </div>`).join("");
-  }catch{ box.classList.add("hidden"); }
+document.querySelectorAll("[data-back]").forEach(b=>b.onclick=()=>show("searchScreen"));
+$("viewFees").onclick=loadFees;$("feeBack").onclick=()=>show("studentScreen");$("paymentBack").onclick=()=>show("feeScreen");
+async function loadFees(){
+  const j=await (await fetch(`/api/students/${student.id}/fee`)).json();
+  if(!j.items?.length){$("fees").innerHTML='<div style="padding:30px;text-align:center;color:#6b7280;font-weight:800">इस समय कोई बकाया फीस नहीं है।</div>';$("total").textContent="₹0.00";$("pay").disabled=true;show("feeScreen");return}
+  $("pay").disabled=false;$("fees").innerHTML=j.items.map(x=>`<label class="fee"><input class="feeCheck" type="checkbox" value="${x.id}" data-amt="${x.amount}" checked><span class="name">${esc(x.fee_head_name)}</span><span class="amt">${money(x.amount)}</span></label>`).join("");
+  document.querySelectorAll(".feeCheck").forEach(x=>x.onchange=updateTotal);updateTotal();show("feeScreen");
 }
-
-async function loadFee(){
-  const r=await fetch(`/api/students/${student.id}/fee`);
-  const j=await r.json();
-  if(!r.ok){ alert(j.error||"Fee error"); return; }
-  fee=j;
-  if(fee.items.length){
-    $("selectAllRow").classList.remove("hidden");
-    $("feeBox").innerHTML=`<div class="feeList">${fee.items.map(x=>`
-      <label class="feeItem selected" data-id="${x.id}">
-        <input type="checkbox" class="feeCheck" value="${x.id}" data-amount="${x.amount}" checked>
-        <span class="name">${esc(x.fee_head_name)}</span>
-        <span class="amt">${money(x.amount)}</span>
-      </label>`).join("")}</div>`;
-    document.querySelectorAll(".feeCheck").forEach(cb=>{
-      cb.onchange=()=>{
-        cb.closest(".feeItem").classList.toggle("selected", cb.checked);
-        updateFeeTotal();
-      };
-    });
-    $("selectAllFees").checked=true;
-    $("selectAllFees").onchange=e=>{
-      document.querySelectorAll(".feeCheck").forEach(cb=>{
-        cb.checked=e.target.checked;
-        cb.closest(".feeItem").classList.toggle("selected", e.target.checked);
-      });
-      updateFeeTotal();
-    };
-  } else {
-    $("selectAllRow").classList.add("hidden");
-    $("feeBox").innerHTML=`<div class="emptyState"><div class="icon">✅</div><p>${t("noFee")}</p></div>`;
-  }
-  updateFeeTotal();
-  show("feeScreen");
-}
-
-function updateFeeTotal(){
-  let total=0;
-  document.querySelectorAll(".feeCheck:checked").forEach(cb=>total+=Number(cb.dataset.amount||0));
-  $("feeTotal").textContent=money(total);
-  $("startPayment").disabled=total<=0;
-}
-
-async function createPayment(){
-  try{
-    const ids=[...document.querySelectorAll(".feeCheck:checked")].map(x=>+x.value);
-    if(!ids.length){ alert(lang==="hi"?"कम से कम एक फीस चुनें":"Select at least one fee"); return; }
-    const r=await fetch("/api/payments/create",{
-      method:"POST", headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({student_id:student.id, fee_assignment_ids:ids})
-    });
-    const p=await r.json();
-    if(!r.ok) throw new Error(p.error);
-    paymentRef=p.payment_reference;
-    $("paymentStudent").textContent=student.student_name;
-    $("paymentAmount").textContent=money(p.amount);
-    $("paymentRef").textContent=p.payment_reference;
-    $("paymentStatus").textContent=""; $("paymentStatus").className="status";
-
-    // Gateway button
-    const gwBox=$("gatewayBox"), upiBox=$("upiBox");
-    if(p.gateway_enabled && p.razorpay && p.razorpay.order_id){
-      gwBox.classList.remove("hidden");
-      $("payOnlineBtn").onclick=()=>openRazorpay(p);
-    } else {
-      gwBox.classList.add("hidden");
-    }
-
-    // UPI QR fallback
-    if(p.qr_url && p.upi_id){
-      upiBox.classList.remove("hidden");
-      $("qr").src=p.qr_url; $("qr").alt="UPI QR";
-      $("upiLink").href=p.upi_url||"#";
-      $("upiIdText").textContent=p.upi_id;
-      $("copyUpi").onclick=async()=>{
-        try{ await navigator.clipboard.writeText(p.upi_id); $("paymentStatus").textContent="✓ UPI ID copied"; $("paymentStatus").className="status success"; }
-        catch{ $("paymentStatus").textContent="UPI ID: "+p.upi_id; }
-      };
-      $("downloadQr").onclick=()=>{ const a=document.createElement("a"); a.href=p.qr_url; a.download="upi-qr-"+p.payment_reference+".png"; a.click(); };
-    } else {
-      upiBox.classList.add("hidden");
-    }
-
-    show("paymentScreen");
-  }catch(e){ alert(e.message); }
-}
-
-function openRazorpay(p){
-  if(typeof Razorpay === "undefined"){
-    alert(lang==="hi"?"पेमेंट गेटवे लोड नहीं हुआ। पेज रीफ्रेश करें।":"Payment gateway failed to load. Refresh page.");
-    return;
-  }
-  const options = {
-    key: p.razorpay.key_id,
-    amount: p.razorpay.amount,
-    currency: p.razorpay.currency || "INR",
-    name: p.razorpay.name || "Fee Payment",
-    description: p.razorpay.description || paymentRef,
-    order_id: p.razorpay.order_id,
-    prefill: p.razorpay.prefill || {},
-    notes: p.razorpay.notes || { payment_ref: paymentRef },
-    theme: { color: "#4f46e5" },
-    modal: { ondismiss: function(){ $("paymentStatus").textContent = t("gwFailed"); $("paymentStatus").className="status error"; } },
-    handler: async function(response){
-      $("paymentStatus").textContent = t("gwSuccess");
-      $("paymentStatus").className = "status success";
-      try {
-        const vr = await fetch("/api/payments/verify-gateway", {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify({
-            payment_reference: paymentRef,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature
-          })
-        });
-        const vj = await vr.json();
-        if(!vr.ok) throw new Error(vj.error || "Verify failed");
-        await loadReceipt();
-      } catch(e) {
-        $("paymentStatus").textContent = e.message;
-        $("paymentStatus").className = "status error";
-        // Still poll status — webhook may complete it
-        setTimeout(checkPayment, 2000);
-      }
-    }
-  };
-  const rzp = new Razorpay(options);
-  rzp.on("payment.failed", function(resp){
-    $("paymentStatus").textContent = (resp.error && resp.error.description) || t("gwFailed");
-    $("paymentStatus").className = "status error";
-  });
-  rzp.open();
-}
-
-async function submitUtr(){
-  const utr=$("utr").value.trim();
-  if(!utr){ $("paymentStatus").textContent=t("utrPh"); $("paymentStatus").className="status error"; return; }
-  const r=await fetch("/api/payments/submit-utr",{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({payment_reference:paymentRef, transaction_id:utr}) });
-  const j=await r.json();
-  if(!r.ok){ $("paymentStatus").textContent=j.error||"Failed"; $("paymentStatus").className="status error"; return; }
-  $("paymentStatus").textContent=lang==="hi"?"भुगतान दर्ज हो गया। सत्यापन के बाद रसीद उपलब्ध होगी।":"Payment submitted. Receipt after verification.";
-  $("paymentStatus").className="status success";
-}
-
-async function checkPayment(){
-  if(!paymentRef) return;
-  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}`);
-  const p=await r.json();
-  if(!r.ok){ $("paymentStatus").textContent=p.error; $("paymentStatus").className="status error"; return; }
-  if(p.status==="SUCCESS"){ await loadReceipt(); return; }
-  if(p.status==="REJECTED"){ $("paymentStatus").textContent=lang==="hi"?"भुगतान सत्यापित नहीं हुआ।":"Payment not verified."; $("paymentStatus").className="status error"; return; }
-  $("paymentStatus").textContent=p.status==="PENDING_VERIFICATION"
-    ?(lang==="hi"?"सत्यापन के लिए भेज दिया गया।":"Sent for verification.")
-    :(lang==="hi"?"अभी पुष्टि नहीं हुई।":"Not confirmed yet.");
-  $("paymentStatus").className="status";
-}
-
-async function loadReceipt(){
-  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}/receipt`);
-  const x=await r.json();
-  if(!r.ok){ $("paymentStatus").textContent=x.error; return; }
-  $("rOrg").textContent=$("org").textContent;
-  $("receiptMeta").innerHTML=`
-    <div><b>${lang==="hi"?"रसीद क्रमांक":"Receipt No."}</b>${esc(x.receipt_number)}</div>
-    <div><b>${lang==="hi"?"दिनांक":"Date"}</b>${new Date(x.created_at).toLocaleString(lang==="hi"?"hi-IN":"en-IN")}</div>
-    <div><b>${lang==="hi"?"विद्यार्थी":"Student"}</b>${esc(x.student_name)}</div>
-    <div><b>${lang==="hi"?"नामांकन":"Enrollment"}</b>${esc(x.enrollment_number)}</div>
-    <div><b>${lang==="hi"?"रोल नंबर":"Roll No."}</b>${esc(x.roll_number||"-")}</div>
-    <div><b>${lang==="hi"?"कोर्स / कक्षा":"Course / Class"}</b>${esc(x.course||x.class||"-")}</div>
-    <div><b>${lang==="hi"?"सत्र":"Session"}</b>${esc(x.session||"-")}</div>
-    <div><b>${lang==="hi"?"Transaction ID":"Transaction ID"}</b>${esc(x.transaction_id||"-")}</div>
-    <div><b>${lang==="hi"?"कुल भुगतान":"Total Paid"}</b>${money(x.amount)}</div>`;
-  $("receiptLines").textContent=x.fee_lines||"Fee payment"; $("receiptTotal").innerHTML=`<span>${lang==="hi"?"कुल भुगतान":"Total Paid"}</span><span>${money(x.amount)}</span>`;
-  if(student&&student.email) $("receiptEmail").value=student.email;
-  show("receiptScreen");
-}
-
-$("sendEmailBtn").onclick=()=>{
-  const em=$("receiptEmail").value.trim();
-  if(!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ $("emailStatus").textContent=t("emailNeed"); $("emailStatus").className="status error"; return; }
-  $("emailStatus").textContent=t("emailOk"); $("emailStatus").className="status success";
-  // Note: actual email sending requires SMTP config; this records intent for admin
+function updateTotal(){let n=0;document.querySelectorAll(".feeCheck:checked").forEach(x=>n+=Number(x.dataset.amt));$("total").textContent=money(n);$("pay").disabled=n<=0}
+$("pay").onclick=async()=>{
+  const ids=[...document.querySelectorAll(".feeCheck:checked")].map(x=>+x.value);
+  const r=await fetch("/api/payments/create",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({student_id:student.id,fee_assignment_ids:ids})});
+  const j=await r.json();if(!r.ok){alert(j.error||"Payment failed");return}
+  paymentRef=j.payment_reference;$("amount").textContent=money(j.amount);$("upi").textContent=j.upi_id||"UPI ID सेट नहीं है";$("qr").src=j.qr_url||"";$("upiApp").href=j.upi_url||"#";show("paymentScreen");
 };
-
-function home(){ resetAll(); }
-
-/* Language */
-$("langToggle").querySelectorAll("button").forEach(b=>{
-  b.onclick=()=>{
-    lang=b.dataset.lang;
-    localStorage.setItem("kioskLangV13", lang);
-    $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.lang===lang));
-    applyI18n();
-  };
-});
-const savedLang=localStorage.getItem("kioskLangV13") || "hi";
-if(savedLang==="en"||savedLang==="hi"){ lang=savedLang; $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.lang===lang)); }
-
-$("helpBtn").onclick=()=>$("helpModal").classList.remove("hidden");
-$("closeHelp").onclick=()=>$("helpModal").classList.add("hidden");
-$("helpModal").onclick=e=>{ if(e.target===$("helpModal")) $("helpModal").classList.add("hidden"); };
-
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>setMode(b.dataset.type));
-$("erase").onclick=()=>{ $("query").value=""; lastKey=""; lastIndex=0; resetIdle(); };
-$("query").onkeydown=e=>{ if(e.key==="Enter") findStudent(); };
-$("continueFee").onclick=loadFee;
-$("backStudent").onclick=()=>show("studentScreen");
-$("backStudent2").onclick=()=>show("studentScreen");
-$("startPayment").onclick=createPayment;
-$("backFee").onclick=()=>show("feeScreen");
-$("submitUtr").onclick=submitUtr;
-$("checkPayment").onclick=checkPayment;
-$("printReceipt").onclick=()=>window.print();
-document.querySelectorAll("[data-home]").forEach(b=>b.onclick=home);
-
-applyI18n();
-setMode("enrollment");
-loadSettings();
-resetIdle();
-
-</script></body></html>
+$("copy").onclick=()=>navigator.clipboard?.writeText($("upi").textContent);
+$("utrBtn").onclick=async()=>{
+  const utr=$("utr").value.trim();if(!utr){$("payStatus").textContent="UTR दर्ज करें।";$("payStatus").className="status error";return}
+  const r=await fetch("/api/payments/submit-utr",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({payment_reference:paymentRef,transaction_id:utr})}),j=await r.json();
+  if(!r.ok){$("payStatus").textContent=j.error||"Failed";$("payStatus").className="status error";return}
+  $("payStatus").textContent="भुगतान दर्ज हो गया। Admin सत्यापन के बाद रसीद उपलब्ध होगी।";$("payStatus").className="status ok";
+};
+async function pollPayment(){
+  if(!paymentRef)return;
+  const j=await (await fetch(`/api/payments/${encodeURIComponent(paymentRef)}`)).json().catch(()=>({}));
+  if(j.status==="SUCCESS"){clearInterval(pollTimer);showReceipt();}
+}
+async function showReceipt(){
+  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}/receipt`),j=await r.json();if(!r.ok)return;
+  const s=await (await fetch("/api/settings")).json();
+  $("receiptOrg").textContent=s.organization_name||"FeeSetu";$("receiptState").textContent="भुगतान सफल";
+  $("receiptMeta").innerHTML=[["Receipt No.",j.receipt_number],["Date & Time",new Date(j.created_at).toLocaleString("hi-IN")],["Student",j.student_name],["Enrollment",j.enrollment_number],["Roll No.",j.roll_number||"-"],["Course",j.course||j.class||"-"],["Semester",j.semester||"-"],["UTR",j.transaction_id||"-"]].map(x=>`<div class="info"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join("");
+  $("receiptRows").innerHTML=(j.items||[]).map(x=>`<tr><td>${esc(x.fee_head_name)}</td><td>${money(x.amount)}</td></tr>`).join("");$("receiptTotal").textContent=money(j.amount);show("receiptScreen");
+}
+$("print").onclick=()=>window.print();$("home").onclick=()=>{clearInterval(pollTimer);goHome(true)};
+$("help").onclick=()=>alert("पहचान चुनें → नंबर दर्ज करें → खोजें → विद्यार्थी की पुष्टि → फीस चुनें → UPI भुगतान → UTR → रसीद");
+setInterval(()=>{const d=new Date();$("time").textContent=d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});$("date").textContent=d.toLocaleDateString("hi-IN",{day:"2-digit",month:"short",year:"numeric"})},1000);
+$("welcome").addEventListener("click",()=>{$("welcome").classList.add("hidden");idle()});
+$("welcome").addEventListener("touchstart",()=>{$("welcome").classList.add("hidden");idle()},{passive:true});
+setTimeout(()=>{$("welcome").classList.add("hidden");idle()},7000);
+(async()=>{try{$("orgName").textContent=(await (await fetch("/api/settings")).json()).organization_name||"FeeSetu"}catch{}setMode("enrollment")})();
+pollTimer=setInterval(pollPayment,4000);
+</script>
+</body>
+</html>

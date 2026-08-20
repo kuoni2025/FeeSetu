@@ -1,259 +1,175 @@
 <!doctype html>
-<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin • Fee Kiosk</title>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FeeSetu Administration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#102b57;--blue:#2166e8;--bg:#f4f7fb;--line:#dfe6ef;--ink:#17233b;--muted:#6b778a;--green:#169c5d;--red:#c73939}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Devanagari",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.top{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900}.top b{color:var(--navy)}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.loginBox{width:min(420px,100%);background:#fff;padding:30px;border:1px solid var(--line);border-radius:20px;box-shadow:0 15px 45px #102b5714}.loginBox h1{margin-top:0;color:var(--navy)}label{display:block;font-size:13px;font-weight:800;color:#4b586b;margin:12px 0}input,select{width:100%;height:44px;border:1px solid #ccd7e4;border-radius:9px;padding:0 12px;background:#fff}.primary,.secondary,.danger{border:0;border-radius:9px;padding:11px 16px;font-weight:900}.primary{background:var(--blue);color:#fff}.secondary{background:#eaf0f7;color:var(--navy)}.danger{background:#fdeaea;color:var(--red)}.full{width:100%;margin-top:8px}.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 68px)}aside{background:var(--navy);padding:18px 12px}aside button{width:100%;text-align:left;border:0;background:transparent;color:#dfe8f6;padding:13px 12px;border-radius:8px;font-weight:800;margin-bottom:3px}aside button.active,aside button:hover{background:#1e467c;color:#fff}.content{padding:28px;max-width:1400px;width:100%;margin:auto}.tab{display:none}.tab.active{display:block}h1{margin:0 0 20px;color:var(--navy)}h2{color:var(--navy);margin-top:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;color:var(--muted)}.stat b{display:block;color:var(--navy);font-size:27px;margin-top:5px}.card,.tableBox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}.table{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}.table table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.table th{background:#f7f9fc;color:#4c596c;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.assign{display:grid;grid-template-columns:1.5fr 180px 180px;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0}.assign:last-child{border-bottom:0}.inline{display:flex;gap:8px}.inline input{flex:1}.notice{color:var(--muted);font-size:13px;min-height:20px}.toast{position:fixed;right:22px;bottom:22px;z-index:9999;min-width:280px;max-width:420px;padding:14px 16px;border-radius:12px;background:#12325f;color:#fff;box-shadow:0 15px 40px #102b5740;font-weight:800}.toast.success{background:#147a4b;color:#fff}.toast.error{background:#a82f2f;color:#fff}.actionCell{display:flex;gap:6px;align-items:center}.editPanel{background:#f7faff;border:1px solid #cfdcf0;border-radius:14px;padding:16px;margin-top:12px}.editGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.editGrid label{margin:0}.editGrid .wide{grid-column:span 3}.studentActions{display:flex;gap:6px}.statusBadge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900;background:#edf2f7}.statusBadge.unpaid{background:#fff4d6;color:#8a5a00}.statusBadge.pending{background:#fff4d6;color:#8a5a00}.statusBadge.success{background:#dff7ea;color:#08723f}.statusBadge.rejected{background:#fdeaea;color:#a52e2e}.success{color:var(--green);font-weight:800}.error{color:var(--red);font-weight:800}.searchRow{display:grid;grid-template-columns:1fr auto;gap:8px}.modalish{background:#f7f9fc;border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px}.payAction{display:flex;gap:6px}.small{padding:7px 10px;font-size:12px}.logoPreview{width:54px;height:54px;object-fit:contain;border:1px solid var(--line);border-radius:9px;background:#fff}.rowFlex{display:flex;gap:10px;align-items:center}.checkbox{width:auto;height:auto}.muted{color:var(--muted)}
-@media(max-width:850px){.layout{grid-template-columns:1fr}aside{display:flex;overflow:auto;gap:5px;padding:8px}aside button{white-space:nowrap;width:auto;margin:0}.content{padding:18px}.stats,.grid,.editGrid{grid-template-columns:1fr}.editGrid .wide{grid-column:span 1}.assign{grid-template-columns:1fr}.top{padding:0 12px}}
-
-/* FeeSetu V9 admin refinements */
-:root{--saffron:#d97706;--saffron-light:#fff7ed;--saffron-line:#fed7aa}
-.top{background:#fffaf5}
-.logo{background:linear-gradient(135deg,#ea580c,#d97706)}
-.primary{background:var(--saffron)}
-.primary:hover{background:#b45309}
-.card,.tableBox{box-shadow:0 8px 24px rgba(120,53,15,.045)}
-.sectionTools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.reportTools{display:grid;grid-template-columns:1fr 1fr 180px auto auto;gap:8px;align-items:end;margin-bottom:14px}
-.reportStats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.reportPill{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:800;color:#9a3412}
-@media(max-width:850px){.reportTools{grid-template-columns:1fr 1fr}.reportTools button{width:100%}}
-/* FeeSetu V10 admin theme */
-body{background:#fffaf5 url('/admin-bg.svg') center/cover fixed no-repeat}.content{position:relative}.card,.tableBox,.table{background:rgba(255,255,255,.96)}
-.studentThumb{width:42px;height:42px;border-radius:10px;object-fit:cover;border:1px solid #fed7aa;background:#fff7ed;vertical-align:middle}.photoCell{display:flex;align-items:center;gap:8px}.photoHint{font-size:11px;color:#9a3412;background:#fff7ed;border:1px solid #fed7aa;padding:7px 9px;border-radius:9px;margin-top:5px}.photoPreview{width:72px;height:72px;object-fit:cover;border-radius:14px;border:1px solid #fed7aa;background:#fff7ed}
-
-/* FeeSetu V11 Admin polish */
-.login{position:relative;overflow:hidden;background:#fffaf5 url('/admin-bg.svg') center/cover fixed no-repeat}.loginBackdrop{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(234,88,12,.10),transparent 28%),radial-gradient(circle at 85% 80%,rgba(217,119,6,.10),transparent 30%)}.loginBox{position:relative;width:min(470px,100%);padding:28px;border-radius:26px;border:1px solid #fed7aa;background:rgba(255,255,255,.96);box-shadow:0 28px 80px rgba(120,53,15,.16)}.loginBrand{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid #f3e8dc}.loginLogo{width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#ea580c,#d97706);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px;box-shadow:0 8px 20px rgba(217,119,6,.22)}.loginEyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#b45309;font-weight:900}.loginCollege{font-size:15px;font-weight:900;color:#183153}.loginTitle{display:flex;gap:12px;align-items:center;margin:22px 0 12px}.loginTitle>span{width:42px;height:42px;border-radius:13px;background:#fff7ed;display:grid;place-items:center;border:1px solid #fed7aa}.loginTitle h1{font-size:25px;margin:0;color:#183153}.loginTitle p{font-size:11px;color:#64748b;margin:2px 0 0;font-weight:600}.loginBox label{color:#475569;font-size:12px;margin:13px 0}.loginBox input{height:48px;border-radius:12px;border-color:#e2d7cc;background:#fff}.loginBox input:focus{border-color:#f59e0b;box-shadow:0 0 0 4px rgba(245,158,11,.10)}.passwordWrap{position:relative}.passwordWrap input{padding-right:62px}.passwordWrap button{position:absolute;right:5px;top:5px;height:38px;padding:0 10px;border-radius:9px;background:#fff7ed;color:#9a3412;font-size:11px;font-weight:800}.loginBox .primary{height:50px;border-radius:12px;background:linear-gradient(135deg,#ea580c,#d97706);box-shadow:0 9px 22px rgba(217,119,6,.22);display:flex;align-items:center;justify-content:center;gap:12px}.loginArrow{font-size:20px}.backKiosk{display:block;text-align:center;margin-top:15px;color:#9a3412;font-weight:800;text-decoration:none;font-size:12px}.loginSecure{text-align:center;margin-top:16px;padding-top:14px;border-top:1px solid #f3e8dc;color:#64748b;font-size:10px;font-weight:600}.error{min-height:20px}.table th{background:#fff7ed}.stat{border-color:#fed7aa}.stat b{color:#183153}
-</style></head><body>
-<div id="login" class="login"><div class="loginBackdrop"></div><div class="loginBox"><div class="loginBrand"><div class="loginLogo">FP</div><div><div class="loginEyebrow">FeeSetu</div><div class="loginCollege">Gov PG College Shivpuri</div></div></div><div class="loginTitle"><span>🔐</span><div><h1>Admin Portal</h1><p>शुल्क प्रबंधन एवं भुगतान रिकॉर्ड</p></div></div><label>Username<input id="user" autocomplete="username" placeholder="Admin username"></label><label>Password<div class="passwordWrap"><input id="pass" type="password" autocomplete="current-password" placeholder="Admin password"><button type="button" id="showPass">देखें</button></div></label><button class="primary full" id="loginBtn"><span>सुरक्षित लॉगिन</span><span class="loginArrow">→</span></button><p id="loginErr" class="error"></p><a class="backKiosk" href="/">← Kiosk पर वापस जाएँ</a><div class="loginSecure">🔒 अधिकृत प्रशासनिक उपयोग के लिए</div></div></div>
-<div id="toast" class="toast hidden"></div><div id="app" class="hidden"><header class="top"><div class="brand"><div class="logo">FP</div><b id="org">Fee Payment Center</b></div><div><a class="secondary" href="/">Kiosk</a> <button class="secondary" id="logout">Logout</button></div></header><div class="layout"><aside id="nav"><button data-tab="dash" class="active">Dashboard</button><button data-tab="students">Students</button><button data-tab="heads">Fee Heads</button><button data-tab="assign">Fee Assignment</button><button data-tab="manage">Manage Student Fees</button><button data-tab="payments">Payments</button><button data-tab="settings">Settings</button></aside><main class="content">
-<section id="dash" class="tab active"><h1>Dashboard</h1><div class="stats"><div class="stat">कुल विद्यार्थी<b id="ns">0</b></div><div class="stat">सफल भुगतान<b id="np">₹0</b></div><div class="stat">Pending Verification<b id="nv">0</b></div></div><div class="card" style="margin-top:16px"><h2>त्वरित काम</h2><p class="muted">पहले Students में Excel upload करें, फिर Fee Assignment से फीस निर्धारित करें। इसके बाद विद्यार्थी Kiosk से UPI भुगतान कर सकते हैं।</p></div></section>
-<section id="students" class="tab"><h1>Students</h1><div class="card"><div class="rowFlex"><button class="secondary" id="template">📥 Excel Template</button><input id="file" type="file" accept=".xlsx"></div><p class="notice">Excel (.xlsx) upload करें। Existing Enrollment Number मिलने पर record update होगा। फोटो के लिए Photo URL column या उसी row में embedded photo इस्तेमाल कर सकते हैं।</p><p id="importMsg" class="notice"></p><div class="sectionTools">
-<button class="secondary" id="archiveStudents">📦 पुराने विद्यार्थियों को अलग करें</button>
-<button class="danger" id="purgeStudents">🗑 पुराने/Inactive डेटा हटाएँ</button>
-</div><p class="notice">नया Excel batch डालने से पहले पुराने active विद्यार्थियों को अलग कर सकते हैं। Payment history वाले पुराने रिकॉर्ड स्थायी रूप से नहीं मिटेंगे।</p></div><div class="table"><table><thead><tr><th>Photo</th><th>Enrollment</th><th>Name</th><th>Father</th><th>Mobile</th><th>Course</th><th>Semester</th><th>Session</th><th>कार्यवाही</th></tr></thead><tbody id="studentRows"></tbody></table></div></section>
-<section id="heads" class="tab"><h1>Fee Heads</h1><div class="card"><div class="inline"><input id="newHead" placeholder="नया Fee Head"><button class="primary" id="addHead">Add</button></div></div><div class="table"><table><thead><tr><th>Fee Head</th><th>Status</th><th></th></tr></thead><tbody id="headRows"></tbody></table></div></section>
-<section id="assign" class="tab"><h1>Fee Assignment</h1><div class="card"><div class="grid"><select id="course"><option value="">सभी Course</option></select><select id="semester"><option value="">सभी Semester</option></select><select id="session"><option value="">सभी Session</option></select></div><div id="assignHeads" style="margin-top:15px"></div><button class="primary" id="assignBtn">चयनित विद्यार्थियों को फीस Assign / Update करें</button><p id="assignMsg" class="notice"></p><div id="assignResult" class="modalish hidden"></div></div><div class="table"><table><thead><tr><th><input class="checkbox" type="checkbox" id="selectAll"></th><th>Enrollment</th><th>Name</th><th>Course</th><th>Semester</th><th>Session</th></tr></thead><tbody id="assignStudents"></tbody></table></div></section>
-<section id="manage" class="tab"><h1>Manage Student Fees</h1><div class="card"><div class="searchRow"><input id="manageSearch" placeholder="Enrollment / Roll / Name"><button class="primary" id="manageFind">खोजें</button></div><div id="manageResult"></div></div></section>
-<section id="payments" class="tab"><h1>Payment Records</h1>
-<div class="card"><div class="reportTools">
-<label>From<input id="payFrom" type="date"></label><label>To<input id="payTo" type="date"></label>
-<label>Status<select id="payStatus"><option value="">सभी</option><option value="SUCCESS">SUCCESS</option><option value="PENDING">PENDING</option><option value="PENDING_VERIFICATION">PENDING VERIFICATION</option><option value="REJECTED">REJECTED</option></select></label>
-<button class="primary" id="payFilter">रिपोर्ट देखें</button><button class="secondary" id="payExport">CSV Export</button></div>
-<div class="reportStats"><span class="reportPill" id="payCount">Records: 0</span><span class="reportPill" id="payTotal">Collection: ₹0.00</span></div>
-</div><div class="table"><table><thead><tr><th>Reference</th><th>Receipt</th><th>Student</th><th>Amount</th><th>UTR</th><th>Status</th><th>Action</th></tr></thead><tbody id="paymentRows"></tbody></table></div></section>
-<section id="settings" class="tab"><h1>Settings</h1>
-<div class="card">
-<label>संस्था / कॉलेज का नाम<input id="orgName"></label>
-<label>Kiosk संदेश<input id="welcome"></label>
-<label>UPI ID (QR fallback)<input id="upi" placeholder="name@bank"></label>
-<label>Receipt Prefix<input id="prefix"></label>
-<label>Logo URL (optional)<input id="logoUrl" placeholder="https://..."></label>
+:root{--navy:#071735;--blue:#173462;--saffron:#d97706;--cream:#fff9f0;--line:#e6ded2;--muted:#64748b;--green:#0f8755;--red:#bf3b31}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Plus Jakarta Sans","Noto Sans Devanagari",system-ui;background:linear-gradient(145deg,#fffdf9,#f7efe2);color:#18243a}
+button,input,select{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}
+.login{
+  min-height:100vh;display:grid;place-items:center;padding:20px;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 50% 28%,rgba(245,158,11,.12),transparent 28%),
+             radial-gradient(circle at 50% 68%,rgba(45,76,135,.24),transparent 42%),
+             linear-gradient(145deg,#050d1d,#0d2144)
+}
+.loginRing{position:absolute;border:1px solid rgba(245,158,11,.20);border-radius:50%;width:80vw;height:80vw}
+.loginCard{
+  position:relative;z-index:1;width:min(460px,94vw);padding:32px;border-radius:28px;
+  background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.30);
+  box-shadow:0 30px 90px rgba(0,0,0,.26)
+}
+.loginBrand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.loginLogo{width:58px;height:58px;border-radius:17px;background:linear-gradient(145deg,#e58c0a,#b75d00);color:#fff;display:grid;place-items:center;font-weight:900;font-size:21px}
+.loginCard h1{margin:0;font-size:29px;letter-spacing:-.6px}.loginCard p{margin:4px 0 22px;color:var(--muted);font-size:11px;font-weight:700}
+.field{display:grid;gap:6px;margin:11px 0}.field label{font-size:10px;font-weight:900;color:#475569}.field input,.field select{height:48px;border:1px solid #d8dde5;border-radius:11px;padding:0 12px;background:#fff;outline:0}.field input:focus{border-color:#e7a43e;box-shadow:0 0 0 4px rgba(245,158,11,.10)}
+.loginBtn{width:100%;height:50px;border:0;border-radius:12px;background:linear-gradient(135deg,#e48b0a,#b75c00);color:#fff;font-weight:900;font-size:14px;margin-top:6px}
+.loginErr{min-height:18px;margin-top:7px;color:var(--red);font-size:11px;font-weight:800}
+.shell{min-height:100vh;display:grid;grid-template-columns:245px 1fr}
+.side{background:linear-gradient(180deg,#071735,#0b1e40);color:#fff;padding:18px 13px}
+.sideBrand{display:flex;align-items:center;gap:10px;margin:3px 8px 22px}.sideLogo{width:45px;height:45px;border-radius:14px;background:#e18a0a;display:grid;place-items:center;font-weight:900}.sideBrand h2{margin:0;font-size:18px}.sideBrand p{margin:2px 0 0;font-size:9px;color:#bec9dc}
+.nav{display:grid;gap:6px}.nav button{height:43px;border:0;border-radius:11px;background:transparent;color:#dce5f3;text-align:left;padding:0 12px;font-size:11px;font-weight:900}.nav button.active,.nav button:hover{background:#173461;color:#fff}
+.sideNote{margin-top:24px;color:#a8b6cc;font-size:10px;line-height:1.6}
+.main{padding:22px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}.topbar h1{margin:0;font-size:24px}.topbar p{margin:2px 0 0;color:var(--muted);font-size:10px}.logout{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-weight:900}
+.section{display:none}.section.active{display:block}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#fff;border:1px solid #e8e0d5;border-radius:16px;padding:15px;box-shadow:0 8px 26px rgba(7,23,53,.05)}.stat small{font-size:9px;color:var(--muted);font-weight:900}.stat b{display:block;margin-top:5px;font-size:22px}
+.card{background:#fff;border:1px solid #e8e0d5;border-radius:18px;padding:17px;box-shadow:0 12px 34px rgba(7,23,53,.055);margin-bottom:12px}.card h3{margin:0 0 12px;font-size:15px}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{height:38px;border-radius:10px;border:1px solid #dfe3e8;background:#fff;padding:0 12px;font-size:10px;font-weight:900}.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.saffron{background:#fff1d8;color:#9a4d00;border-color:#f0bf72}.btn.danger{background:#fff2f0;color:#a52e25;border-color:#efc7c2}.toolbar input,.toolbar select{height:38px;border:1px solid #d9dee5;border-radius:10px;padding:0 10px;background:#fff;font-size:10px}.tableWrap{overflow:auto;border:1px solid #e7eaee;border-radius:13px;margin-top:12px}.table{width:100%;border-collapse:collapse;min-width:820px}.table th,.table td{padding:9px;border-bottom:1px solid #eef0f2;text-align:left;font-size:10px}.table th{font-size:9px;color:#697386;background:#fbfbfb}.avatar{width:34px;height:34px;border-radius:9px;object-fit:cover;background:#fff1d8}.formGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.formGrid .wide{grid-column:1/-1}.field{display:grid;gap:5px}.field input{height:40px;border:1px solid #d9dee5;border-radius:10px;padding:0 10px}.toast{position:fixed;right:18px;bottom:18px;z-index:50;min-width:260px;max-width:420px;padding:13px 15px;border-radius:12px;color:#fff;font-size:11px;font-weight:900;box-shadow:0 16px 36px rgba(7,23,53,.22)}.toast.ok{background:#0f7f52}.toast.err{background:#a52e25}
+.modal{position:fixed;inset:0;background:rgba(7,23,53,.45);display:grid;place-items:center;z-index:40;padding:16px}.modalCard{width:min(760px,96vw);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.24)}.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.modalHead h3{margin:0}.close{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 10px}
+@media(max-width:920px){.shell{grid-template-columns:1fr}.side{display:flex;align-items:center;gap:8px;overflow:auto}.sideBrand{margin:0}.nav{display:flex}.nav button{white-space:nowrap}.sideNote{display:none}.main{padding:14px}.grid4,.formGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid4,.formGrid{grid-template-columns:1fr}.topbar h1{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+  <div class="loginRing"></div>
+  <div class="loginCard">
+    <div class="loginBrand"><div class="loginLogo">FS</div><div><h1>FeeSetu</h1><p>ADMINISTRATION • SECURE ACCESS</p></div></div>
+    <div class="field"><label>USERNAME</label><input id="username" autocomplete="username"></div>
+    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password"></div>
+    <button id="loginBtn" class="loginBtn">प्रशासन में प्रवेश करें</button>
+    <div id="loginErr" class="loginErr"></div>
+  </div>
 </div>
-<div class="card" style="margin-top:16px">
-<h2 style="margin:0 0 12px;font-size:18px;color:var(--navy)">💳 Online Payment Gateway (Razorpay)</h2>
-<label class="rowFlex"><input class="checkbox" type="checkbox" id="gwEnabled"> Gateway सक्षम करें (Razorpay)</label>
-<label>Razorpay Key ID<input id="rzKeyId" placeholder="rzp_live_xxxxx or rzp_test_xxxxx"></label>
-<label>Razorpay Key Secret<input id="rzKeySecret" type="password" placeholder="खाली छोड़ें = मौजूदा secret रखें"></label>
-<label>Webhook Secret (optional)<input id="rzWebhookSecret" type="password" placeholder="खाली छोड़ें = मौजूदा रखें"></label>
-<p class="notice" id="gwStatus"></p>
-<p class="notice">1. <a href="https://dashboard.razorpay.com/" target="_blank" rel="noopener">Razorpay Dashboard</a> से Key ID और Secret लें।<br>
-2. Webhook URL सेट करें: <code id="webhookUrl">/api/webhooks/razorpay</code><br>
-3. Events: <b>payment.captured</b>, <b>order.paid</b><br>
-4. Test mode keys से पहले जाँचें, फिर Live keys लगाएँ।<br>
-UPI QR भी साथ में काम करता रहेगा (fallback)।</p>
+
+<div id="app" class="hidden">
+<div class="shell">
+<aside class="side">
+  <div class="sideBrand"><div class="sideLogo">FS</div><div><h2>FeeSetu</h2><p>Fee Administration</p></div></div>
+  <div class="nav">
+    <button class="active" data-tab="dashboard">Dashboard</button>
+    <button data-tab="students">Students</button>
+    <button data-tab="assignment">Fee Assignment</button>
+    <button data-tab="manage">Manage Fees</button>
+    <button data-tab="payments">Payments</button>
+    <button data-tab="reports">Reports</button>
+    <button data-tab="settings">Settings</button>
+  </div>
+  <div class="sideNote">Kiosk-first fee collection platform<br>Simple • Secure • Professional</div>
+</aside>
+
+<main class="main">
+  <div class="topbar"><div><h1 id="pageTitle">Dashboard</h1><p>FeeSetu Administration</p></div><button id="logout" class="logout">Logout</button></div>
+
+  <section class="section active" id="dashboard">
+    <div id="stats" class="grid4"></div>
+    <div class="card"><h3>आज की स्थिति</h3><div id="todayText" style="font-size:12px;color:#64748b">लोड हो रहा है...</div></div>
+  </section>
+
+  <section class="section" id="students">
+    <div class="card"><div class="toolbar">
+      <button id="template" class="btn saffron">📥 Excel Template</button><input id="excel" type="file" accept=".xlsx">
+      <button id="archiveAll" class="btn danger">सभी Students Archive</button>
+      <button id="purge" class="btn danger">Archived Data हटाएँ</button>
+    </div><div id="importMsg" style="margin-top:7px;font-size:10px;color:#64748b"></div></div>
+    <div class="card"><div class="toolbar"><input id="studentSearch" placeholder="Student / Enrollment / Roll / Mobile" style="flex:1"><button id="refreshStudents" class="btn primary">Refresh</button></div>
+      <div class="tableWrap"><table class="table"><thead><tr><th>Photo</th><th>Enrollment</th><th>Name</th><th>Roll</th><th>Mobile</th><th>Course</th><th>Action</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="section" id="assignment">
+    <div class="card"><h3>चयनित विद्यार्थियों को फीस Assign / Update करें</h3>
+      <div class="toolbar"><select id="courseFilter"></select><select id="sessionFilter"></select><select id="semesterFilter"></select><label style="font-size:10px;font-weight:900"><input id="selectAll" type="checkbox"> सभी चुनें</label></div>
+      <div class="tableWrap"><table class="table"><thead><tr><th></th><th>Enrollment</th><th>Name</th><th>Course</th><th>Semester</th><th>Session</th></tr></thead><tbody id="assignRows"></tbody></table></div>
+      <div id="feeHeadInputs" style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px"></div>
+      <div class="toolbar" style="margin-top:12px"><button id="assignBtn" class="btn primary">Fee Assign / Update</button><div id="assignMsg" style="font-size:10px;color:#0f8755"></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="manage">
+    <div class="card"><div class="toolbar"><input id="manageSearch" placeholder="Enrollment / Roll / Student Name" style="flex:1"><button id="manageBtn" class="btn primary">खोजें</button></div><div id="manageResult" style="margin-top:12px"></div></div>
+  </section>
+
+  <section class="section" id="payments">
+    <div class="card"><div class="toolbar"><select id="paymentStatus"><option value="ALL">सभी</option><option>PENDING</option><option>PENDING_VERIFICATION</option><option>SUCCESS</option><option>REJECTED</option></select><button id="refreshPayments" class="btn primary">Refresh</button></div>
+      <div class="tableWrap"><table class="table"><thead><tr><th>Receipt</th><th>Student</th><th>Amount</th><th>UTR</th><th>Status</th><th>Action</th></tr></thead><tbody id="paymentRows"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="section" id="reports">
+    <div class="card"><div class="toolbar"><input type="date" id="from"><input type="date" id="to"><button id="reportBtn" class="btn primary">Report</button><button id="exportBtn" class="btn saffron">CSV Export</button></div><div id="reportSummary" style="font-size:10px;color:#64748b;margin-top:7px"></div>
+      <div class="tableWrap"><table class="table"><thead><tr><th>Date</th><th>Receipt</th><th>Student</th><th>Enrollment</th><th>Amount</th><th>Status</th><th>UTR</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="section" id="settings">
+    <div class="card"><h3>संस्था Settings</h3>
+      <div class="formGrid"><div class="field"><label>Organization Name</label><input id="org"></div><div class="field"><label>Welcome Message</label><input id="welcomeText"></div><div class="field"><label>UPI ID</label><input id="upi"></div><div class="field"><label>Receipt Prefix</label><input id="prefix"></div><div class="field wide"><label>Logo URL</label><input id="logo"></div></div>
+      <button id="saveSettings" class="btn primary" style="margin-top:10px">Settings Save करें</button><div id="settingMsg" style="font-size:10px;color:#0f8755;margin-top:7px"></div>
+    </div>
+  </section>
+</main>
 </div>
-<button class="primary" id="saveSettings" style="margin-top:12px">Save Settings</button>
-</section>
-</main></div></div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<div id="editModal" class="modal hidden"><div class="modalCard"><div class="modalHead"><h3>विद्यार्थी जानकारी संपादित करें</h3><button class="close" id="closeModal">बंद करें</button></div><div id="editFields" class="formGrid"></div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button id="saveStudent" class="btn primary">परिवर्तन सेव करें</button></div></div></div>
+
 <script>
-const $=id=>document.getElementById(id);let token="",students=[],heads=[],allPayments=[],visiblePayments=[];const API="/api";
-function H(extra={}){return{Authorization:"Bearer "+token,...extra}}function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}function money(n){return"₹"+Number(n||0).toLocaleString("en-IN",{minimumFractionDigits:2})}
-async function api(path,opt={}){const r=await fetch(API+path,{...opt,headers:{...H(),...(opt.headers||{})}});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||"Error");return j}
-async function login(){try{const x=await api("/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:$('user').value,password:$('pass').value})});token=x.token;sessionStorage.setItem("feeAdminToken",token);$('login').classList.add('hidden');$('app').classList.remove('hidden');await loadAll()}catch(e){$('loginErr').textContent="Login असफल: "+e.message}}
-$('loginBtn').onclick=login;$('pass').onkeydown=e=>{if(e.key==='Enter')login()};$('showPass').onclick=()=>{$('pass').type=$('pass').type==='password'?'text':'password';$('showPass').textContent=$('pass').type==='password'?'देखें':'छिपाएँ'};
-$('logout').onclick=async()=>{try{await api('/admin/logout',{method:'POST'})}catch{}sessionStorage.removeItem('feeAdminToken');location.href='/admin.html'};
-const saved=sessionStorage.getItem('feeAdminToken');if(saved){token=saved;api('/students').then(()=>{$('login').classList.add('hidden');$('app').classList.remove('hidden');loadAll()}).catch(()=>sessionStorage.removeItem('feeAdminToken'))}
-$('nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));$(b.dataset.tab).classList.add('active');$('nav').querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
-async function loadAll(){
-  const [s,h,p,set]=await Promise.all([
-    api('/students'),api('/fee-heads'),api('/payments'),
-    api('/admin/settings').catch(()=>fetch('/api/settings').then(r=>r.json()))
-  ]);
-  students=s;heads=h;allPayments=p;visiblePayments=p;
-  $('org').textContent=set.organization_name||'Fee Payment Center';
-  $('orgName').value=set.organization_name||'';
-  $('welcome').value=set.welcome_message||'';
-  $('upi').value=set.upi_id||'';
-  $('prefix').value=set.receipt_prefix||'FEE';
-  $('logoUrl').value=set.logo_url||'';
-  if($('gwEnabled')){
-    $('gwEnabled').checked=!!set.gateway_enabled;
-    $('rzKeyId').value=set.razorpay_key_id||'';
-    $('rzKeySecret').value='';
-    $('rzWebhookSecret').value='';
-    $('gwStatus').textContent = set.gateway_enabled
-      ? ('✓ Gateway ON' + (set.has_secret ? ' • Secret सेट है' : ' • Secret नहीं है') + (set.has_webhook_secret ? ' • Webhook secret सेट' : ''))
-      : 'Gateway बंद है — सिर्फ UPI QR उपलब्ध';
-  }
-  const wu=$('webhookUrl'); if(wu) wu.textContent = location.origin + '/api/webhooks/razorpay';
-  renderStudents();renderHeads();renderPayments(p);renderFilters();renderAssignHeads();
-  $('ns').textContent=s.length;
-  $('np').textContent=money(p.filter(x=>x.status==='SUCCESS').reduce((a,x)=>a+Number(x.amount),0));
-  $('nv').textContent=p.filter(x=>x.status==='PENDING_VERIFICATION').length;
-}
-
-function toast(msg,type="success"){const t=$('toast');t.textContent=msg;t.className='toast '+type;t.classList.remove('hidden');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.add('hidden'),3200)}
-function renderStudents(){
-  $('studentRows').innerHTML=students.map(s=>`<tr>
-    <td>${s.photo_url?`<img class="studentThumb" src="${esc(s.photo_url)}" alt="">`:'<span class="muted">—</span>'}</td><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.father_name||'-')}</td>
-    <td>${esc(s.mobile||'-')}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td>
-    <td><div class="studentActions"><button class="secondary small" onclick="editStudent(${s.id})">संपादित</button><button class="danger small" onclick="deleteStudent(${s.id})">हटाएँ</button></div></td>
-  </tr>`).join('')||'<tr><td colspan="9">कोई विद्यार्थी नहीं</td></tr>';
-}
-window.editStudent=(id)=>{
- const s=students.find(x=>x.id===id); if(!s)return;
- $('studentEditBox')?.remove();
- const box=document.createElement('div');box.id='studentEditBox';box.className='editPanel';
- box.innerHTML=`<h3 style="margin:0 0 12px;color:var(--navy)">विद्यार्थी की जानकारी बदलें</h3>
- <div class="editGrid">
- ${[
- ['e_en','Enrollment Number',s.enrollment_number],['e_ad','Admission Number',s.admission_number],['e_roll','Roll Number',s.roll_number],
- ['e_name','Student Name',s.student_name],['e_father','Father Name',s.father_name],['e_mother','Mother Name',s.mother_name],
- ['e_mobile','Mobile',s.mobile],['e_email','Email',s.email],['e_course','Course',s.course],
- ['e_class','Class',s.class],['e_sem','Semester',s.semester],['e_year','Year',s.year],
- ['e_batch','Batch',s.batch],['e_session','Session',s.session],['e_address','Address',s.address],['e_photo','Photo URL (optional)', '' ]
- ].map((a,i)=>`<label class="${i===14?'wide':''}">${a[1]}<input id="${a[0]}" value="${esc(a[2]||'')}"></label>`).join('')}
- </div>${s.photo_url?`<div class="rowFlex" style="margin-top:10px"><img class="photoPreview" src="${esc(s.photo_url)}" alt="Student photo"><span class="muted">वर्तमान विद्यार्थी फोटो</span></div>`:''}<div class="photoHint">Excel में Photo URL दें या विद्यार्थी की उसी row में photo image रखें। मौजूदा फोटो बदलनी हो तो Photo URL भरें। खाली छोड़ने पर पुरानी फोटो सुरक्षित रहेगी।</div><div class="actions"><button class="secondary" onclick="this.closest('#studentEditBox').remove()">रद्द करें</button><button class="primary" onclick="saveStudent(${id})">परिवर्तन सेव करें</button></div>`;
- document.querySelector('#students .card').after(box);
-};
-window.saveStudent=async id=>{
- const g=id=>$(id).value.trim();
- try{
-  await api('/students/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-   enrollment_number:g('e_en'),admission_number:g('e_ad'),roll_number:g('e_roll'),student_name:g('e_name'),father_name:g('e_father'),mother_name:g('e_mother'),
-   mobile:g('e_mobile'),email:g('e_email'),course:g('e_course'),class:g('e_class'),semester:g('e_sem'),year:g('e_year'),batch:g('e_batch'),session:g('e_session'),address:g('e_address'),photo_url:g('e_photo')
-  })});
-  toast('विद्यार्थी की जानकारी सफलतापूर्वक बदल दी गई।');$('studentEditBox').remove();await loadAll();
- }catch(e){toast(e.message,'error')}
-};
-window.deleteStudent=async id=>{
- const s=students.find(x=>x.id===id);if(!s)return;
- if(!confirm(`"${s.student_name}" को Students सूची से हटाना है?\\nरिकॉर्ड सुरक्षित रखने के लिए इसे Inactive किया जाएगा।`))return;
- try{await api('/students/'+id,{method:'DELETE'});toast('विद्यार्थी सूची से हटा दिया गया।');await loadAll()}catch(e){toast(e.message,'error')}
-};
-function renderHeads(){ $('headRows').innerHTML=heads.map(h=>`<tr><td>${esc(h.name)}</td><td><span class="statusBadge ${h.active?'success':'rejected'}">${h.active?'Active':'Inactive'}</span></td><td><button class="secondary small" onclick="toggleHead(${h.id})">Toggle</button></td></tr>`).join('') }
-window.toggleHead=async id=>{try{await api('/fee-heads/'+id+'/toggle',{method:'POST'});toast('Fee Head status बदल गया।');await loadAll()}catch(e){toast(e.message,'error')}};
-function renderFilters(){const fill=(id,arr,first)=>$(id).innerHTML=`<option value="">${first}</option>`+arr.filter(Boolean).sort().map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');fill('course',[...new Set(students.map(s=>s.course||s.class))],'सभी Course');fill('semester',[...new Set(students.map(s=>s.semester))],'सभी Semester');fill('session',[...new Set(students.map(s=>s.session))],'सभी Session')}
-function renderAssignHeads(){ $('assignHeads').innerHTML=heads.filter(h=>h.active).map(h=>`<div class="assign"><b>${esc(h.name)}</b><input type="number" min="0" step="0.01" data-head="${h.id}" placeholder="राशि"><label class="rowFlex"><input class="checkbox" type="checkbox" data-show="${h.id}" checked> Receipt में दिखाएं</label></div>`).join('') }
-function filteredStudents(){const c=$('course').value,s=$('semester').value,se=$('session').value;return students.filter(x=>(!c||(x.course||x.class)===c)&&(!s||String(x.semester)===String(s))&&(!se||x.session===se))}
-function renderAssignStudents(){const arr=filteredStudents();$('assignStudents').innerHTML=arr.map(s=>`<tr><td><input class="checkbox studentCheck" type="checkbox" value="${s.id}"></td><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.course||s.class||'-')}</td><td>${esc(s.semester||'-')}</td><td>${esc(s.session||'-')}</td></tr>`).join('')||'<tr><td colspan="6">कोई विद्यार्थी नहीं</td></tr>'}
-['course','semester','session'].forEach(id=>$(id).onchange=renderAssignStudents);
-$('selectAll').onchange=e=>document.querySelectorAll('.studentCheck').forEach(x=>x.checked=e.target.checked);
-renderAssignStudents();
-
-$('assignBtn').onclick=async()=>{
- const ids=[...document.querySelectorAll('.studentCheck:checked')].map(x=>+x.value);
- const items=[...document.querySelectorAll('[data-head]')].map(x=>({fee_head_id:+x.dataset.head,amount:+x.value,receipt_visible:document.querySelector(`[data-show="${x.dataset.head}"]`).checked})).filter(x=>Number.isFinite(x.amount)&&x.amount>0);
- $('assignResult').classList.add('hidden');
- if(!ids.length||!items.length){$('assignMsg').textContent='पहले विद्यार्थी और कम-से-कम एक फीस राशि चुनें।';toast('विद्यार्थी और फीस राशि चुनें।','error');return}
- try{
-   $('assignBtn').disabled=true;$('assignBtn').textContent='सेव हो रहा है...';
-   const r=await api('/fee-assignments/bulk',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({student_ids:ids,items})});
-   $('assignMsg').textContent='✓ प्रक्रिया पूरी हुई';
-   $('assignResult').classList.remove('hidden');
-   $('assignResult').innerHTML=`<b style="color:var(--green)">✓ Fee Assignment सफल</b><br><span class="muted">${r.students} विद्यार्थी × ${r.heads} Fee Head</span><br><b>${r.total}</b> assignment सेव/अपडेट हुए।`;
-   toast(`${r.total} fee assignments सफलतापूर्वक सेव हुए।`);
- }catch(e){$('assignMsg').textContent=e.message;toast(e.message,'error')}
- finally{$('assignBtn').disabled=false;$('assignBtn').textContent='चयनित विद्यार्थियों को फीस Assign / Update करें'}
-};
-
-$('addHead').onclick=async()=>{const name=$('newHead').value.trim();if(!name)return;try{await api('/fee-heads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});$('newHead').value='';toast('Fee Head जोड़ दिया गया।');await loadAll()}catch(e){toast(e.message,'error')}};
-
-$('template').onclick=async()=>{const r=await fetch(API+'/students/template.xlsx',{headers:H()});if(!r.ok)return toast('Template download failed','error');const b=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='student-template.xlsx';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
-$('file').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(!f.name.toLowerCase().endsWith('.xlsx')){toast('कृपया .xlsx Excel file चुनें।','error');e.target.value='';return}try{const r=await api('/students/import-xlsx',{method:'POST',headers:{...H(),'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'},body:await f.arrayBuffer()});$('importMsg').textContent=`✓ कुल ${r.total} | नए ${r.inserted} | अपडेट ${r.updated} | Duplicate ${r.duplicates} | Invalid ${r.invalid} | फोटो ${r.photoRows||0}`;if(r.errors?.length)$('importMsg').textContent+=` | ${r.errors.slice(0,5).map(x=>'Row '+x.row+': '+x.reason).join('; ')}`;toast(`Excel import पूरा: ${r.inserted} नए, ${r.updated} अपडेट, ${r.photoRows||0} फोटो`);await loadAll()}catch(e){$('importMsg').textContent=e.message;toast(e.message,'error')}};
-
-async function renderPayments(p){
- visiblePayments=p||[];
- $('paymentRows').innerHTML=visiblePayments.map(x=>`<tr>
- <td>${esc(x.payment_reference)}</td><td>${esc(x.receipt_number||'-')}</td><td>${esc(x.student_name)}<br><small>${esc(x.enrollment_number)}</small></td>
- <td>${money(x.amount)}</td><td>${esc(x.transaction_id||'-')}</td>
- <td><span class="statusBadge ${x.status==='SUCCESS'?'success':x.status==='REJECTED'?'rejected':'pending'}">${esc(x.status)}</span></td>
- <td>${x.status==='PENDING_VERIFICATION'?`<div class="payAction"><button class="primary small" onclick="verifyPay(${x.id})">Verify</button><button class="danger small" onclick="rejectPay(${x.id})">Reject</button><button class="secondary small" onclick="deletePay(${x.id})">हटाएँ</button></div>`:
- x.status==='PENDING'?`<button class="danger small" onclick="deletePay(${x.id})">Pending हटाएँ</button>`:
- x.status==='SUCCESS'?'✓ Verified':`<button class="danger small" onclick="deletePay(${x.id})">हटाएँ</button>`}</td></tr>`).join('')||'<tr><td colspan="7">कोई payment नहीं</td></tr>';
- $('payCount').textContent='Records: '+visiblePayments.length;
- $('payTotal').textContent='Collection: '+money(visiblePayments.filter(x=>x.status==='SUCCESS').reduce((a,x)=>a+Number(x.amount||0),0));
-}
-async function filterPayments(){
- const from=$('payFrom').value,to=$('payTo').value,status=$('payStatus').value;
- try{
-  const q=new URLSearchParams();if(from)q.set('from',from);if(to)q.set('to',to);if(status)q.set('status',status);
-  const r=await api('/reports/payments?'+q.toString());visiblePayments=r.rows;renderPayments(visiblePayments);toast(`रिपोर्ट तैयार: ${r.count} रिकॉर्ड`);
- }catch(e){toast(e.message,'error')}
-}
-$('payFilter').onclick=filterPayments;
-$('payExport').onclick=()=>{
- const rows=visiblePayments.map(x=>({Receipt:x.receipt_number||'',Reference:x.payment_reference||'',Date:new Date(x.created_at).toLocaleString('en-IN'),Student:x.student_name||'',Enrollment:x.enrollment_number||'',Roll:x.roll_number||'',Course:x.course||x.class||'',Session:x.session||'',Amount:Number(x.amount||0),UTR:x.transaction_id||'',Status:x.status||'',PaymentMethod:x.payment_method||''}));
- if(!rows.length){toast('Export करने के लिए कोई रिकॉर्ड नहीं है।','error');return;}
- const headers=Object.keys(rows[0]);const csv='\ufeff'+[headers.join(','),...rows.map(r=>headers.map(h=>`"${String(r[h]??'').replace(/"/g,'""')}"`).join(','))].join('\n');
- const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='feesetu-payment-report.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-};
-window.verifyPay=async id=>{if(!confirm('क्या payment की UTR/राशि बैंक/UPI में सत्यापित है?'))return;try{const r=await api('/payments/'+id+'/verify',{method:'POST'});toast(`Payment verified। रसीद ${r.receipt_number||''} तैयार है।`);await loadAll()}catch(e){toast(e.message,'error')}};
-window.rejectPay=async id=>{if(!confirm('Payment reject करें? इसके बाद इसे हटाया जा सकता है।'))return;try{await api('/payments/'+id+'/reject',{method:'POST'});toast('Payment reject हो गया। Fee अभी unpaid है।');await loadAll()}catch(e){toast(e.message,'error')}};
-window.deletePay=async id=>{if(!confirm('इस pending/rejected payment को हटाना है? Fee assignment वापस unpaid रहेगा।'))return;try{await api('/payments/'+id,{method:'DELETE'});toast('Payment हट गया। विद्यार्थी फिर unpaid fee के रूप में उपलब्ध है।');await loadAll()}catch(e){toast(e.message,'error')}};
-
-$('archiveStudents').onclick=async()=>{
- if(!students.length){toast('अलग करने के लिए कोई active विद्यार्थी नहीं है।','error');return;}
- if(!confirm(`वर्तमान ${students.length} विद्यार्थियों को पुराने डेटा में भेजना है?\nउनकी payment history सुरक्षित रहेगी।`))return;
- try{const r=await api('/students/archive-all',{method:'POST'});toast(r.message);await loadAll();}catch(e){toast(e.message,'error')}
-};
-$('purgeStudents').onclick=async()=>{
- if(!confirm('सिर्फ पुराने/Inactive विद्यार्थियों का स्थायी डेटा हटाया जाएगा। Payment history वाले रिकॉर्ड सुरक्षित रहेंगे।\n\nक्या आगे बढ़ें?'))return;
- try{const r=await api('/students/inactive/purge',{method:'DELETE'});toast(r.message, r.blocked ? 'error':'success');await loadAll();}catch(e){toast(e.message,'error')}
-};
-
-$('manageFind').onclick=manageFind;
-$('manageSearch').onkeydown=e=>{if(e.key==='Enter')manageFind()};
-async function manageFind(){
- const v=$('manageSearch').value.trim();if(!v){$('manageResult').innerHTML='';return}
- const local=students.filter(s=>s.enrollment_number.toLowerCase()===v.toLowerCase()||String(s.roll_number||'')===v||s.student_name.toLowerCase().includes(v.toLowerCase())).slice(0,10);
- $('manageResult').innerHTML=local.map(s=>`<div class="modalish"><div class="rowFlex"><b>${esc(s.student_name)}</b><span class="muted">${esc(s.enrollment_number)}</span></div><div id="fees-${s.id}"></div></div>`).join('')||'<p class="error">विद्यार्थी नहीं मिला</p>';
- for(const s of local)loadStudentAssignments(s.id)
-}
-async function loadStudentAssignments(id){
- const box=$('fees-'+id),a=await api('/assignments?student_id='+id);
- box.innerHTML=a.length?a.map(x=>`<div class="assign">
- <span><b>${esc(x.fee_head_name)}</b> <span class="statusBadge ${x.status==='UNPAID'?'unpaid':'success'}">${x.status}</span></span>
- <input type="number" min="0" step="0.01" value="${Number(x.amount)}" data-edit="${x.id}">
- <label class="rowFlex"><input class="checkbox" type="checkbox" data-edit-show="${x.id}" ${x.receipt_visible?'checked':''}> Receipt में दिखाएं</label>
- <div class="actionCell">${x.status==='UNPAID'?`<button class="primary small" onclick="saveAssignment(${x.id})">सेव करें</button><button class="danger small" onclick="deleteAssignment(${x.id})">हटाएँ</button>`:'<span class="muted">Paid — लॉक</span>'}</div>
- </div>`).join(''): '<p class="muted">इस विद्यार्थी की कोई fee assignment नहीं है।'}
-window.saveAssignment=async id=>{
- try{
-  const amount=document.querySelector(`[data-edit="${id}"]`).value,visible=document.querySelector(`[data-edit-show="${id}"]`).checked;
-  const btn=document.querySelector(`button[onclick="saveAssignment(${id})"]`);if(btn){btn.disabled=true;btn.textContent='सेव हो रहा है...'}
-  await api('/assignments/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:Number(amount),receipt_visible:visible})});
-  toast('Fee assignment सफलतापूर्वक सेव हो गया।');manageFind()
- }catch(e){toast(e.message,'error')}
-};
-window.deleteAssignment=async id=>{if(!confirm('इस unpaid fee assignment को हटाना है?'))return;try{await api('/assignments/'+id,{method:'DELETE'});toast('Fee assignment हटा दिया गया।');manageFind()}catch(e){toast(e.message,'error')}};
-
-$('saveSettings').onclick=async()=>{
- try{
-  $('saveSettings').disabled=true;$('saveSettings').textContent='सेव हो रहा है...';
-  await api('/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    organization_name:$('orgName').value,
-    welcome_message:$('welcome').value,
-    upi_id:$('upi').value,
-    receipt_prefix:$('prefix').value,
-    logo_url:$('logoUrl').value,
-    gateway_enabled: $('gwEnabled') ? $('gwEnabled').checked : false,
-    gateway_provider: 'razorpay',
-    razorpay_key_id: $('rzKeyId') ? $('rzKeyId').value.trim() : '',
-    razorpay_key_secret: $('rzKeySecret') ? $('rzKeySecret').value.trim() : '',
-    razorpay_webhook_secret: $('rzWebhookSecret') ? $('rzWebhookSecret').value.trim() : ''
-  })});
-  toast('Settings सेव हो गईं।');
-  await loadAll();
- }catch(e){toast(e.message,'error')}finally{$('saveSettings').disabled=false;$('saveSettings').textContent='Save Settings'}
-};
-</script></body></html>
+const $=id=>document.getElementById(id),API="/api";let token=localStorage.getItem("feesetu_admin_token"),students=[],heads=[],payments=[],reports=[],editId=null;
+const H=()=>({Authorization:"Bearer "+token});
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+function toast(m,ok=true){const t=$("toast");t.textContent=m;t.className="toast "+(ok?"ok":"err");t.classList.remove("hidden");clearTimeout(window.__t);window.__t=setTimeout(()=>t.classList.add("hidden"),3200)}
+async function api(url,opt={}){opt.headers={...(opt.headers||{}),...H()};const r=await fetch(API+url,opt);const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||"Request failed");return j}
+function showTab(id,title){document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));$("pageTitle").textContent=title}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab,b.textContent));
+$("loginBtn").onclick=async()=>{try{const r=await fetch(API+"/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:$("username").value,password:$("password").value})});const j=await r.json();if(!r.ok)throw Error(j.error);token=j.token;localStorage.setItem("feesetu_admin_token",token);$("login").classList.add("hidden");$("app").classList.remove("hidden");loadAll()}catch(e){$("loginErr").textContent=e.message}};
+$("logout").onclick=()=>{localStorage.removeItem("feesetu_admin_token");location.reload()};
+async function loadAll(){await Promise.all([loadStudents(),loadHeads(),loadPayments(),loadReports(),loadSettings()]);renderDashboard()}
+async function loadStudents(){students=await api("/students");renderStudents();fillFilters();renderAssign()}
+function renderStudents(){const q=$("studentSearch").value.toLowerCase();const a=students.filter(s=>[s.student_name,s.enrollment_number,s.roll_number,s.mobile].join(" ").toLowerCase().includes(q));$("studentRows").innerHTML=a.map(s=>`<tr><td>${s.photo_url?`<img class="avatar" src="${esc(s.photo_url)}">`:"👤"}</td><td>${esc(s.enrollment_number)}</td><td>${esc(s.student_name)}</td><td>${esc(s.roll_number||"-")}</td><td>${esc(s.mobile||"-")}</td><td>${esc(s.course||s.class||"-")}</td><td><button class="btn" onclick="openEdit(${s.id})">Edit</button> <button class="btn danger" onclick="archiveStudent(${s.id})">Archive</button></td></tr>`).join("")||'<tr><td colspan="7">कोई विद्यार्थी नहीं</td></tr>'}
+$("studentSearch").oninput=renderStudents;$("refreshStudents").onclick=loadStudents;
+window.archiveStudent=async id=>{if(!confirm("इस विद्यार्थी को archive करें?"))return;await api("/students/"+id,{method:"DELETE"});toast("Student archived");loadStudents()};
+window.openEdit=id=>{const s=students.find(x=>x.id===id);if(!s)return;editId=id;const fields=["enrollment_number","admission_number","roll_number","student_name","father_name","mother_name","mobile","email","course","class","semester","year","batch","session","address","photo_url"];$("editFields").innerHTML=fields.map(f=>`<div class="field"><label>${f.replaceAll("_"," ")}</label><input id="e_${f}" value="${esc(s[f]||"")}"></div>`).join("");$("editModal").classList.remove("hidden")};
+$("closeModal").onclick=()=>$("editModal").classList.add("hidden");
+$("saveStudent").onclick=async()=>{const b={};document.querySelectorAll("#editFields input").forEach(i=>b[i.id.slice(2)]=i.value);await api("/students/"+editId,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});$("editModal").classList.add("hidden");toast("Student updated");loadStudents()};
+$("template").onclick=async()=>{const r=await fetch(API+"/students/template.xlsx",{headers:H()}),b=await r.blob(),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="FeeSetu-Student-Template.xlsx";a.click()};
+$("excel").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const j=await api("/students/import-xlsx",{method:"POST",headers:{"Content-Type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},body:await f.arrayBuffer()});$("importMsg").textContent=`कुल ${j.total} | नए ${j.imported} | अपडेट ${j.updated} | Invalid ${j.invalid}`;toast("Excel import complete");loadStudents()}catch(err){toast(err.message,false)}};
+$("archiveAll").onclick=async()=>{if(confirm("सभी active students archive करें?")){const j=await api("/students/archive-all",{method:"POST"});toast(`${j.count} students archived`);loadStudents()}};
+$("purge").onclick=async()=>{if(confirm("Archived data permanently delete करें?")){try{const j=await api("/students/inactive/purge",{method:"DELETE"});toast(`${j.count} archived records deleted`)}catch(e){toast(e.message,false)}}};
+async function loadHeads(){heads=await api("/fee-heads");$("feeHeadInputs").innerHTML=heads.filter(h=>h.active).map(h=>`<div class="card" style="margin:0"><b style="font-size:11px">${esc(h.name)}</b><input class="headAmt" data-id="${h.id}" type="number" min="0" step="0.01" placeholder="Amount" style="width:100%;height:36px;border:1px solid #d9dee5;border-radius:9px;padding:0 9px;margin-top:7px"><label style="font-size:9px;font-weight:900;display:block;margin-top:6px"><input class="headShow" data-id="${h.id}" type="checkbox" checked> Receipt में दिखाएँ</label></div>`).join("")}
+function fillFilters(){const sets={course:["All",...new Set(students.map(s=>s.course||s.class).filter(Boolean))],session:["All",...new Set(students.map(s=>s.session).filter(Boolean))],semester:["All",...new Set(students.map(s=>s.semester).filter(Boolean))]};Object.entries(sets).forEach(([id,a])=>$(id+"Filter").innerHTML=a.map(x=>`<option>${esc(x)}</option>`).join(""))}
+function renderAssign(){const c=$("courseFilter").value,s=$("sessionFilter").value,se=$("semesterFilter").value;const a=students.filter(x=>(!c||c==="All"||(x.course||x.class)===c)&&(!s||s==="All"||x.session===s)&&(!se||se==="All"||String(x.semester)===String(se)));$("assignRows").innerHTML=a.map(x=>`<tr><td><input class="stuChk" type="checkbox" value="${x.id}"></td><td>${esc(x.enrollment_number)}</td><td>${esc(x.student_name)}</td><td>${esc(x.course||x.class||"-")}</td><td>${esc(x.semester||"-")}</td><td>${esc(x.session||"-")}</td></tr>`).join("")}
+["courseFilter","sessionFilter","semesterFilter"].forEach(id=>$(id).onchange=renderAssign);$("selectAll").onchange=e=>document.querySelectorAll(".stuChk").forEach(x=>x.checked=e.target.checked);
+$("assignBtn").onclick=async()=>{const ids=[...document.querySelectorAll(".stuChk:checked")].map(x=>+x.value);const items=[...document.querySelectorAll(".headAmt")].map(x=>({fee_head_id:+x.dataset.id,amount:+x.value,receipt_visible:document.querySelector(`.headShow[data-id="${x.dataset.id}"]`).checked})).filter(x=>x.amount>0);if(!ids.length||!items.length)return toast("Student और amount चुनें",false);const j=await api("/fee-assignments/bulk",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({student_ids:ids,items})});$("assignMsg").textContent=`✓ ${j.total} fee assignments saved`;toast("Fee Assignment successful")};
+$("manageBtn").onclick=async()=>{const qv=$("manageSearch").value.trim().toLowerCase();if(!qv)return;const s=students.find(x=>[x.student_name,x.enrollment_number,x.roll_number].join(" ").toLowerCase().includes(qv));if(!s)return $("manageResult").textContent="Student नहीं मिला";const a=await api("/assignments?student_id="+s.id);$("manageResult").innerHTML=`<div class="card"><h3>${esc(s.student_name)} • ${esc(s.enrollment_number)}</h3>${a.map(x=>`<div class="toolbar" style="padding:7px 0;border-bottom:1px solid #eef0f2"><b style="flex:1">${esc(x.fee_head_name)}</b><input id="a_${x.id}" value="${x.amount}" type="number" style="width:120px;height:36px;border:1px solid #d9dee5;border-radius:9px;padding:0 8px"><button class="btn primary" onclick="saveFee(${x.id})">Save</button><button class="btn danger" onclick="deleteFee(${x.id})">Delete</button></div>`).join("")||"No assignments"}</div>`}
+window.saveFee=async id=>{await api("/assignments/"+id,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:Number($("a_"+id).value),receipt_visible:true})});toast("Fee saved");$("manageBtn").click()};
+window.deleteFee=async id=>{if(!confirm("इस unpaid fee को हटाएँ?"))return;await api("/assignments/"+id,{method:"DELETE"});toast("Fee deleted");$("manageBtn").click()};
+async function loadPayments(){payments=await api("/payments");renderPayments()}
+$("refreshPayments").onclick=loadPayments;$("paymentStatus").onchange=renderPayments;
+function renderPayments(){const f=$("paymentStatus").value,a=f==="ALL"?payments:payments.filter(p=>p.status===f);$("paymentRows").innerHTML=a.map(p=>`<tr><td>${esc(p.receipt_number||"-")}</td><td>${esc(p.student_name)}<br><small>${esc(p.enrollment_number)}</small></td><td>₹${Number(p.amount).toLocaleString("en-IN",{minimumFractionDigits:2})}</td><td>${esc(p.transaction_id||"-")}</td><td>${esc(p.status)}</td><td>${p.status==="SUCCESS"?"✓ Verified":`<button class="btn primary" onclick="verifyPayment(${p.id})">Verify</button> <button class="btn danger" onclick="deletePayment(${p.id})">Delete</button>`}</td></tr>`).join("")||'<tr><td colspan="6">No records</td></tr>'}
+window.verifyPayment=async id=>{if(!confirm("Payment सत्यापित है?"))return;await api("/payments/"+id+"/verify",{method:"POST"});toast("Payment verified; receipt created");loadPayments();loadReports()};
+window.deletePayment=async id=>{if(!confirm("Pending/Rejected payment delete करें? Fee फिर unpaid रहेगा।"))return;await api("/payments/"+id,{method:"DELETE"});toast("Payment deleted");loadPayments()};
+async function loadReports(){reports=await api("/reports/payments");renderReports()}
+function renderReports(){let a=reports,from=$("from").value,to=$("to").value;if(from)a=a.filter(x=>x.created_at.slice(0,10)>=from);if(to)a=a.filter(x=>x.created_at.slice(0,10)<=to);const success=a.filter(x=>x.status==="SUCCESS");$("reportSummary").textContent=`Records: ${a.length} | Successful Collection: ₹${success.reduce((s,x)=>s+Number(x.amount),0).toLocaleString("en-IN",{minimumFractionDigits:2})}`;$("reportRows").innerHTML=a.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString("hi-IN")}</td><td>${esc(x.receipt_number||"-")}</td><td>${esc(x.student_name)}</td><td>${esc(x.enrollment_number)}</td><td>₹${Number(x.amount).toLocaleString("en-IN",{minimumFractionDigits:2})}</td><td>${esc(x.status)}</td><td>${esc(x.transaction_id||"-")}</td></tr>`).join("")}
+$("reportBtn").onclick=renderReports;$("exportBtn").onclick=()=>{const a=reports.map(x=>[x.created_at,x.receipt_number||"",x.student_name,x.enrollment_number,x.amount,x.status,x.transaction_id||""]);const csv=[["Date","Receipt","Student","Enrollment","Amount","Status","UTR"],...a].map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");const link=document.createElement("a");link.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));link.download="FeeSetu-Payment-Report.csv";link.click()};
+async function loadSettings(){const s=await api("/admin/settings");$("org").value=s.organization_name||"";$("welcomeText").value=s.welcome_message||"";$("upi").value=s.upi_id||"";$("prefix").value=s.receipt_prefix||"FS";$("logo").value=s.logo_url||""}
+$("saveSettings").onclick=async()=>{await api("/settings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({organization_name:$("org").value,welcome_message:$("welcomeText").value,upi_id:$("upi").value,receipt_prefix:$("prefix").value,logo_url:$("logo").value})});toast("Settings saved");loadSettings()};
+function renderDashboard(){const successful=payments.filter(p=>p.status==="SUCCESS"),today=new Date().toISOString().slice(0,10),tp=successful.filter(p=>p.created_at.slice(0,10)===today);$("stats").innerHTML=[["Students",students.length],["Successful Payments",successful.length],["Today Receipts",tp.length],["Today Collection","₹"+tp.reduce((s,x)=>s+Number(x.amount),0).toLocaleString("en-IN",{minimumFractionDigits:2})]].map(x=>`<div class="stat"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");$("todayText").textContent=tp.length?`${tp.length} सफल payment आज दर्ज हुए।`:"आज अभी कोई successful payment नहीं।"}
+if(token){$("login").classList.add("hidden");$("app").classList.remove("hidden");loadAll()}
+</script>
+</body></html>

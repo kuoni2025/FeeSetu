@@ -1,56 +1,88 @@
-create table if not exists settings(
- id int primary key default 1,
- organization_name text not null default 'Fee Payment Center',
- welcome_message text default 'विद्यार्थी शुल्क भुगतान',
- upi_id text default '',
- receipt_prefix text default 'FEE'
-);
-insert into settings(id) values(1) on conflict(id) do nothing;
 
-create table if not exists students(
- id bigserial primary key,
- enrollment_number text unique not null,
- admission_number text, roll_number text,
- student_name text not null, father_name text, mother_name text,
- mobile text, email text, course text, class text, semester text,
- year text, batch text, session text, address text, photo_url text default '',
- status text default 'ACTIVE', created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS settings (
+  id INTEGER PRIMARY KEY DEFAULT 1,
+  organization_name TEXT NOT NULL DEFAULT 'FeeSetu',
+  welcome_message TEXT DEFAULT 'विद्यार्थी शुल्क भुगतान',
+  upi_id TEXT DEFAULT '',
+  receipt_prefix TEXT DEFAULT 'FS',
+  logo_url TEXT DEFAULT ''
 );
+INSERT INTO settings(id) VALUES (1) ON CONFLICT(id) DO NOTHING;
 
-create table if not exists fee_heads(
- id bigserial primary key, name text unique not null, active boolean default true
+CREATE TABLE IF NOT EXISTS students (
+  id BIGSERIAL PRIMARY KEY,
+  enrollment_number TEXT UNIQUE NOT NULL,
+  admission_number TEXT,
+  roll_number TEXT,
+  student_name TEXT NOT NULL,
+  father_name TEXT,
+  mother_name TEXT,
+  mobile TEXT,
+  email TEXT,
+  course TEXT,
+  class TEXT,
+  semester TEXT,
+  year TEXT,
+  batch TEXT,
+  session TEXT,
+  address TEXT,
+  photo_url TEXT DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'ACTIVE',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-insert into fee_heads(name) values
+ALTER TABLE students ADD COLUMN IF NOT EXISTS photo_url TEXT DEFAULT '';
+ALTER TABLE students ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'ACTIVE';
+ALTER TABLE students ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
+
+CREATE TABLE IF NOT EXISTS fee_heads (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT TRUE
+);
+INSERT INTO fee_heads(name) VALUES
 ('Tuition Fee'),('Admission Fee'),('Examination Fee'),('Library Fee'),
 ('Sports Fee'),('Development Fee'),('Identity Card Fee'),('Other Fee')
-on conflict(name) do nothing;
+ON CONFLICT(name) DO NOTHING;
 
-create table if not exists fee_assignments(
- id bigserial primary key,
- student_id bigint references students(id),
- fee_head_id bigint references fee_heads(id),
- amount numeric(12,2) check(amount>=0),
- receipt_visible boolean default true,
- status text default 'UNPAID',
- created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS fee_assignments (
+  id BIGSERIAL PRIMARY KEY,
+  student_id BIGINT NOT NULL REFERENCES students(id) ON DELETE CASCADE,
+  fee_head_id BIGINT NOT NULL REFERENCES fee_heads(id),
+  amount NUMERIC(12,2) NOT NULL CHECK(amount >= 0),
+  receipt_visible BOOLEAN NOT NULL DEFAULT TRUE,
+  status TEXT NOT NULL DEFAULT 'UNPAID',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-create table if not exists payments(
- id bigserial primary key,
- payment_reference text unique not null,
- student_id bigint references students(id),
- amount numeric(12,2) check(amount>0),
- transaction_id text,
- gateway_payment_id text,
- status text default 'PENDING',
- created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS payments (
+  id BIGSERIAL PRIMARY KEY,
+  payment_reference TEXT UNIQUE NOT NULL,
+  student_id BIGINT NOT NULL REFERENCES students(id),
+  amount NUMERIC(12,2) NOT NULL CHECK(amount > 0),
+  transaction_id TEXT,
+  payment_method TEXT NOT NULL DEFAULT 'UPI_QR',
+  status TEXT NOT NULL DEFAULT 'PENDING',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  verified_at TIMESTAMPTZ,
+  verified_by TEXT
 );
 
-create table if not exists receipts(
- id bigserial primary key,
- receipt_number text unique not null,
- student_id bigint references students(id),
- payment_id bigint references payments(id),
- amount numeric(12,2),
- created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS payment_items (
+  id BIGSERIAL PRIMARY KEY,
+  payment_id BIGINT NOT NULL REFERENCES payments(id) ON DELETE CASCADE,
+  fee_assignment_id BIGINT NOT NULL REFERENCES fee_assignments(id),
+  fee_head_name TEXT NOT NULL,
+  amount NUMERIC(12,2) NOT NULL,
+  receipt_visible BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS receipts (
+  id BIGSERIAL PRIMARY KEY,
+  receipt_number TEXT UNIQUE NOT NULL,
+  student_id BIGINT NOT NULL REFERENCES students(id),
+  payment_id BIGINT NOT NULL REFERENCES payments(id),
+  amount NUMERIC(12,2) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
