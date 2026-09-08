@@ -2,356 +2,827 @@
 <html lang="hi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>FeeSetu App</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>FeeSetu — विद्यार्थी शुल्क भुगतान कियोस्क</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0b1b3a;--navy2:#17305e;--gold:#efab35;--saffron:#dd7907;
-  --cream:#fbf7f0;--paper:#ffffff;--ink:#18243d;--muted:#7a7f89;
-  --line:#ded9d2;--soft:#f4efe7;--green:#0f8755;--red:#bd3b31;
+  --navy:#002f6c;
+  --navy-deep:#001a45;
+  --blue:#1a56db;
+  --blue-soft:#e8f1fb;
+  --saffron:#e85d04;
+  --saffron-soft:#fff0e6;
+  --cream:#f7f4ef;
+  --white:#ffffff;
+  --ink:#0f172a;
+  --muted:#5b6b7c;
+  --line:#d7e3f0;
+  --ok:#059669;
+  --ok-bg:#d1fae5;
+  --danger:#dc2626;
+  --radius:18px;
+  --shadow:0 8px 28px rgba(0,47,108,.10);
+  --shadow-lg:0 18px 48px rgba(0,47,108,.14);
 }
-*{box-sizing:border-box}
-html,body{width:100%;height:100%;margin:0;overflow:hidden}
-body{
-  font-family:"Plus Jakarta Sans","Noto Sans Devanagari",system-ui,sans-serif;
-  background:linear-gradient(145deg,#fffdf9,#f5eee4);
-  color:var(--ink);
-  -webkit-tap-highlight-color:transparent;
-}
-button,input{font:inherit}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:"Plus Jakarta Sans","Noto Sans Devanagari",system-ui,sans-serif;color:var(--ink);background:#eef4fb;-webkit-tap-highlight-color:transparent;user-select:none}
+button,input{font:inherit;border:0;outline:0}
 button{cursor:pointer}
 .hidden{display:none!important}
 
-/* Welcome */
-#welcome{
-  position:fixed;inset:0;z-index:10000;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
+/* App shell */
+.app{
+  min-height:100vh;display:flex;flex-direction:column;
   background:
-    radial-gradient(circle at 50% 40%,rgba(239,171,53,.12),transparent 22%),
-    radial-gradient(circle at 50% 45%,rgba(64,92,160,.24),transparent 46%),
-    linear-gradient(145deg,#061024,#0d1f45 50%,#061126);
-  color:#fff;
+    linear-gradient(180deg,rgba(238,244,251,.92) 0%,rgba(247,244,239,.94) 55%,rgba(238,244,251,.96) 100%),
+    url('/assets/01_main_background.png') center bottom / cover no-repeat fixed;
 }
-.w-ring{position:absolute;border:1px solid rgba(239,171,53,.28);border-radius:50%;width:125vmax;height:125vmax}
-.w-ring.r2{width:95vmax;height:95vmax;border-color:rgba(255,255,255,.08);border-style:dashed}
-.w-ring.r3{width:66vmax;height:66vmax;border-color:rgba(239,171,53,.16)}
-.w-core{
-  width:min(470px,72vw);aspect-ratio:1;border-radius:50%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:radial-gradient(circle at 50% 33%,#365493,#193364 58%,#0b1b3a 80%);
-  border:2px solid var(--gold);
-  box-shadow:0 0 90px rgba(239,171,53,.18),inset 0 0 40px rgba(255,255,255,.05)
-}
-.w-small{font-size:clamp(22px,3vw,32px);font-weight:700}
-.w-brand{font-size:clamp(50px,7vw,76px);font-weight:900;color:#ffc45e;letter-spacing:-2px;line-height:1;margin-top:8px}
-.w-sub{font-size:12px;color:#dce6f7;margin-top:8px;font-weight:700}
-.w-touch{font-size:11px;color:#e8eef8;margin-top:20px;opacity:.82}
 
 /* Header */
 .top{
-  height:68px;background:rgba(255,255,255,.96);border-bottom:1px solid #e7ded3;
-  display:flex;align-items:center;justify-content:space-between;padding:0 clamp(10px,2vw,22px);
-  box-shadow:0 4px 16px rgba(10,25,55,.05)
+  height:74px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 18px;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(215,227,240,.9);position:sticky;top:0;z-index:40;
+  box-shadow:0 2px 12px rgba(0,47,108,.05);
 }
-.brand{display:flex;align-items:center;gap:10px;min-width:0}.logo{
-  width:44px;height:44px;border-radius:13px;background:linear-gradient(145deg,#e48b0b,#ba5b00);
-  color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px;flex:0 0 auto
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logoBox{
+  width:48px;height:48px;border-radius:12px;overflow:hidden;background:var(--white);
+  border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,47,108,.08);
 }
-.brandText{min-width:0}.brandText h1{margin:0;font-size:clamp(14px,1.35vw,18px);white-space:nowrap}.brandText p{margin:1px 0 0;font-size:9px;color:#81796e;white-space:nowrap}
-.headerRight{display:flex;align-items:center;gap:6px;flex:0 0 auto}.mini{border:1px solid #e5e0da;background:#fff;border-radius:10px;padding:7px 9px;font-size:10px;font-weight:900;color:var(--ink)}.mini.active{background:#fff3dc;border-color:#efbf73;color:#984c00}.clock{text-align:right;margin-left:3px}.clock b{display:block;font-size:13px}.clock span{display:block;font-size:8px;color:#81796e}
+.logoBox img{width:100%;height:100%;object-fit:contain}
+.collegeName{font-size:15px;font-weight:800;color:var(--navy);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.collegeSub{font-size:11px;color:var(--muted);font-weight:600;margin-top:1px}
+.brandCenter{text-align:center;flex:1}
+.feeSetu{
+  font-size:22px;font-weight:800;letter-spacing:-.4px;
+  background:linear-gradient(90deg,var(--navy),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.feeSetu span{color:var(--saffron);-webkit-text-fill-color:var(--saffron)}
+.topRight{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lang{
+  display:flex;background:#f1f5f9;border:1px solid var(--line);border-radius:10px;padding:3px;
+}
+.lang button{padding:6px 11px;border-radius:8px;font-size:12px;font-weight:700;color:var(--muted);background:transparent}
+.lang button.on{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.iconBtn{
+  height:38px;padding:0 12px;border-radius:10px;font-size:12px;font-weight:700;
+  background:var(--blue-soft);color:var(--navy);display:inline-flex;align-items:center;gap:6px;
+  text-decoration:none;border:1px solid #cfe0f5;
+}
+.clock{text-align:right;line-height:1.25;color:var(--muted);font-size:11px;min-width:72px}
+.clock b{display:block;color:var(--navy);font-size:14px;font-weight:800}
 
 /* Main */
-main{height:calc(100dvh - 68px);padding:10px;display:flex;align-items:stretch;justify-content:center}
-.shell{
-  width:min(1180px,100%);height:100%;background:rgba(255,255,255,.64);
-  border:1px solid #e5ddd3;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(10,25,55,.08)
-}
-.content{height:100%;display:flex;flex-direction:column;position:relative}
-.art{position:absolute;inset:0;pointer-events:none;opacity:.4;background:url("theme-art.svg") center/cover no-repeat}
-.work{position:relative;z-index:1;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px}
-.footer{height:27px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#fff7e9,#fffdfb);border-top:1px solid #eee4d8;font-size:9px;color:#7e756a}
+main{flex:1;padding:18px 14px 12px;display:flex;justify-content:center}
+.screen{width:min(920px,100%)}
 
-/* Search */
-.search{width:min(760px,96%);display:flex;flex-direction:column;align-items:center;gap:8px}
-.modeRow{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode{
-  height:49px;border:1.5px solid var(--line);border-radius:14px;background:rgba(255,255,255,.88);
-  font-size:clamp(9px,1vw,12px);font-weight:900;color:#49515d;box-shadow:0 5px 14px rgba(10,25,55,.035)
-}.mode.active{background:#fff1d8;border-color:#eeaa3d;color:#984c00;box-shadow:0 0 0 3px rgba(239,171,53,.09)}
-.input{
-  width:100%;height:62px;border:2px solid #ded8cf;border-radius:16px;background:#fff;
-  display:flex;align-items:center;box-shadow:0 7px 16px rgba(10,25,55,.04)
+/* Cards */
+.card{
+  background:rgba(255,255,255,.96);border:1px solid rgba(215,227,240,.95);
+  border-radius:22px;box-shadow:var(--shadow-lg);padding:22px 22px 18px;
+  animation:rise .32s ease;
 }
-.input input{width:100%;border:0;outline:0;background:transparent;text-align:center;color:var(--ink);font-size:clamp(19px,2.2vw,27px);font-weight:900;padding:0 20px}
-.input input::placeholder{color:#aaa49d}
-.hint{height:12px;font-size:9px;color:#817a72}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* Smartphone-like keypad: 3x4 main grid */
-.keypad{
-  width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+/* Steps */
+.steps{display:flex;justify-content:center;gap:0;margin-bottom:18px;padding:0 4px}
+.step{flex:1;max-width:110px;text-align:center;position:relative}
+.step:not(:first-child)::before{
+  content:"";position:absolute;top:13px;left:-50%;right:50%;height:3px;background:var(--line);z-index:0
 }
-.key{
-  height:clamp(56px,8.0vh,76px);border:1px solid #ddd6ce;border-radius:16px;
-  background:linear-gradient(180deg,#fff,#faf6f0);box-shadow:0 6px 12px rgba(10,25,55,.045);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  color:var(--ink);font-weight:900;font-size:clamp(20px,2.3vw,30px);
-  user-select:none;
+.step.done:not(:first-child)::before{background:var(--ok)}
+.step.active:not(:first-child)::before{background:linear-gradient(90deg,var(--ok),var(--blue))}
+.dot{
+  width:26px;height:26px;margin:0 auto 5px;border-radius:50%;background:#e2e8f0;color:var(--muted);
+  display:grid;place-items:center;font-size:11px;font-weight:800;position:relative;z-index:1
 }
-.key small{font-size:8px;letter-spacing:1px;color:#8e8d91;margin-top:2px}
-.key.active{background:#fff0d6;border-color:#efad43;color:#954800;box-shadow:0 0 0 3px rgba(239,171,53,.10)}
-.key.zero small{font-size:8px}
-.tools{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}.tool{
-  height:46px;border:1px solid #ded8cf;border-radius:13px;background:#f7f0e7;color:#684a22;font-size:11px;font-weight:900
-}
-.searchBtn{height:50px;width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,#e28b0b,#bf5f00);color:#fff;font-size:14px;font-weight:900;box-shadow:0 10px 22px rgba(217,119,6,.20)}
-.status{min-height:16px;font-size:10px;font-weight:800;text-align:center;color:var(--muted)}.status.error{color:var(--red)}.status.ok{color:var(--green)}
+.step.active .dot{background:var(--blue);color:#fff;box-shadow:0 0 0 5px rgba(26,86,219,.16)}
+.step.done .dot{background:var(--ok);color:#fff}
+.sl{font-size:10px;font-weight:700;color:var(--muted)}
+.step.active .sl{color:var(--blue)}
+.step.done .sl{color:var(--ok)}
 
-/* Other screens */
-.panel{width:min(960px,96%);max-height:100%;overflow:auto;background:#fff;border:1px solid #e5ded5;border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(10,25,55,.08)}
-.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.head h2{margin:0;font-size:21px}.back{border:1px solid #e2ddd6;background:#fff;border-radius:10px;padding:8px 11px;font-weight:900}
-.profile{display:grid;grid-template-columns:110px 1fr;gap:15px}.photo{width:110px;height:110px;border-radius:18px;background:#fff0d7;display:grid;place-items:center;overflow:hidden;font-size:38px}.photo img{width:100%;height:100%;object-fit:cover}.infoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.info{background:#faf8f5;border-radius:10px;padding:9px}.info small{display:block;font-size:8px;color:#8d8478;font-weight:900}.info b{font-size:12px}.primary{height:48px;border:0;border-radius:12px;background:linear-gradient(135deg,#e28b0b,#bc5d00);color:#fff;font-weight:900;padding:0 18px}
-.feeList{display:grid;gap:8px;margin:10px 0}.fee{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #e8e1d8;border-radius:12px}.fee input{width:19px;height:19px;accent-color:var(--saffron)}.fee .name{flex:1;font-weight:800}.fee .amt{font-weight:900}.total{display:flex;justify-content:space-between;border-top:2px solid var(--navy);padding:14px 2px;font-size:18px;font-weight:900}
-.pay{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}.qr{width:min(330px,100%);aspect-ratio:1;border:1px solid #e4dfd8;border-radius:17px;padding:10px;background:#fff}.amount{font-size:36px;font-weight:900;color:var(--navy)}.upi{border:1px solid #e4dfd8;border-radius:12px;padding:11px}.upiRow{display:flex;justify-content:space-between;align-items:center;gap:8px}.copy{border:0;background:#fff0d7;border-radius:8px;padding:6px 8px;font-size:10px;font-weight:900;color:#995000}.upiApp{display:flex;align-items:center;justify-content:center;height:44px;margin-top:9px;background:var(--navy);color:#fff;text-decoration:none;border-radius:10px;font-size:11px;font-weight:900}.utr{display:flex;gap:8px;margin-top:9px}.utr input{flex:1;border:1px solid #d8d2ca;border-radius:9px;padding:9px}.utr button{border:0;border-radius:9px;background:#143261;color:#fff;padding:0 13px;font-weight:900}
-.receiptHead{text-align:center;border-bottom:2px dashed #bfc5ce;padding-bottom:12px}.receiptHead h2{margin:0;font-size:25px}.receiptHead p{margin:3px 0;color:#6b7280;font-size:10px}.receiptMeta{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}.receiptTable{width:100%;border-collapse:collapse}.receiptTable th,.receiptTable td{padding:8px;border-bottom:1px solid #eceef1;text-align:left;font-size:11px}.receiptTable th{font-size:9px;color:#6d7480}.receiptTotal{display:flex;justify-content:flex-end;gap:30px;padding:13px 0;font-size:19px;font-weight:900}.receiptActions{display:flex;justify-content:center;gap:8px}.receiptActions button{border:0;border-radius:10px;padding:10px 14px;font-weight:900}.print{background:var(--navy);color:#fff}.home{background:#f1ece5}
+.hero{text-align:center;margin-bottom:18px}
+.hero h1{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.4px;margin-bottom:4px}
+.hero p{font-size:14px;color:var(--muted);font-weight:500}
 
-/* Responsive */
-@media(max-width:900px){
-  .top{height:60px}.brandText h1{font-size:14px}.brandText p{display:none}.clock span{display:none}.mini{padding:6px 7px;font-size:9px}
-  main{height:calc(100dvh - 60px);padding:5px}.shell{border-radius:18px}.work{padding:8px}.search{width:100%;gap:6px}.modeRow{gap:5px}.mode{height:44px;font-size:9px}.input{height:54px}.input input{font-size:19px}.hint{font-size:8px}.keypad{gap:6px}.key{height:56px;border-radius:13px;font-size:20px}.tool{height:40px;font-size:9px}.searchBtn{height:44px;font-size:11px}.footer{height:23px;font-size:8px}
+/* Home mode cards */
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.modeCard{
+  min-height:148px;border-radius:18px;border:2px solid var(--line);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:16px 10px;transition:.15s;box-shadow:0 4px 14px rgba(0,47,108,.05)
 }
-@media(max-width:600px){
-  .top{height:56px}.logo{width:38px;height:38px;border-radius:11px}.brandText h1{font-size:13px}.headerRight .mini:nth-child(2){display:none}.headerRight .mini{padding:6px}.clock{display:none}
-  main{height:calc(100dvh - 56px);padding:3px}.shell{border-radius:14px}.work{padding:6px 6px 4px}
-  .modeRow{gap:4px}.mode{height:40px;font-size:8px;padding:0 3px}
-  .input{height:49px}.input input{font-size:17px;padding:0 10px}.hint{height:9px;font-size:7px}
-  .keypad{gap:5px}
-  .key{height:calc((100dvh - 56px - 40px - 49px - 25px - 40px - 44px - 23px - 25px)/4);min-height:46px;max-height:58px;border-radius:10px;font-size:19px}
-  .key small{font-size:7px}.tool{height:38px;font-size:9px}.searchBtn{height:42px}.status{font-size:8px}
+.modeCard:active{transform:scale(.98)}
+.modeCard .ic{
+  width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(145deg,#eef5ff,#dce9fb);color:var(--navy)
 }
-@media(max-height:650px) and (min-width:601px){
-  .top{height:55px}main{height:calc(100dvh - 55px);padding:4px}.work{padding:5px}.sectionTitle{display:none}
-  .mode{height:38px}.input{height:46px}.hint{display:none}.key{height:51px}.tool{height:36px}.searchBtn{height:40px}.footer{height:20px}
+.modeCard b{font-size:15px;font-weight:800;color:var(--navy);text-align:center}
+.modeCard small{font-size:12px;color:var(--muted);font-weight:600;text-align:center}
+.modeCard:hover{border-color:#93c5fd;background:#f8fbff}
+
+.titleRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.titleRow h2{font-size:20px;font-weight:800;color:var(--navy)}
+.back{
+  height:40px;padding:0 14px;border-radius:12px;background:#eef2f7;color:var(--navy);
+  font-weight:700;font-size:13px
+}
+
+/* Input */
+.fieldWrap{position:relative;margin-bottom:10px}
+.field{
+  width:100%;height:62px;border:2px solid #c5d5e8;border-radius:16px;text-align:center;
+  font-size:24px;font-weight:800;color:var(--navy);background:#fff;padding:0 48px;letter-spacing:.3px
+}
+.field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(26,86,219,.12)}
+.clearX{
+  position:absolute;right:10px;top:11px;width:40px;height:40px;border-radius:10px;
+  background:#f1f5f9;color:var(--muted);font-size:18px;display:grid;place-items:center
+}
+.hint{text-align:center;font-size:12px;color:var(--muted);font-weight:500;min-height:18px;margin-bottom:12px}
+.err{text-align:center;color:var(--danger);font-weight:700;font-size:13px;min-height:20px;margin:6px 0}
+
+/* Keyboard */
+.kb{width:min(560px,100%);margin:0 auto;display:grid;gap:8px}
+.kbRow{display:grid;gap:8px}
+.kbRow.r10{grid-template-columns:repeat(10,1fr)}
+.kbRow.r9{grid-template-columns:repeat(9,1fr)}
+.kbRow.r7{grid-template-columns:repeat(7,1fr)}
+.kbRow.r3{grid-template-columns:repeat(3,1fr)}
+.kbRow.r4{grid-template-columns:1.2fr 1fr 1.2fr}
+.k{
+  height:58px;border-radius:14px;background:linear-gradient(180deg,#fff,#f4f8fc);
+  border:1px solid #d3e0ee;color:var(--navy);font-size:20px;font-weight:800;
+  box-shadow:0 2px 6px rgba(0,47,108,.05);display:grid;place-items:center
+}
+.k:active{background:#e8f0fe;transform:scale(.97)}
+.k.act{background:#eef2f7;color:#334155;font-size:15px}
+.k.go{
+  background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;border:0;
+  box-shadow:0 6px 18px rgba(26,86,219,.28);font-size:16px
+}
+.k.wide{font-size:15px}
+
+/* Student confirm */
+.stuCard{
+  display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;
+  border:1px solid var(--line);border-radius:18px;padding:16px;background:#fbfcfe
+}
+.photo{
+  width:120px;height:140px;border-radius:14px;object-fit:cover;background:#e8eef6;
+  border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:12px;font-weight:700;overflow:hidden
+}
+.photo img{width:100%;height:100%;object-fit:cover}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.meta .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.meta strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted);margin-bottom:2px;font-weight:700}
+.meta span{font-size:14px;font-weight:700;color:var(--ink)}
+
+/* Fee table */
+.feeTable{width:100%;border-collapse:collapse;margin:8px 0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.feeTable th{
+  background:linear-gradient(180deg,#eef5ff,#e2edf9);color:var(--navy);font-size:12px;font-weight:800;
+  text-align:left;padding:12px 14px;text-transform:uppercase;letter-spacing:.3px
+}
+.feeTable th:last-child,.feeTable td:last-child{text-align:right}
+.feeTable td{padding:13px 14px;border-top:1px solid var(--line);font-weight:600;font-size:14px;background:#fff}
+.feeItem{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--line);
+  border-radius:14px;background:#fff;margin-bottom:8px;cursor:pointer
+}
+.feeItem.on{border-color:var(--blue);background:#f5f9ff}
+.feeItem input{width:20px;height:20px;accent-color:var(--blue)}
+.feeItem .n{flex:1;font-weight:700;font-size:14px}
+.feeItem .a{font-weight:800;color:var(--blue)}
+.totalRow{
+  display:flex;justify-content:space-between;align-items:center;margin-top:12px;
+  padding:14px 4px;border-top:2px solid var(--navy);font-size:20px;font-weight:800;color:var(--navy)
+}
+.totalRow b{color:var(--blue);font-size:24px}
+
+.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px;flex-wrap:wrap}
+.btn{
+  height:48px;padding:0 20px;border-radius:14px;font-weight:800;font-size:14px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px
+}
+.btn.sec{background:#eef2f7;color:var(--navy)}
+.btn.pri{
+  background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;
+  box-shadow:0 6px 18px rgba(26,86,219,.25)
+}
+.btn.pri:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
+.btn.ok{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.btn.warn{background:var(--saffron-soft);color:#9a3412;border:1px solid #fdba74}
+
+/* Payment */
+.payCenter{text-align:center}
+.amtBig{font-size:38px;font-weight:800;color:var(--navy);letter-spacing:-1px;margin:6px 0}
+.refChip{
+  display:inline-block;background:#eef2f7;border-radius:10px;padding:7px 12px;
+  font-family:ui-monospace,monospace;font-size:12px;font-weight:700;color:#334155;margin-bottom:8px
+}
+.qrBox{margin:14px auto;display:flex;flex-direction:column;align-items:center;gap:8px}
+.qrBox img{
+  width:min(260px,70vw);height:min(260px,70vw);background:#fff;padding:12px;border-radius:16px;
+  border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.06)
+}
+.qrHint{
+  font-size:12px;font-weight:700;color:var(--navy);background:var(--blue-soft);
+  padding:7px 14px;border-radius:999px
+}
+.upiRow{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:12px 0}
+.upiRow .chip{
+  display:inline-flex;align-items:center;gap:8px;background:#f8fafc;border:1px solid var(--line);
+  border-radius:12px;padding:8px 12px;font-size:13px;font-weight:700
+}
+.copy{background:var(--blue);color:#fff;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800}
+.utrRow{display:flex;gap:8px;max-width:480px;margin:14px auto 0}
+.utrRow input{
+  flex:1;height:48px;border:2px solid #c5d5e8;border-radius:12px;padding:0 12px;font-weight:600;background:#fff
+}
+.status{min-height:24px;margin-top:10px;font-weight:700;font-size:13px;color:var(--muted)}
+.status.ok{color:var(--ok)}
+.status.bad{color:var(--danger)}
+
+/* Receipt */
+.successBanner{
+  background:var(--ok-bg);color:#065f46;border-radius:14px;padding:12px 14px;text-align:center;
+  font-weight:800;margin-bottom:14px;font-size:15px
+}
+.receiptPaper{
+  border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff
+}
+.rHead{text-align:center;border-bottom:2px dashed #cbd5e1;padding-bottom:12px;margin-bottom:10px}
+.rHead h2{font-size:18px;color:var(--navy);font-weight:800}
+.rHead p{font-size:12px;color:var(--muted);margin-top:2px}
+.rGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.rGrid div{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px}
+.rGrid b{display:block;font-size:10px;color:var(--muted);margin-bottom:2px}
+.rLines{white-space:pre-line;font-size:13px;line-height:1.8;border-top:1px solid var(--line);padding-top:10px}
+
+/* Footer */
+.foot{
+  margin-top:auto;background:linear-gradient(180deg,#002f6c,#001a45);color:#dbe7f5;
+  padding:12px 16px 14px;text-align:center;font-size:12px;font-weight:600
+}
+.foot .tag{font-size:13px;font-weight:800;color:#fff;margin-bottom:4px}
+.foot .addr{opacity:.85}
+
+.empty{text-align:center;padding:28px 12px;color:var(--muted)}
+.empty .big{font-size:40px;margin-bottom:8px}
+
+/* Help modal */
+.modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:100;
+  display:flex;align-items:center;justify-content:center;padding:16px
+}
+.modal .box{
+  width:min(420px,100%);background:#fff;border-radius:20px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.25)
+}
+.modal h3{color:var(--navy);font-size:18px;margin-bottom:10px}
+.modal ol{padding-left:18px;line-height:1.75;font-size:13px;color:#334155;font-weight:500}
+.modal p{font-size:12px;color:var(--muted);margin-top:10px}
+
+@media(max-width:760px){
+  .top{height:64px;padding:0 10px}
+  .collegeName{font-size:13px}
+  .collegeSub,.clock{display:none}
+  .feeSetu{font-size:18px}
+  .modes{grid-template-columns:1fr;gap:10px}
+  .modeCard{min-height:88px;flex-direction:row;justify-content:flex-start;padding:14px 16px}
+  .stuCard{grid-template-columns:1fr}
+  .photo{width:96px;height:112px;margin:0 auto}
+  .meta{grid-template-columns:1fr}
+  .rGrid{grid-template-columns:1fr}
+  .k{height:50px;font-size:17px}
+  .kbRow.r10{grid-template-columns:repeat(5,1fr)}
+  .hero h1{font-size:22px}
+  .card{padding:16px 14px;border-radius:18px}
 }
 @media print{
-  body{overflow:visible;background:#fff}.top,.footer,#welcome,.noPrint{display:none!important}main{height:auto;padding:0}.panel{width:100%;max-height:none;box-shadow:none;border:0}
+  body{background:#fff}
+  .top,.foot,.noPrint,.steps{display:none!important}
+  main{padding:0}
+  .card{box-shadow:none;border:0}
+  .app{background:#fff}
 }
 </style>
 </head>
 <body>
-<div id="welcome">
-  <div class="w-ring"></div><div class="w-ring r2"></div><div class="w-ring r3"></div>
-  <div class="w-core">
-    <div class="w-small">स्वागत है</div>
-    <div class="w-brand">FeeSetu App</div>
-    <div class="w-sub">विद्यार्थी शुल्क भुगतान केंद्र</div>
-    <div class="w-touch">स्क्रीन पर कहीं भी स्पर्श करें</div>
-  </div>
-</div>
-
-<div id="app">
+<div class="app">
 <header class="top">
   <div class="brand">
-    <div class="logo">FS</div>
-    <div class="brandText"><h1 id="orgName">FeeSetu</h1><p>विद्यार्थी शुल्क भुगतान कियोस्क</p></div>
+    <div class="logoBox" id="logoBox"><img src="/assets/04_logo_branding.png" alt="Logo" onerror="this.remove()"></div>
+    <div>
+      <div class="collegeName" id="orgName">शासकीय स्नातकोत्तर महाविद्यालय, शिवपुरी</div>
+      <div class="collegeSub" id="orgSub">विद्यार्थी शुल्क भुगतान कियोस्क</div>
+    </div>
   </div>
-  <div class="headerRight">
-    <button class="mini active">हिंदी</button>
-    <button class="mini">EN</button>
-    <button class="mini" id="help">? सहायता</button>
-    <a class="mini" href="/admin.html">🔒 Admin</a>
+  <div class="brandCenter noPrint"><div class="feeSetu">Fee<span>Setu</span></div></div>
+  <div class="topRight">
+    <div class="lang" id="langToggle">
+      <button type="button" data-lang="hi" class="on">हिंदी</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <button class="iconBtn noPrint" type="button" id="helpBtn">❓ <span data-i18n="help">सहायता</span></button>
+    <a class="iconBtn noPrint" href="/admin.html">🔒 Admin</a>
     <div class="clock"><b id="time">--:--</b><span id="date">--</span></div>
   </div>
 </header>
 
 <main>
-  <div class="shell">
-    <div class="art"></div>
-    <div class="content">
-      <div class="work">
-        <section id="searchScreen" class="search">
-          <div class="modeRow">
-            <button class="mode active" data-mode="enrollment">🪪 नामांकन क्रमांक</button>
-            <button class="mode" data-mode="roll">🎓 रोल नंबर</button>
-            <button class="mode" data-mode="mobile">📱 मोबाइल नंबर</button>
-          </div>
-          <div class="input"><input id="query" readonly placeholder="नामांकन क्रमांक दर्ज करें"></div>
-          <div id="hint" class="hint"></div>
-          <div id="keypad" class="keypad"></div>
-          <div class="tools"><button class="tool" id="clear">साफ करें</button><button class="tool" id="back">⌫ एक हटाएँ</button></div>
-          <button class="searchBtn" id="search">खोजें</button>
-          <div id="status" class="status"></div>
-        </section>
+<div class="screen">
 
-        <section id="choiceScreen" class="panel hidden">
-          <div class="head"><h2>विद्यार्थी चुनें</h2><button class="back" data-back>← वापस</button></div>
-          <div id="choices"></div>
-        </section>
-
-        <section id="studentScreen" class="panel hidden">
-          <div class="head"><h2>विद्यार्थी की पुष्टि</h2><button class="back" data-back>← वापस</button></div>
-          <div class="profile">
-            <div id="photo" class="photo">👤</div>
-            <div><div id="studentName" style="font-size:22px;font-weight:900;margin-bottom:8px"></div><div id="info" class="infoGrid"></div></div>
-          </div>
-          <div id="history" style="margin-top:11px"></div>
-          <div style="display:flex;justify-content:flex-end;margin-top:14px"><button id="viewFees" class="primary">बकाया फीस देखें →</button></div>
-        </section>
-
-        <section id="feeScreen" class="panel hidden">
-          <div class="head"><h2>बकाया फीस</h2><button id="feeBack" class="back">← वापस</button></div>
-          <div id="fees" class="feeList"></div><div class="total"><span>कुल देय राशि</span><span id="total">₹0.00</span></div>
-          <button id="pay" class="primary" style="width:100%">UPI से भुगतान करें</button>
-        </section>
-
-        <section id="paymentScreen" class="panel hidden">
-          <div class="head"><h2>भुगतान</h2><button id="paymentBack" class="back">← वापस</button></div>
-          <div class="pay">
-            <div style="text-align:center"><img id="qr" class="qr"><div style="font-size:10px;color:#6b7280;font-weight:800;margin-top:6px">QR को UPI App से स्कैन करें</div></div>
-            <div><div style="font-size:10px;color:#6b7280;font-weight:900">भुगतान राशि</div><div id="amount" class="amount">₹0.00</div>
-              <div class="upi"><div style="font-size:9px;color:#6b7280;font-weight:900">UPI ID</div><div class="upiRow"><b id="upi">-</b><button id="copy" class="copy">कॉपी</button></div><a id="upiApp" class="upiApp" href="#">📱 UPI App खोलें</a></div>
-              <div class="utr"><input id="utr" placeholder="UTR / Transaction ID"><button id="utrBtn">दर्ज करें</button></div><div id="payStatus" class="status"></div>
-            </div>
-          </div>
-        </section>
-
-        <section id="receiptScreen" class="panel hidden">
-          <div class="receiptHead"><h2 id="receiptOrg">FeeSetu</h2><p>शुल्क भुगतान रसीद</p><p id="receiptState" style="color:var(--green);font-weight:900"></p></div>
-          <div id="receiptMeta" class="receiptMeta"></div>
-          <table class="receiptTable"><thead><tr><th>शुल्क मद</th><th>राशि</th></tr></thead><tbody id="receiptRows"></tbody></table>
-          <div class="receiptTotal"><span>कुल भुगतान</span><span id="receiptTotal">₹0.00</span></div>
-          <div class="receiptActions noPrint"><button class="print" id="print">🖨 रसीद प्रिंट करें</button><button class="home" id="home">मुख्य स्क्रीन</button></div>
-        </section>
-      </div>
-      <div class="footer">🔒 आपकी जानकारी सुरक्षित है • केवल शुल्क भुगतान के लिए</div>
-    </div>
+<!-- HOME: choose search type -->
+<section id="homeScreen" class="card">
+  <div class="hero">
+    <h1 data-i18n="homeTitle">विद्यार्थी शुल्क भुगतान कियोस्क</h1>
+    <p data-i18n="homeSub">अपना रिकॉर्ड खोजने के लिए कोई एक विकल्प चुनें</p>
   </div>
+  <div class="modes">
+    <button class="modeCard" type="button" data-go="enrollment">
+      <div class="ic">🪪</div>
+      <b data-i18n="modeEnroll">नामांकन क्रमांक</b>
+      <small>Enrollment Number</small>
+    </button>
+    <button class="modeCard" type="button" data-go="roll">
+      <div class="ic">🎓</div>
+      <b data-i18n="modeRoll">रोल नंबर</b>
+      <small>Roll Number</small>
+    </button>
+    <button class="modeCard" type="button" data-go="mobile">
+      <div class="ic">📱</div>
+      <b data-i18n="modeMobile">मोबाइल नंबर</b>
+      <small>Mobile Number</small>
+    </button>
+  </div>
+  <p class="hint" style="margin-top:16px" data-i18n="homeNote">सुरक्षित • सरल • स्व-सेवा कियोस्क</p>
+</section>
+
+<!-- SEARCH + KEYBOARD -->
+<section id="searchScreen" class="card hidden">
+  <div class="steps" id="stepsSearch"></div>
+  <div class="titleRow">
+    <h2 id="searchTitle">नामांकन क्रमांक</h2>
+    <button class="back" type="button" data-home data-i18n="back">← वापस</button>
+  </div>
+  <div class="fieldWrap">
+    <input id="query" class="field" autocomplete="off" inputmode="none" readonly placeholder="">
+    <button class="clearX" type="button" id="erase">×</button>
+  </div>
+  <div class="hint" id="hint"></div>
+  <div class="kb" id="keys"></div>
+  <div class="err" id="error"></div>
+</section>
+
+<!-- MULTI RESULTS -->
+<section id="resultsScreen" class="card hidden">
+  <div class="steps"></div>
+  <div class="titleRow"><h2 data-i18n="selectStudent">विद्यार्थी चुनें</h2><button class="back" type="button" data-home data-i18n="back">← वापस</button></div>
+  <div id="choices"></div>
+</section>
+
+<!-- CONFIRM -->
+<section id="studentScreen" class="card hidden">
+  <div class="steps"></div>
+  <div class="titleRow"><h2 data-i18n="confirmTitle">विद्यार्थी विवरण की पुष्टि</h2><button class="back" type="button" data-home data-i18n="back">← वापस</button></div>
+  <div id="studentInfo"></div>
+  <div class="actions">
+    <button class="btn sec" type="button" data-home data-i18n="notMe">नहीं, पुनः खोजें</button>
+    <button class="btn pri" type="button" id="continueFee" data-i18n="yesContinue">हाँ, आगे बढ़ें →</button>
+  </div>
+</section>
+
+<!-- FEES -->
+<section id="feeScreen" class="card hidden">
+  <div class="steps"></div>
+  <div class="titleRow"><h2 data-i18n="feeTitle">देय शुल्क विवरण</h2><button class="back" type="button" id="backStudent" data-i18n="back">← वापस</button></div>
+  <div id="selectAllRow" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--muted)">
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="selectAllFees" checked> <span data-i18n="selectAll">सभी चुनें</span></label>
+    <span data-i18n="partialHint">आंशिक भुगतान संभव</span>
+  </div>
+  <div id="feeBox"></div>
+  <div class="totalRow"><span data-i18n="totalDue">कुल देय राशि</span><b id="feeTotal">₹0</b></div>
+  <div class="actions">
+    <button class="btn sec" type="button" id="backStudent2" data-i18n="back">← वापस</button>
+    <button class="btn pri" type="button" id="startPayment" data-i18n="payNow">भुगतान करें →</button>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="paymentScreen" class="card payCenter hidden">
+  <div class="steps noPrint"></div>
+  <div class="titleRow noPrint"><h2 data-i18n="payTitle">भुगतान करें</h2><button class="back" type="button" id="backFee" data-i18n="back">← वापस</button></div>
+  <div id="paymentStudent" style="color:var(--muted);font-weight:600;font-size:14px"></div>
+  <div class="amtBig" id="paymentAmount">₹0</div>
+  <div class="refChip" id="paymentRef">PAY-</div>
+  <div class="qrBox">
+    <img id="qr" alt="UPI QR">
+    <div class="qrHint" data-i18n="qrHint">📱 PhonePe / Paytm / Google Pay से QR स्कैन करें</div>
+  </div>
+  <div class="upiRow">
+    <div class="chip"><span>UPI ID</span> <b id="upiIdText">-</b> <button class="copy" type="button" id="copyUpi" data-i18n="copy">कॉपी</button></div>
+    <button class="btn sec" type="button" id="downloadQr" data-i18n="saveQr">QR सेव</button>
+    <a class="btn ok" id="upiLink" href="#" data-i18n="openUpi">UPI App खोलें</a>
+  </div>
+  <p style="font-size:12px;color:var(--muted);font-weight:500;margin-top:8px" data-i18n="payNote">भुगतान के बाद UTR / Transaction ID दर्ज करें</p>
+  <div class="utrRow">
+    <input id="utr" placeholder="UTR / Transaction ID" autocomplete="off">
+    <button class="btn pri" type="button" id="submitUtr" data-i18n="submitUtr">दर्ज करें</button>
+  </div>
+  <p class="status" id="paymentStatus"></p>
+  <button class="btn sec noPrint" type="button" id="checkPayment" style="margin-top:8px" data-i18n="checkStatus">स्थिति जाँचें</button>
+</section>
+
+<!-- RECEIPT -->
+<section id="receiptScreen" class="card hidden">
+  <div class="successBanner noPrint" data-i18n="paySuccess">✅ भुगतान सफल! रसीद तैयार है</div>
+  <div class="receiptPaper" id="receiptPrint">
+    <div class="rHead">
+      <h2 id="rOrg">शासकीय स्नातकोत्तर महाविद्यालय, शिवपुरी</h2>
+      <p>FeeSetu — <span data-i18n="receiptTitle">विद्यार्थी शुल्क भुगतान रसीद</span></p>
+    </div>
+    <div class="rGrid" id="receiptMeta"></div>
+    <div class="rLines" id="receiptLines"></div>
+    <p style="text-align:center;margin-top:12px;font-size:12px;color:var(--muted)" data-i18n="thanks">धन्यवाद! यह कंप्यूटर जनित रसीद है।</p>
+  </div>
+  <div class="actions noPrint">
+    <button class="btn sec" type="button" data-home data-i18n="newSearch">नई खोज</button>
+    <button class="btn pri" type="button" id="printReceipt" data-i18n="print">🖨 रसीद प्रिंट</button>
+  </div>
+</section>
+
+</div>
 </main>
+
+<footer class="foot noPrint">
+  <div class="tag" data-i18n="tagline">शिक्षा से विकसित समाज</div>
+  <div class="addr" id="footerAddr">T.V. Tower के पास, फिजिकल रोड, शिवपुरी (म.प्र.)</div>
+</footer>
+</div>
+
+<div id="helpModal" class="modal hidden">
+  <div class="box">
+    <h3 data-i18n="helpTitle">कैसे इस्तेमाल करें</h3>
+    <ol id="helpList"></ol>
+    <p data-i18n="helpNote">समस्या होने पर महाविद्यालय कार्यालय से संपर्क करें।</p>
+    <button class="btn pri" type="button" id="closeHelp" style="width:100%;margin-top:14px" data-i18n="gotIt">समझ गया</button>
+  </div>
+</div>
 
 <script>
 const $=id=>document.getElementById(id);
-let mode="enrollment",student=null,paymentRef="",lastKey="",lastTap=0,lastIndex=0,idleTimer=null,pollTimer=null;
-const letters={"1":["1"],"2":["2","A","B","C"],"3":["3","D","E","F"],"4":["4","G","H","I"],"5":["5","J","K","L"],"6":["6","M","N","O"],"7":["7","P","Q","R","S"],"8":["8","T","U","V"],"9":["9","W","X","Y","Z"],"0":["0","/","-"]};
+let mode=null, student=null, students=[], fee=null, paymentRef="", idleTimer=null, lang="hi";
 
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+const I18N={
+ hi:{
+  help:"सहायता", homeTitle:"विद्यार्थी शुल्क भुगतान कियोस्क", homeSub:"अपना रिकॉर्ड खोजने के लिए कोई एक विकल्प चुनें",
+  modeEnroll:"नामांकन क्रमांक", modeRoll:"रोल नंबर", modeMobile:"मोबाइल नंबर", homeNote:"सुरक्षित • सरल • स्व-सेवा कियोस्क",
+  back:"← वापस", selectStudent:"विद्यार्थी चुनें", confirmTitle:"विद्यार्थी विवरण की पुष्टि", notMe:"नहीं, पुनः खोजें", yesContinue:"हाँ, आगे बढ़ें →",
+  feeTitle:"देय शुल्क विवरण", selectAll:"सभी चुनें", partialHint:"आंशिक भुगतान संभव", totalDue:"कुल देय राशि", payNow:"भुगतान करें →",
+  payTitle:"भुगतान करें", qrHint:"📱 PhonePe / Paytm / Google Pay से QR स्कैन करें", copy:"कॉपी", saveQr:"QR सेव", openUpi:"UPI App खोलें",
+  payNote:"भुगतान के बाद UTR / Transaction ID दर्ज करें", submitUtr:"दर्ज करें", checkStatus:"स्थिति जाँचें",
+  paySuccess:"✅ भुगतान सफल! रसीद तैयार है", receiptTitle:"विद्यार्थी शुल्क भुगतान रसीद", thanks:"धन्यवाद! यह कंप्यूटर जनित रसीद है।",
+  newSearch:"नई खोज", print:"🖨 रसीद प्रिंट", helpTitle:"कैसे इस्तेमाल करें", helpNote:"समस्या होने पर महाविद्यालय कार्यालय से संपर्क करें।", gotIt:"समझ गया",
+  tagline:"शिक्षा से विकसित समाज",
+  step1:"खोजें", step2:"पुष्टि", step3:"शुल्क", step4:"भुगतान", step5:"रसीद",
+  titles:{enrollment:"नामांकन क्रमांक दर्ज करें", roll:"रोल नंबर दर्ज करें", mobile:"मोबाइल नंबर दर्ज करें"},
+  hints:{enrollment:"उदाहरण: ABC/2026/00125", roll:"केवल अंक — जैसे 125", mobile:"केवल 10 अंकों का मोबाइल"},
+  search:"खोजें / आगे बढ़ें", clear:"साफ करें", backspace:"एक हटाएँ",
+  noInput:"कृपया जानकारी दर्ज करें।", searching:"रिकॉर्ड खोजा जा रहा है...", mobileErr:"मोबाइल नंबर 10 अंकों का होना चाहिए।",
+  noFee:"इस समय कोई बकाया शुल्क नहीं है।", name:"नाम", enroll:"नामांकन", rollL:"रोल नंबर", course:"कक्षा / कोर्स",
+  sem:"सेमेस्टर", session:"सत्र", mobileL:"मोबाइल", father:"पिता", noPhoto:"फोटो उपलब्ध नहीं",
+  helpSteps:["नामांकन / रोल / मोबाइल चुनें","कीपैड से जानकारी दर्ज कर खोजें","अपना विवरण पुष्टि करें","देय शुल्क देखें और भुगतान करें","QR स्कैन कर UPI से भुगतान करें","UTR दर्ज करें, रसीद प्रिंट करें"]
+ },
+ en:{
+  help:"Help", homeTitle:"Student Fee Payment Kiosk", homeSub:"Choose one option to find your record",
+  modeEnroll:"Enrollment No.", modeRoll:"Roll Number", modeMobile:"Mobile Number", homeNote:"Secure • Simple • Self-service kiosk",
+  back:"← Back", selectStudent:"Select Student", confirmTitle:"Confirm Student Details", notMe:"No, search again", yesContinue:"Yes, continue →",
+  feeTitle:"Payable Fee Details", selectAll:"Select all", partialHint:"Partial payment allowed", totalDue:"Total Due", payNow:"Pay Now →",
+  payTitle:"Make Payment", qrHint:"📱 Scan QR with PhonePe / Paytm / Google Pay", copy:"Copy", saveQr:"Save QR", openUpi:"Open UPI App",
+  payNote:"After payment, enter UTR / Transaction ID", submitUtr:"Submit", checkStatus:"Check status",
+  paySuccess:"✅ Payment successful! Receipt ready", receiptTitle:"Student Fee Payment Receipt", thanks:"Thank you! Computer generated receipt.",
+  newSearch:"New search", print:"🖨 Print receipt", helpTitle:"How to use", helpNote:"Contact college office if you need help.", gotIt:"Got it",
+  tagline:"Progress through Education",
+  step1:"Search", step2:"Confirm", step3:"Fees", step4:"Pay", step5:"Receipt",
+  titles:{enrollment:"Enter Enrollment Number", roll:"Enter Roll Number", mobile:"Enter Mobile Number"},
+  hints:{enrollment:"Example: ABC/2026/00125", roll:"Digits only — e.g. 125", mobile:"10-digit mobile number"},
+  search:"Search / Continue", clear:"Clear", backspace:"Backspace",
+  noInput:"Please enter details.", searching:"Searching...", mobileErr:"Mobile must be 10 digits.",
+  noFee:"No pending fees.", name:"Name", enroll:"Enrollment", rollL:"Roll No.", course:"Course / Class",
+  sem:"Semester", session:"Session", mobileL:"Mobile", father:"Father", noPhoto:"No photo",
+  helpSteps:["Choose Enrollment / Roll / Mobile","Enter details on keypad and search","Confirm your details","Review fees and pay","Scan QR and pay via UPI","Enter UTR and print receipt"]
+ }
+};
+function t(k){const o=I18N[lang]||I18N.hi; return o[k]!=null?o[k]:(I18N.hi[k]||k)}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#039;"}[c]))}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{minimumFractionDigits:2})}
-function idle(){clearTimeout(idleTimer);idleTimer=setTimeout(()=>goHome(true),120000)}
-function show(id){["searchScreen","choiceScreen","studentScreen","feeScreen","paymentScreen","receiptScreen"].forEach(x=>$(x).classList.toggle("hidden",x!==id));idle()}
-function goHome(clear=true){if(clear){student=null;paymentRef="";$("query").value="";lastKey="";lastTap=0;lastIndex=0}$("status").textContent="";show("searchScreen")}
-function setMode(m){
-  mode=m;$("query").value="";lastKey="";lastTap=0;lastIndex=0;
-  document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("active",b.dataset.mode===m));
-  $("query").placeholder=m==="enrollment"?"नामांकन क्रमांक दर्ज करें":m==="roll"?"रोल नंबर दर्ज करें":"मोबाइल नंबर दर्ज करें";
-  $("hint").textContent=""; // no instruction text on screen
-  renderKeys();idle();
+
+function applyI18n(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n"); if(I18N[lang][k]!=null) el.textContent=I18N[lang][k]});
+  $("helpList").innerHTML=(t("helpSteps")||[]).map(s=>`<li>${s}</li>`).join("");
+  document.documentElement.lang=lang;
+  if(mode){ $("searchTitle").textContent=t("titles")[mode]; $("hint").textContent=t("hints")[mode]; renderKeys(); }
 }
-function renderKeys(){
-  const isMobile=mode==="mobile";
-  const arr=isMobile
-    ? [["1",""],["2",""],["3",""],["4",""],["5",""],["6",""],["7",""],["8",""],["9",""],["0",""],["",""],["",""]]
-    : [["1",""],["2","ABC"],["3","DEF"],["4","GHI"],["5","JKL"],["6","MNO"],["7","PQRS"],["8","TUV"],["9","WXYZ"],["0","/ -"],["",""],["",""]];
-  $("keypad").innerHTML=arr.map(([k,s])=>{
-    if(!k)return "<div></div>";
-    return `<button class="key ${k==="0"&&!isMobile?"zero":""}" data-key="${k}">${k}<small>${s}</small></button>`
+
+function stepHtml(active){
+  const labels=[t("step1"),t("step2"),t("step3"),t("step4"),t("step5")];
+  return labels.map((lb,i)=>{
+    const n=i+1; let cls="step";
+    if(n<active) cls+=" done"; if(n===active) cls+=" active";
+    const dot=n<active?"✓":String(n);
+    return `<div class="${cls}"><div class="dot">${dot}</div><div class="sl">${lb}</div></div>`;
   }).join("");
-  $("keypad").querySelectorAll(".key").forEach(b=>b.onclick=()=>press(b.dataset.key));
 }
-function press(k){
-  const now=Date.now(),v=$("query").value;
-  if(mode==="mobile"){
-    $("query").value=v+k;lastKey="";lastTap=0;lastIndex=0;idle();return;
-  }
-  const seq=letters[k]||[k];
-  document.querySelectorAll(".key").forEach(x=>x.classList.remove("active"));
-  if(lastKey===k && now-lastTap<900 && v.length){
-    lastIndex=(lastIndex+1)%seq.length;
-    $("query").value=v.slice(0,-1)+seq[lastIndex];
-  }else{
-    lastIndex=0;
-    $("query").value=v+seq[0];
-  }
-  lastKey=k;lastTap=now;
-  document.querySelector(`[data-key="${CSS.escape(k)}"]`)?.classList.add("active");
-  clearTimeout(window.__key);
-  window.__key=setTimeout(()=>document.querySelectorAll(".key").forEach(x=>x.classList.remove("active")),850);
-  idle();
+function paintSteps(active){
+  document.querySelectorAll(".steps").forEach(el=>{ el.innerHTML=stepHtml(active); });
 }
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
-$("clear").onclick=()=>{ $("query").value="";lastKey="";lastTap=0;lastIndex=0;idle(); };
-$("back").onclick=()=>{ $("query").value=$("query").value.slice(0,-1);lastKey="";lastTap=0;lastIndex=0;idle(); };
-$("search").onclick=search;
-async function search(){
-  const v=$("query").value.trim();
-  if(!v){$("status").textContent="कृपया जानकारी दर्ज करें।";$("status").className="status error";return}
-  if(mode==="mobile" && !/^\d{10}$/.test(v)){ $("status").textContent="मोबाइल नंबर 10 अंकों का होना चाहिए।";$("status").className="status error";return}
-  $("status").textContent=""; 
+
+function show(id){
+  ["homeScreen","searchScreen","resultsScreen","studentScreen","feeScreen","paymentScreen","receiptScreen"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+  const map={homeScreen:1,searchScreen:1,resultsScreen:2,studentScreen:2,feeScreen:3,paymentScreen:4,receiptScreen:5};
+  paintSteps(map[id]||1);
+  resetIdle();
+}
+function resetIdle(){ clearTimeout(idleTimer); idleTimer=setTimeout(resetAll, 90000); }
+function resetAll(){
+  mode=null; student=null; students=[]; fee=null; paymentRef="";
+  $("query").value=""; $("error").textContent=""; $("utr").value="";
+  $("paymentStatus").textContent=""; $("paymentStatus").className="status";
+  show("homeScreen");
+}
+
+function openMode(m){
+  mode=m;
+  $("query").value=""; $("error").textContent="";
+  $("searchTitle").textContent=t("titles")[m];
+  $("hint").textContent=t("hints")[m];
+  renderKeys(); show("searchScreen");
+}
+
+function renderKeys(){
+  const searchL=t("search"), clearL=t("clear"), bsL=t("backspace");
+  let html="";
+  if(mode==="enrollment"){
+    const rows=[
+      ["1","2","3","4","5","6","7","8","9","0"],
+      ["Q","W","E","R","T","Y","U","I","O","P"],
+      ["A","S","D","F","G","H","J","K","L"],
+      ["Z","X","C","V","B","N","M","/","-"]
+    ];
+    rows.forEach((r,idx)=>{
+      const cls=r.length===10?"r10":r.length===9?"r9":"r9";
+      html+=`<div class="kbRow ${cls}">${r.map(k=>`<button type="button" class="k" data-k="${k}">${k}</button>`).join("")}</div>`;
+    });
+    html+=`<div class="kbRow r3">
+      <button type="button" class="k act" data-k="CLR">${clearL}</button>
+      <button type="button" class="k act" data-k="BS">${bsL}</button>
+      <button type="button" class="k go" data-k="GO">${searchL}</button>
+    </div>`;
+  } else {
+    html+=`<div class="kbRow r3">
+      <button type="button" class="k" data-k="1">1</button>
+      <button type="button" class="k" data-k="2">2</button>
+      <button type="button" class="k" data-k="3">3</button>
+    </div>
+    <div class="kbRow r3">
+      <button type="button" class="k" data-k="4">4</button>
+      <button type="button" class="k" data-k="5">5</button>
+      <button type="button" class="k" data-k="6">6</button>
+    </div>
+    <div class="kbRow r3">
+      <button type="button" class="k" data-k="7">7</button>
+      <button type="button" class="k" data-k="8">8</button>
+      <button type="button" class="k" data-k="9">9</button>
+    </div>
+    <div class="kbRow r3">
+      <button type="button" class="k act" data-k="CLR">${clearL}</button>
+      <button type="button" class="k" data-k="0">0</button>
+      <button type="button" class="k act" data-k="BS">${bsL}</button>
+    </div>
+    <div class="kbRow" style="grid-template-columns:1fr">
+      <button type="button" class="k go" data-k="GO">${searchL}</button>
+    </div>`;
+  }
+  $("keys").innerHTML=html;
+  $("keys").querySelectorAll("button").forEach(b=>b.onclick=()=>tap(b.dataset.k));
+}
+
+function tap(k){
+  const el=$("query");
+  if(k==="BS"){ el.value=el.value.slice(0,-1); return; }
+  if(k==="CLR"){ el.value=""; return; }
+  if(k==="GO"){ findStudent(); return; }
+  if(mode==="mobile" && el.value.length>=10) return;
+  if(mode==="roll" && !/^\d$/.test(k)) return;
+  el.value+=k;
+  resetIdle();
+}
+
+async function loadSettings(){
   try{
+    const s=await (await fetch("/api/settings")).json();
+    if(s.organization_name) $("orgName").textContent=s.organization_name;
+    if(s.welcome_message) $("orgSub").textContent=s.welcome_message;
+    if(s.logo_url){
+      $("logoBox").innerHTML=`<img src="${esc(s.logo_url)}" alt="Logo">`;
+    }
+  }catch{}
+  updateClock(); setInterval(updateClock,1000);
+}
+function updateClock(){
+  const d=new Date();
+  $("time").textContent=d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+  $("date").textContent=d.toLocaleDateString(lang==="hi"?"hi-IN":"en-IN",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
+}
+
+async function findStudent(){
+  let v=$("query").value.trim();
+  if(mode==="roll") v=v.replace(/\D/g,"");
+  $("error").textContent="";
+  if(!v){ $("error").textContent=t("noInput"); return; }
+  if(mode==="mobile" && !/^\d{10}$/.test(v)){ $("error").textContent=t("mobileErr"); return; }
+  $("error").textContent=t("searching");
+  try{
+    // FIXED mapping: mode is always the type sent to API
     const r=await fetch(`/api/students/search?type=${encodeURIComponent(mode)}&identifier=${encodeURIComponent(v)}`);
     const j=await r.json();
-    if(!r.ok)throw Error(j.error||"Search failed");
-    if(!j.students?.length)throw Error("रिकॉर्ड नहीं मिला।");
-    if(j.students.length===1) selectStudent(j.students[0]);
-    else renderChoices(j.students),show("choiceScreen");
-  }catch(e){$("status").textContent=e.message;$("status").className="status error"}
+    if(!r.ok) throw new Error(j.error||"Not found");
+    students=j.students||[];
+    if(students.length===1){ $("error").textContent=""; selectStudent(students[0]); }
+    else { $("error").textContent=""; renderChoices(); show("resultsScreen"); }
+  }catch(e){ $("error").textContent=e.message||"Not found"; }
 }
-function renderChoices(arr){
-  $("choices").innerHTML=arr.map((s,i)=>`<button class="choice" data-i="${i}"><span><b>${esc(s.student_name)}</b><br><small>${esc(s.enrollment_number)} • Roll ${esc(s.roll_number||"-")} • ${esc(s.course||s.class||"")}</small></span><span style="color:#d97706;font-size:20px">→</span></button>`).join("");
-  $("choices").querySelectorAll(".choice").forEach((b,i)=>b.onclick=()=>selectStudent(arr[i]));
+
+function renderChoices(){
+  $("choices").innerHTML=students.map((s,i)=>`
+    <button type="button" class="feeItem" data-i="${i}" style="width:100%;text-align:left;margin-bottom:8px">
+      <div class="n"><b>${esc(s.student_name)}</b><br><small style="color:var(--muted);font-weight:600">${t("father")}: ${esc(s.father_name||"-")} • ${t("rollL")}: ${esc(s.roll_number||"-")}</small></div>
+      <div class="a">→</div>
+    </button>`).join("");
+  $("choices").querySelectorAll("button").forEach(b=>b.onclick=()=>selectStudent(students[+b.dataset.i]));
 }
-async function selectStudent(s){
-  student=s;$("studentName").textContent=s.student_name||"-";
-  $("photo").innerHTML=s.photo_url?`<img src="${esc(s.photo_url)}">`:"👤";
-  const d=[["Enrollment",s.enrollment_number],["Roll Number",s.roll_number||"-"],["Father",s.father_name||"-"],["Course",s.course||s.class||"-"],["Semester",s.semester||"-"],["Session",s.session||"-"],["Mobile",s.mobile||"-"],["Admission",s.admission_number||"-"]];
-  $("info").innerHTML=d.map(x=>`<div class="info"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join("");
-  try{
-    const h=await (await fetch(`/api/students/${s.id}/history`)).json();
-    $("history").innerHTML=h.payments?.length?h.payments.slice(0,3).map(p=>`<div style="display:flex;justify-content:space-between;padding:7px 9px;background:#faf8f5;border-radius:8px;margin-top:4px;font-size:10px"><span>${money(p.amount)} • ${new Date(p.created_at).toLocaleDateString("hi-IN")}</span><b style="color:${p.status==="SUCCESS"?"#0f8755":"#9a650f"}">${p.status}</b></div>`).join(""):"";
-  }catch{$("history").textContent=""}
+
+function selectStudent(s){
+  student=s;
+  const photo=s.photo_url
+    ? `<div class="photo"><img src="${esc(s.photo_url)}" alt=""></div>`
+    : `<div class="photo">${t("noPhoto")}</div>`;
+  $("studentInfo").innerHTML=`
+    <div class="stuCard">
+      ${photo}
+      <div class="meta">
+        <div class="item"><strong>${t("name")}</strong><span>${esc(s.student_name)}</span></div>
+        <div class="item"><strong>${t("father")}</strong><span>${esc(s.father_name||"-")}</span></div>
+        <div class="item"><strong>${t("enroll")}</strong><span>${esc(s.enrollment_number)}</span></div>
+        <div class="item"><strong>${t("rollL")}</strong><span>${esc(s.roll_number||"-")}</span></div>
+        <div class="item"><strong>${t("course")}</strong><span>${esc(s.course||s.class||"-")}</span></div>
+        <div class="item"><strong>${t("sem")}</strong><span>${esc(s.semester||"-")}</span></div>
+        <div class="item"><strong>${t("session")}</strong><span>${esc(s.session||"-")}</span></div>
+        <div class="item"><strong>${t("mobileL")}</strong><span>${esc(s.mobile||"-")}</span></div>
+      </div>
+    </div>`;
   show("studentScreen");
 }
-document.querySelectorAll("[data-back]").forEach(b=>b.onclick=()=>show("searchScreen"));
-$("viewFees").onclick=loadFees;$("feeBack").onclick=()=>show("studentScreen");$("paymentBack").onclick=()=>show("feeScreen");
-async function loadFees(){
-  const j=await (await fetch(`/api/students/${student.id}/fee`)).json();
-  if(!j.items?.length){$("fees").innerHTML='<div style="padding:30px;text-align:center;color:#6b7280;font-weight:800">इस समय कोई बकाया फीस नहीं है।</div>';$("total").textContent="₹0.00";$("pay").disabled=true;show("feeScreen");return}
-  $("pay").disabled=false;$("fees").innerHTML=j.items.map(x=>`<label class="fee"><input class="feeCheck" type="checkbox" value="${x.id}" data-amt="${x.amount}" checked><span class="name">${esc(x.fee_head_name)}</span><span class="amt">${money(x.amount)}</span></label>`).join("");
-  document.querySelectorAll(".feeCheck").forEach(x=>x.onchange=updateTotal);updateTotal();show("feeScreen");
+
+async function loadFee(){
+  const r=await fetch(`/api/students/${student.id}/fee`);
+  const j=await r.json();
+  if(!r.ok){ alert(j.error||"Fee error"); return; }
+  fee=j;
+  if(fee.items&&fee.items.length){
+    $("selectAllRow").style.display="flex";
+    $("feeBox").innerHTML=fee.items.map(x=>`
+      <label class="feeItem on" data-id="${x.id}">
+        <input type="checkbox" class="feeCheck" value="${x.id}" data-amount="${x.amount}" checked>
+        <span class="n">${esc(x.fee_head_name)}</span>
+        <span class="a">${money(x.amount)}</span>
+      </label>`).join("");
+    document.querySelectorAll(".feeCheck").forEach(cb=>{
+      cb.onchange=()=>{ cb.closest(".feeItem").classList.toggle("on",cb.checked); updateFeeTotal(); };
+    });
+    $("selectAllFees").checked=true;
+    $("selectAllFees").onchange=e=>{
+      document.querySelectorAll(".feeCheck").forEach(cb=>{ cb.checked=e.target.checked; cb.closest(".feeItem").classList.toggle("on",e.target.checked); });
+      updateFeeTotal();
+    };
+  } else {
+    $("selectAllRow").style.display="none";
+    $("feeBox").innerHTML=`<div class="empty"><div class="big">✅</div><p>${t("noFee")}</p></div>`;
+  }
+  updateFeeTotal(); show("feeScreen");
 }
-function updateTotal(){let n=0;document.querySelectorAll(".feeCheck:checked").forEach(x=>n+=Number(x.dataset.amt));$("total").textContent=money(n);$("pay").disabled=n<=0}
-$("pay").onclick=async()=>{
-  const ids=[...document.querySelectorAll(".feeCheck:checked")].map(x=>+x.value);
-  const r=await fetch("/api/payments/create",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({student_id:student.id,fee_assignment_ids:ids})});
-  const j=await r.json();if(!r.ok){alert(j.error||"Payment failed");return}
-  paymentRef=j.payment_reference;$("amount").textContent=money(j.amount);$("upi").textContent=j.upi_id||"UPI ID सेट नहीं है";$("qr").src=j.qr_url||"";$("upiApp").href=j.upi_url||"#";show("paymentScreen");
-};
-$("copy").onclick=()=>navigator.clipboard?.writeText($("upi").textContent);
-$("utrBtn").onclick=async()=>{
-  const utr=$("utr").value.trim();if(!utr){$("payStatus").textContent="UTR दर्ज करें।";$("payStatus").className="status error";return}
-  const r=await fetch("/api/payments/submit-utr",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({payment_reference:paymentRef,transaction_id:utr})}),j=await r.json();
-  if(!r.ok){$("payStatus").textContent=j.error||"Failed";$("payStatus").className="status error";return}
-  $("payStatus").textContent="भुगतान दर्ज हो गया। Admin सत्यापन के बाद रसीद उपलब्ध होगी।";$("payStatus").className="status ok";
-};
-async function pollPayment(){
-  if(!paymentRef)return;
-  const j=await (await fetch(`/api/payments/${encodeURIComponent(paymentRef)}`)).json().catch(()=>({}));
-  if(j.status==="SUCCESS"){clearInterval(pollTimer);showReceipt();}
+function updateFeeTotal(){
+  let total=0;
+  document.querySelectorAll(".feeCheck:checked").forEach(cb=>total+=Number(cb.dataset.amount||0));
+  $("feeTotal").textContent=money(total);
+  $("startPayment").disabled=total<=0;
 }
-async function showReceipt(){
-  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}/receipt`),j=await r.json();if(!r.ok)return;
-  const s=await (await fetch("/api/settings")).json();
-  $("receiptOrg").textContent=s.organization_name||"FeeSetu";$("receiptState").textContent="भुगतान सफल";
-  $("receiptMeta").innerHTML=[["Receipt No.",j.receipt_number],["Date & Time",new Date(j.created_at).toLocaleString("hi-IN")],["Student",j.student_name],["Enrollment",j.enrollment_number],["Roll No.",j.roll_number||"-"],["Course",j.course||j.class||"-"],["Semester",j.semester||"-"],["UTR",j.transaction_id||"-"]].map(x=>`<div class="info"><small>${x[0]}</small><b>${esc(x[1])}</b></div>`).join("");
-  $("receiptRows").innerHTML=(j.items||[]).map(x=>`<tr><td>${esc(x.fee_head_name)}</td><td>${money(x.amount)}</td></tr>`).join("");$("receiptTotal").textContent=money(j.amount);show("receiptScreen");
+
+async function createPayment(){
+  try{
+    const ids=[...document.querySelectorAll(".feeCheck:checked")].map(x=>+x.value);
+    if(!ids.length){ alert(lang==="hi"?"कम से कम एक शुल्क चुनें":"Select at least one fee"); return; }
+    const r=await fetch("/api/payments/create",{
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({student_id:student.id, fee_assignment_ids:ids})
+    });
+    const p=await r.json();
+    if(!r.ok) throw new Error(p.error);
+    paymentRef=p.payment_reference;
+    $("paymentStudent").textContent=student.student_name;
+    $("paymentAmount").textContent=money(p.amount);
+    $("paymentRef").textContent=p.payment_reference;
+    if(p.qr_url){ $("qr").src=p.qr_url; $("qr").style.display="block"; } else $("qr").style.display="none";
+    $("upiLink").href=p.upi_url||"#";
+    $("upiIdText").textContent=p.upi_id||"-";
+    $("paymentStatus").textContent=""; $("paymentStatus").className="status";
+    $("copyUpi").onclick=async()=>{
+      try{ await navigator.clipboard.writeText(p.upi_id||""); $("paymentStatus").textContent="✓ UPI ID"; $("paymentStatus").className="status ok"; }
+      catch{ $("paymentStatus").textContent=p.upi_id||""; }
+    };
+    $("downloadQr").onclick=()=>{ if(!p.qr_url) return; const a=document.createElement("a"); a.href=p.qr_url; a.download="upi-qr-"+p.payment_reference+".png"; a.click(); };
+    show("paymentScreen");
+  }catch(e){ alert(e.message); }
 }
-$("print").onclick=()=>window.print();$("home").onclick=()=>{clearInterval(pollTimer);goHome(true)};
-$("help").onclick=()=>alert("पहचान चुनें → नंबर दर्ज करें → खोजें → विद्यार्थी की पुष्टि → फीस चुनें → UPI भुगतान → UTR → रसीद");
-setInterval(()=>{const d=new Date();$("time").textContent=d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});$("date").textContent=d.toLocaleDateString("hi-IN",{day:"2-digit",month:"short",year:"numeric"})},1000);
-$("welcome").addEventListener("click",()=>{$("welcome").classList.add("hidden");idle()});
-$("welcome").addEventListener("touchstart",()=>{$("welcome").classList.add("hidden");idle()},{passive:true});
-setTimeout(()=>{$("welcome").classList.add("hidden");idle()},7000);
-(async()=>{try{$("orgName").textContent=(await (await fetch("/api/settings")).json()).organization_name||"FeeSetu"}catch{}setMode("enrollment")})();
-pollTimer=setInterval(pollPayment,4000);
+
+async function submitUtr(){
+  const utr=$("utr").value.trim();
+  if(!utr){ $("paymentStatus").textContent=t("payNote"); $("paymentStatus").className="status bad"; return; }
+  const r=await fetch("/api/payments/submit-utr",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({payment_reference:paymentRef,transaction_id:utr})});
+  const j=await r.json();
+  if(!r.ok){ $("paymentStatus").textContent=j.error||"Failed"; $("paymentStatus").className="status bad"; return; }
+  $("paymentStatus").textContent=lang==="hi"?"भुगतान दर्ज हो गया। सत्यापन के बाद रसीद उपलब्ध होगी।":"Submitted. Receipt after verification.";
+  $("paymentStatus").className="status ok";
+}
+
+async function checkPayment(){
+  if(!paymentRef) return;
+  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}`);
+  const p=await r.json();
+  if(!r.ok){ $("paymentStatus").textContent=p.error; $("paymentStatus").className="status bad"; return; }
+  if(p.status==="SUCCESS"){ await loadReceipt(); return; }
+  if(p.status==="REJECTED"){ $("paymentStatus").textContent=lang==="hi"?"भुगतान सत्यापित नहीं हुआ।":"Not verified."; $("paymentStatus").className="status bad"; return; }
+  $("paymentStatus").textContent=p.status==="PENDING_VERIFICATION"
+    ?(lang==="hi"?"सत्यापन के लिए भेजा गया।":"Pending verification.")
+    :(lang==="hi"?"अभी पुष्टि नहीं हुई।":"Not confirmed yet.");
+  $("paymentStatus").className="status";
+}
+
+async function loadReceipt(){
+  const r=await fetch(`/api/payments/${encodeURIComponent(paymentRef)}/receipt`);
+  const x=await r.json();
+  if(!r.ok){ $("paymentStatus").textContent=x.error; return; }
+  $("rOrg").textContent=$("orgName").textContent;
+  $("receiptMeta").innerHTML=`
+    <div><b>${lang==="hi"?"रसीद क्रमांक":"Receipt No."}</b>${esc(x.receipt_number)}</div>
+    <div><b>${lang==="hi"?"दिनांक":"Date"}</b>${new Date(x.created_at).toLocaleString(lang==="hi"?"hi-IN":"en-IN")}</div>
+    <div><b>${lang==="hi"?"विद्यार्थी":"Student"}</b>${esc(x.student_name)}</div>
+    <div><b>${lang==="hi"?"नामांकन":"Enrollment"}</b>${esc(x.enrollment_number)}</div>
+    <div><b>Transaction ID</b>${esc(x.transaction_id||"-")}</div>
+    <div><b>${lang==="hi"?"कुल भुगतान":"Total Paid"}</b>${money(x.amount)}</div>`;
+  $("receiptLines").textContent=x.fee_lines||"Fee payment";
+  show("receiptScreen");
+}
+
+/* events */
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>openMode(b.dataset.go));
+document.querySelectorAll("[data-home]").forEach(b=>b.onclick=resetAll);
+$("erase").onclick=()=>{ $("query").value=""; };
+$("continueFee").onclick=loadFee;
+$("backStudent").onclick=()=>show("studentScreen");
+$("backStudent2").onclick=()=>show("studentScreen");
+$("startPayment").onclick=createPayment;
+$("backFee").onclick=()=>show("feeScreen");
+$("submitUtr").onclick=submitUtr;
+$("checkPayment").onclick=checkPayment;
+$("printReceipt").onclick=()=>window.print();
+
+$("langToggle").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{
+    lang=b.dataset.lang;
+    localStorage.setItem("feesetuLang",lang);
+    $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.lang===lang));
+    applyI18n();
+  };
+});
+const saved=localStorage.getItem("feesetuLang");
+if(saved==="en"||saved==="hi"){ lang=saved; $("langToggle").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.lang===lang)); }
+
+$("helpBtn").onclick=()=>$("helpModal").classList.remove("hidden");
+$("closeHelp").onclick=()=>$("helpModal").classList.add("hidden");
+$("helpModal").onclick=e=>{ if(e.target===$("helpModal")) $("helpModal").classList.add("hidden"); };
+
+applyI18n();
+loadSettings();
+show("homeScreen");
+resetIdle();
 </script>
 </body>
 </html>
