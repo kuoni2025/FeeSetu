@@ -1,16 +1,26 @@
-# FeeSetu V16 — Render Deployment
+# Existing Render update
 
-Use the included `render.yaml` for a new FeeSetu deployment, or copy the settings into the existing Render service.
+यह build existing `simple-fee-kiosk` Render service को update करने के लिए है। नया Blueprint बनाने की जरूरत नहीं है।
 
-Required environment variables:
-- DATABASE_URL (PostgreSQL connection string)
-- ADMIN_USER
-- ADMIN_PASSWORD
+## GitHub
+Repository में project files replace करें:
+- server.js
+- public/index.html
+- public/admin.html
+- package.json
+- db/schema.sql (reference)
+- README.md
+- DEPLOY_TO_RENDER.md
+- DEPLOY_CHECKLIST.txt
+- render.yaml
 
-Optional payment settings are entered from Admin > Settings:
-- UPI ID for UPI QR
-- Razorpay Key ID / Secret / Webhook Secret for online gateway
+## Render
+Existing Web Service में auto deploy enabled है तो GitHub commit के बाद deployment शुरू हो जाएगा। यदि auto deploy नहीं होता तो Render में Manual Deploy → Deploy latest commit करें।
 
-Health check: `/api/health`
+Database data अलग PostgreSQL service में है; code update से database delete नहीं होना चाहिए। Server startup पर required tables/columns `CREATE TABLE IF NOT EXISTS` और `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` से तैयार होते हैं।
 
-If an existing Render service is still named `simple-fee-kiosk`, its service URL will not change merely because the GitHub repository is renamed. Rename/recreate the Render service as `feesetu` if you want a new `feesetu.onrender.com` address.
+## Environment
+`ADMIN_USER` और `ADMIN_PASSWORD` वही रखें जो existing Render service में configured हैं। `DATABASE_URL` को बदलें नहीं।
+
+## Payment testing
+Settings में अपना वास्तविक UPI ID डालकर पहले छोटी test fee से test करें। Payment verification अभी manual UTR based है। किसी payment को Verify तभी करें जब UTR/transaction वास्तव में UPI/bank statement में मिल जाए।

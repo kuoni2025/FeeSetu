@@ -1,9 +1,22 @@
-# FeeSetu V15
-Professional kiosk-first fee payment application scaffold based on the supplied UI references.
+# Simple Fee Kiosk — Final Test V4
 
-## Important
-- This package is a real application structure, not a static screenshot.
-- Student lookup is explicitly mapped: Enrollment → enrollment, Roll → roll, Mobile → mobile.
-- Replace the demo in-memory student array with the production database/API before collecting real payments.
-- Real UPI/card/net-banking processing must use a licensed payment gateway/API and server-side verification.
-- Configure the institution profile, receipt printer and PDF service on the server.
+V4 focuses on real UPI QR compatibility testing.
+
+### QR improvements
+- Standard UPI intent URI with `pa`, `pn`, `am`, `cu`, `tr`, `tn`
+- UPI VPA whitespace normalization
+- QR error correction level H
+- High-resolution PNG QR with white quiet zone
+- Clear QR instructions
+- Visible UPI ID with Copy button
+- Save QR button
+- Direct “UPI App खोलें” fallback
+- Amount and payment reference remain fixed by the payment request
+
+### Existing V3 fixes retained
+- Student edit/delete
+- Fee assignment success feedback
+- Unpaid fee edit/delete
+- Pending payment delete/recovery to unpaid
+- Roll-number search tolerance
+- Kiosk visual improvements
