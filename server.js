@@ -21,8 +21,8 @@ const q = (sql, params = []) => pool.query(sql, params);
 const SCHEMA = `
 create table if not exists settings(
  id int primary key default 1,
- organization_name text not null default 'शासकीय स्नातकोत्तर महाविद्यालय, शिवपुरी',
- welcome_message text default 'विद्यार्थी शुल्क भुगतान कियोस्क',
+ organization_name text not null default 'Fee Payment Center',
+ welcome_message text default 'अपना रिकॉर्ड खोजें और फीस जमा करें',
  upi_id text default '', receipt_prefix text default 'FEE',
  logo_url text default '',
  gateway_enabled boolean default false,
@@ -349,7 +349,7 @@ app.post("/api/settings",admin,async(req,res)=>{
     razorpay_webhook_secret=CASE WHEN $10 = '' THEN razorpay_webhook_secret ELSE $10 END
     where id=1 returning organization_name,welcome_message,upi_id,receipt_prefix,logo_url,gateway_enabled,gateway_provider,razorpay_key_id`,
     [
-      String(b.organization_name||"शासकीय स्नातकोत्तर महाविद्यालय, शिवपुरी").trim(),
+      String(b.organization_name||"Fee Payment Center").trim(),
       String(b.welcome_message||"अपना रिकॉर्ड खोजें और फीस जमा करें").trim(),
       String(b.upi_id||"").trim(),
       String(b.receipt_prefix||"FEE").trim(),

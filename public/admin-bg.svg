@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
-<rect width="1200" height="900" fill="#fffaf5"/>
-<g fill="none" stroke="#ea580c" opacity=".035" stroke-width="2"><path d="M0 180h1200M0 360h1200M0 540h1200M0 720h1200"/><circle cx="1080" cy="100" r="180"/><circle cx="1080" cy="100" r="130"/></g>
-<text x="960" y="190" font-family="Arial" font-size="180" font-weight="900" fill="#ea580c" opacity=".035">₹</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000"><defs><radialGradient id="a"><stop stop-color="#fff7ed" stop-opacity=".95"/><stop offset="1" stop-color="#fffaf5" stop-opacity="0"/></radialGradient></defs><rect width="1600" height="1000" fill="#fffaf5"/><circle cx="1400" cy="100" r="420" fill="url(#a)"/><circle cx="120" cy="880" r="380" fill="url(#a)"/></svg>
