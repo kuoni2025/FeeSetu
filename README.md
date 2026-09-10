@@ -1,22 +1,18 @@
-# Simple Fee Kiosk — Final Test V4
+# FeeSetu V16 — Professional Fee Payment Kiosk
 
-V4 focuses on real UPI QR compatibility testing.
+Professional responsive fee-payment kiosk and admin portal for Gov PG College Shivpuri.
 
-### QR improvements
-- Standard UPI intent URI with `pa`, `pn`, `am`, `cu`, `tr`, `tn`
-- UPI VPA whitespace normalization
-- QR error correction level H
-- High-resolution PNG QR with white quiet zone
-- Clear QR instructions
-- Visible UPI ID with Copy button
-- Save QR button
-- Direct “UPI App खोलें” fallback
-- Amount and payment reference remain fixed by the payment request
+## Highlights
+- Touch-first student kiosk with separate login and keyboard screens.
+- Fixed search mapping: Enrollment → enrollment_number, Roll → roll_number, Mobile → mobile.
+- Functional alphanumeric QWERTY keyboard for Enrollment/Roll and numeric keypad for Mobile.
+- Hindi/English interface and live clock.
+- Student photo support through Excel import / Photo URL.
+- Fee assignment, UPI/payment workflow, receipt generation/printing and payment records.
+- Admin tools for old/inactive student data management and Excel import.
+- Responsive UI for mobile, iPad/tablet, laptop/desktop and kiosk displays.
+- Supplied FeeSetu UI Asset Pack is actively integrated into the UI, not merely stored in the assets folder.
 
-### Existing V3 fixes retained
-- Student edit/delete
-- Fee assignment success feedback
-- Unpaid fee edit/delete
-- Pending payment delete/recovery to unpaid
-- Roll-number search tolerance
-- Kiosk visual improvements
+## Run
+`npm install`
+`npm start`
